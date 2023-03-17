@@ -1,12 +1,17 @@
 <template>
   <div class="app">
-    <h2>App</h2>
-    <router-link to="/main">主页</router-link>
-    <router-link to="/login">登陆</router-link>
     <router-view></router-view>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 在局部注册的时候，进行引入
+// import { ElButton } from 'element-plus'
+</script>
 
-<style scoped></style>
+<style scoped>
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+</style>
