@@ -21,3 +21,6 @@ app.use(registerIcons)
 app.use(router)
 app.use(pinia)
 app.mount('#app')
+
+// app.config.devtools = true; 
+

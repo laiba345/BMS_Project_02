@@ -15,8 +15,7 @@
               <span class="text">账号登陆</span>
             </div>
           </template>
-          <div>哈哈哈</div>
-          <div>呵呵呵</div>
+          <paneAccount/>
         </el-tab-pane>
 
         <!-- 2、手机登陆的pane -->
@@ -27,8 +26,7 @@
               <span class="text">手机登陆</span>
             </div>
           </template>
-          <div>手机登陆</div>
-          <div>验证码</div>
+          <panePhone />
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -50,15 +48,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import paneAccount from './pane-account.vue'
+import panePhone from './pane-phone.vue'
 
-const activeName = ref('phone')
+const activeName = ref('account')
 const isRemPwd = ref(false)
 
 function handleLoginBtnClick() {
   // console.log('点击立即登陆')
-  if(activeName.value === 'account') {
+  if (activeName.value === 'account') {
     console.log('用户在进行账号登陆')
-  }else {
+  } else {
     console.log('用户在进行验证码登陆')
   }
 }
