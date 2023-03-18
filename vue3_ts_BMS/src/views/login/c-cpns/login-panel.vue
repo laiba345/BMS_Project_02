@@ -5,14 +5,30 @@
 
     <!-- 中间的tabs -->
     <div class="tabs">
-      <el-tabs type="border-card" stretch>
-        <el-tab-pane label="账号登陆">
-            <div>哈哈哈</div>
-            <div>呵呵呵</div>
+      <el-tabs type="border-card" stretch v-model="activeName">
+        <!-- 1、账号登陆的Pane -->
+        <el-tab-pane label="账号登陆" name="account">
+          <!-- 有具体的名字，使用具名茶插槽即可 -->
+          <template #label>
+            <div class="label">
+              <el-icon><User /></el-icon>
+              <span class="text">账号登陆</span>
+            </div>
+          </template>
+          <div>哈哈哈</div>
+          <div>呵呵呵</div>
         </el-tab-pane>
-        <el-tab-pane label="手机登陆">
-            <div></div>
-            <div></div>
+
+        <!-- 2、手机登陆的pane -->
+        <el-tab-pane label="手机登陆" name="phone">
+          <template #label>
+            <div class="label">
+              <el-icon><Iphone /></el-icon>
+              <span class="text">手机登陆</span>
+            </div>
+          </template>
+          <div>手机登陆</div>
+          <div>验证码</div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -22,7 +38,11 @@
       <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button class="login-btn" type="primary" size="large"
+    <el-button
+      class="login-btn"
+      type="primary"
+      size="large"
+      @click="handleLoginBtnClick"
       >立即登陆</el-button
     >
   </div>
@@ -31,7 +51,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const activeName = ref('phone')
 const isRemPwd = ref(false)
+
+function handleLoginBtnClick() {
+  // console.log('点击立即登陆')
+  if(activeName.value === 'account') {
+    console.log('用户在进行账号登陆')
+  }else {
+    console.log('用户在进行验证码登陆')
+  }
+}
 </script>
 
 <style lang="less" scoped>

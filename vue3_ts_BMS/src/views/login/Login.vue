@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <!-- 具体的内容慢慢填充即可 -->
     <loginPanel></loginPanel>
   </div>
 </template>

@@ -5,6 +5,7 @@ import './assets/css/index.less'
 import 'normalize.css'
 import router from './router'
 import pinia from './store'
+import registerIcons from './global/register-icons'
 
 // element-plus的引入
 // 1、全局引入
@@ -12,8 +13,11 @@ import pinia from './store'
 // import { ElButton } from 'element-plus'
 // app.component(ElButton.name, ElButton)
 
+// 3、图标的全局注册
+
 // createApp(App).use(router).mount('#app') 链式写法
 const app = createApp(App)
+app.use(registerIcons)
 app.use(router)
 app.use(pinia)
 app.mount('#app')
