@@ -15,7 +15,8 @@
               <span class="text">账号登陆</span>
             </div>
           </template>
-          <paneAccount/>
+          <!-- 将ref绑定到子组件上 -->
+          <paneAccount ref="accountRef"/>
         </el-tab-pane>
 
         <!-- 2、手机登陆的pane -->
@@ -53,11 +54,16 @@ import panePhone from './pane-phone.vue'
 
 const activeName = ref('account')
 const isRemPwd = ref(false)
+// 直接就创建出了一个paneAccount的实例
+const accountRef = ref<InstanceType<typeof paneAccount>>()
 
 function handleLoginBtnClick() {
   // console.log('点击立即登陆')
   if (activeName.value === 'account') {
-    console.log('用户在进行账号登陆')
+    // console.log('用户在进行账号登陆')
+    // 1、获取子组件的实例
+    accountRef.value?.loginAction()
+    // 2、调用方法
   } else {
     console.log('用户在进行验证码登陆')
   }
