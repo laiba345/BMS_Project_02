@@ -7,6 +7,10 @@ import router from './router'
 import pinia from './store'
 import registerIcons from './global/register-icons'
 
+// 引入css样式
+// 0、针对ElMessage组件进行样式引入
+import 'element-plus/theme-chalk/el-message.css'
+
 // element-plus的引入
 // 1、全局引入
 // 2、按需引入：用到哪一个组件再引入

@@ -11,17 +11,24 @@
 // console.log(import.meta.env.PROD) // 是否为生产环境
 // console.log(import.meta.env.SSR) // 是否是服务端渲染（server side render）
 
+// let BASE_URL = ''
+// if (import.meta.env.MODE === 'production') {
+//   BASE_URL = 'http://coderwhy.prod:8000'
+// } else {
+//   BASE_URL = 'http://coderwhy.dev:8000'
+// }
+
 let BASE_URL = ''
-if (import.meta.env.MODE === 'production') {
-  BASE_URL = 'http://coderwhy.prod:8000'
+if (import.meta.env.PROD) {
+  BASE_URL = 'http://152.136.185.210:4000'
 } else {
-  BASE_URL = 'http://coderwhy.dev:8000'
+  BASE_URL = 'http://152.136.185.210:5000'
 }
 
 // console.log(BASE_URL) // http://coderwhy.dev:8000
 
 // 3、通过创建dotenv(.env)文件直接创建变量
-console.log(import.meta.env.VITE_NAME) // dev
+// console.log(import.meta.env.VITE_NAME) // dev
 
 export const TIME_OUT = 10000
 export { BASE_URL }

@@ -12,6 +12,8 @@ const useLoginStore = defineStore('login', {
     name: ''
   }),
   actions: {
+    // 因为pinia里面的actions本来就是支持异步操作的
+    // 所以发送网络请求可以放在这一块进行
     async loginAccountAction(account: IAccount) {
       // 1.账号登录, 获取token等信息
       const loginResult = await accountLoginRequest(account)

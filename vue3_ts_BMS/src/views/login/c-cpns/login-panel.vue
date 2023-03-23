@@ -55,6 +55,8 @@ import panePhone from './pane-phone.vue'
 const activeName = ref('account')
 const isRemPwd = ref(false)
 // 直接就创建出了一个paneAccount的实例
+// 其实在此处，accountRef保存的是，paneAccount创建出来的实例对象
+// 拿到<paneAccount />的实例
 const accountRef = ref<InstanceType<typeof paneAccount>>()
 
 function handleLoginBtnClick() {

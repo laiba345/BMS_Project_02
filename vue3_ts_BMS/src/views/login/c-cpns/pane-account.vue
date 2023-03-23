@@ -6,6 +6,7 @@
       label-width="60px"
       size="large"
       status-icon
+      ref="formRef"
     >
       <el-form-item label="帐号" prop="name">
         <el-input v-model="account.name" />
@@ -18,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import type { FormRules } from 'element-plus'
-
+import { reactive, ref } from 'vue'
+import { type FormRules, type ElForm, ElMessage } from 'element-plus'
+import { accoutLoginRequest } from '@/service/login/login'
 // 1、定义account数据
 const account = reactive({
   name: '',
@@ -31,7 +32,7 @@ const account = reactive({
 const accountRules: FormRules = {
   name: [
     { required: true, message: '必须输入账号信息～', trigger: 'blur' },
-    { min: 3, max: 5, message: '必须是3～5位', trigger: 'blur' }
+    { min: 3, max: 8, message: '必须是3～8位', trigger: 'blur' }
   ],
   password: [
     { required: true, message: '必须输入密码', trigger: 'blur' },
@@ -41,14 +42,35 @@ const accountRules: FormRules = {
       // message: '必须是3位以上数字或字母组成',
       // trigger: 'blur'
     } */
-    { min: 3, max: 5, message: '必须是3～5位', trigger: 'blur' }
+    { min: 3, max: 8, message: '必须是3～8位', trigger: 'blur' }
   ]
 }
 
 // 3、执行账号登陆逻辑
+const formRef = ref<InstanceType<typeof ElForm>>()
 function loginAction() {
   // console.log('pane-account loginAction function exec', account.name, account.password)
+  // 拿到ElForm以后，我们就可以去拿里面的值 在这个表单里面的方法
+  formRef.value?.validate((valid) => {
+    if (valid) {
+      // console.log('验证成功')
+      // 1、获取用户输入的账号和密码
+      const name = account.name
+      const password = account.password
 
+      // 2、向服务器发送网络请求
+      // hyre 但是网络请求直接写在业务逻辑中是很不好的
+      // 我们最好是封装在一个个组件当中才好
+      accoutLoginRequest({ name, password }).then((res) => {
+        console.log(res)
+      })
+    } else {
+      // console.log('验证失败')
+      // 逻辑里面的东西是不会自动引入的
+      // ElMessage还需要引入样式
+      ElMessage.error('Oops, 请您输入正确的格式后再操作')
+    }
+  })
 }
 // 将子组件中的属性暴露出去供给父组件使用（语法糖）
 defineExpose({
