@@ -22,8 +22,19 @@
 import { reactive, ref } from 'vue'
 import { type FormRules, type ElForm, ElMessage } from 'element-plus'
 import { accoutLoginRequest } from '@/service/login/login'
-// 1、定义account数据
-const account = reactive({
+import useLoginStore from '@/store/login/login'
+import type { IAccount } from '@/types' 
+
+
+// 因为在很多地方都用到了这个数据，所以可以把这个对象抽取出去，
+
+// 1、定义account数据 ～ 抽取到了别的文件夹当中
+// interface IAccout {
+//   name: string
+//   password: string
+// }
+
+const account = reactive<IAccount>({
   name: '',
   password: ''
 })
@@ -48,6 +59,8 @@ const accountRules: FormRules = {
 
 // 3、执行账号登陆逻辑
 const formRef = ref<InstanceType<typeof ElForm>>()
+const loginStore = useLoginStore()
+
 function loginAction() {
   // console.log('pane-account loginAction function exec', account.name, account.password)
   // 拿到ElForm以后，我们就可以去拿里面的值 在这个表单里面的方法
@@ -61,9 +74,7 @@ function loginAction() {
       // 2、向服务器发送网络请求
       // hyre 但是网络请求直接写在业务逻辑中是很不好的
       // 我们最好是封装在一个个组件当中才好
-      accoutLoginRequest({ name, password }).then((res) => {
-        console.log(res)
-      })
+      loginStore.loginAccoutAction({ name, password })
     } else {
       // console.log('验证失败')
       // 逻辑里面的东西是不会自动引入的
