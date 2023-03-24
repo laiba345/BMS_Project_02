@@ -8,3 +8,10 @@ Vue3 + TypeScript （CodyWhy）
 - 执行 git add [文件夹名]
 - 执行 git commit -m "msg"
 - 执行 git push || git push origin [branch_name]
+
+## 每日学习内容（思维导图）
+### day01
+![day01](./pictureOfEveryday/day01.png)
+
+### day02
+![day02](./pictureOfEveryday/day02.png)
