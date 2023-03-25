@@ -4,7 +4,7 @@ enum CacheType {
 }
 // 通过类来进行封装：因为类可以将所有方法聚集在一起
 class Cache {
-  // 成员属性storage
+  // 成员属性storage 
   storage: Storage
 
   constructor(type: CacheType) {
