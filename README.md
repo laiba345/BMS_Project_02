@@ -54,3 +54,6 @@ vh 表示视口高度的百分比，即 1vh 等于视口高度的 1%。例如，
 8. 其中在pinia中actions中发送网络请求的时候可以用async和await配合使用，这样结果数据就能直接获取到；不用.then()
 9. 一些公用的类型可以抽取到types文件夹当中；暴露文件一般是通过index.ts进行全局暴露；
 10. 对于一些常用方法：比如使用localStorage、sessionStorage来对token数据做一个保留的时候，可以将这个方法写在utils文件夹当中；
+
+### day03
+![day03](./pictureOfEveryday/day03.png)
