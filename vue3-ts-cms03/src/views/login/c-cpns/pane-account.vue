@@ -31,6 +31,7 @@ const CACHE_PASSWORD = 'password'
 
 // 1.定义account数据
 const account = reactive<IAccount>({
+  // 定义的时候
   name: localCache.getCache(CACHE_NAME) ?? '',
   password: localCache.getCache(CACHE_PASSWORD) ?? ''
 })
@@ -69,9 +70,11 @@ function loginAction(isRemPwd: boolean) {
       loginStore.loginAccountAction({ name, password }).then(() => {
         // 3.判断是否需要记住密码
         if (isRemPwd) {
+          // 如果这个东西为true；就把后面那两个东西记录下来
           localCache.setCache(CACHE_NAME, name)
           localCache.setCache(CACHE_PASSWORD, password)
         } else {
+          // 如果是false的情况；需要把内容删除
           localCache.removeCache(CACHE_NAME)
           localCache.removeCache(CACHE_PASSWORD)
         }

@@ -21,11 +21,12 @@
             <template #title>
               <!-- 字符串: el-icon-monitor => 组件 component动态组件 -->
               <el-icon>
+                <!-- 必须知道服务器给你返回的字符串结构是什么样的 -->
                 <component :is="item.icon.split('-icon-')[1]" />
               </el-icon>
               <span>{{ item.name }}</span>
             </template>
-
+            <!-- 很多子菜单也是需要了解一下 -->
             <template v-for="subitem in item.children" :key="subitem.id">
               <el-menu-item
                 :index="subitem.id + ''"
@@ -87,7 +88,7 @@
 import useLoginStore from '@/store/login/login'
 import { useRouter } from 'vue-router'
 
-// 0.定义props
+// 0.定义props（来接受相应的属性内容）
 defineProps({
   isFold: {
     type: Boolean,

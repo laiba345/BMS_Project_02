@@ -8,9 +8,9 @@ const hyRequest = new HYRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestSuccessFn: (config) => {
-      // 每一个请求都自动携带token
+      // 每一个请求都自动携带token 先要获取token
       const token = localCache.getCache(LOGIN_TOKEN)
-      if (config.headers && token) {
+      if (config.headers && token) { // 类型缩小
         // 类型缩小
         config.headers.Authorization = 'Bearer ' + token
       }

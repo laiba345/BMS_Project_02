@@ -2,6 +2,7 @@
   <div class="main-header">
     <div class="menu-icon" @click="handleMenuIconClick">
       <el-icon size="28px">
+        <!-- 动态组件中，设置图标组件 -->
         <component :is="isFold ? 'Expand' : 'Fold'" />
       </el-icon>
     </div>
@@ -25,7 +26,7 @@ function handleMenuIconClick() {
   // 1.内部改变状态
   isFold.value = !isFold.value
 
-  // 2.将事件和状态传递给父组件
+  // 2.将事件和状态传递给父组件 
   emit('foldChange', isFold.value)
 }
 </script>

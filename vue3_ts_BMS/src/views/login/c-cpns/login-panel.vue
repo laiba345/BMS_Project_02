@@ -48,12 +48,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import paneAccount from './pane-account.vue'
 import panePhone from './pane-phone.vue'
+import { localCache } from '@/utils/cache';
 
 const activeName = ref('account')
-const isRemPwd = ref(false)
+// const isRemPwd = ref(false)
+// 直接通过localCache来实时获取操作；
+const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
+// 因为我们需要实时知道其是否会被勾选；可以利用监视属性来得到
+watch(isRemPwd, (newValue) => {
+  // console.log(newValue)
+  localCache.setCache('isRemPwd', newValue)
+})
 // 直接就创建出了一个paneAccount的实例
 // 其实在此处，accountRef保存的是，paneAccount创建出来的实例对象
 // 拿到<paneAccount />的实例

@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <el-container class="main-content">
+      <!-- 根据isFold的值来动态决定width的值是多少 -->
       <el-aside :width="isFold ? '60px' : '210px'">
         <main-menu :is-fold="isFold" />
       </el-aside>
@@ -22,7 +23,7 @@ import MainMenu from '@/components/main-menu/main-menu.vue'
 import MainHeader from '@/components/main-header/main-header.vue'
 
 // 处理main-header中折叠的变化
-const isFold = ref(false)
+const isFold = ref(false) // 默认不折叠
 function handleFoldChange(flag: boolean) {
   isFold.value = flag
 }
@@ -30,6 +31,7 @@ function handleFoldChange(flag: boolean) {
 
 <style lang="less" scoped>
 .main {
+  // 直接将整个高度弄成100% 
   height: 100%;
 }
 

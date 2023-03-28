@@ -53,14 +53,18 @@ import PaneAccount from './pane-account.vue'
 import PanePhone from './pane-phone.vue'
 
 const activeName = ref('account')
+// 直接通过localCache来实时获取操作；
 const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
+// 因为我们需要实时知道其是否会被勾选；可以利用监视属性来得到
 watch(isRemPwd, (newValue) => {
+  // console.log(newValue)
   localCache.setCache('isRemPwd', newValue)
 })
 const accountRef = ref<InstanceType<typeof PaneAccount>>()
 
 function handleLoginBtnClick() {
   if (activeName.value === 'account') {
+    // 在调用子组件的时候；多传入一个参数
     accountRef.value?.loginAction(isRemPwd.value)
   } else {
     console.log('用户在进行手机登录')
