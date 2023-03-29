@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+// RouteRecordRaw 这个类型其实就是
 
 function loadLocalRoutes() {
   // 1.动态获取所有的路由对象, 放到数组中
@@ -21,7 +22,7 @@ function loadLocalRoutes() {
 
   return localRoutes
 }
-
+// 
 export let firstMenu: any = null
 export function mapMenusToRoutes(userMenus: any[]) {
   // 1.加载本地路由
@@ -29,6 +30,7 @@ export function mapMenusToRoutes(userMenus: any[]) {
 
   // 2.根据菜单去匹配正确的路由
   const routes: RouteRecordRaw[] = []
+  // 拿到菜单以后，直接对菜单做相应的遍历，因为是二级菜单，所以再遍历一次即可
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       const route = localRoutes.find((item) => item.path === submenu.url)
@@ -75,7 +77,7 @@ export function mapPathToBreadcrumbs(path: string, userMenus: any[]) {
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       if (submenu.url === path) {
-        // 1.顶层菜单
+        // 1.顶层菜单（放入的话，也是可以放入相应的对象的）
         breadcrumbs.push({ name: menu.name, path: menu.url })
         // 2.匹配菜单
         breadcrumbs.push({ name: submenu.name, path: submenu.url })

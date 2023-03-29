@@ -45,7 +45,7 @@ const useLoginStore = defineStore('login', {
       localCache.setCache('userInfo', userInfo)
       localCache.setCache('userMenus', userMenus)
 
-      // 重要: 动态的添加路由
+      // 重要: 动态的添加路由 
       const routes = mapMenusToRoutes(userMenus)
       routes.forEach((route) => router.addRoute('main', route))
 
@@ -54,16 +54,17 @@ const useLoginStore = defineStore('login', {
     },
 
     loadLocalCacheAction() {
-      // 1.用户进行刷新默认加载数据
+      // 1.用户进行刷新默认加载数据（）
       const token = localCache.getCache(LOGIN_TOKEN)
       const userInfo = localCache.getCache('userInfo')
       const userMenus = localCache.getCache('userMenus')
+      // 说明用户已经登陆了，没有登陆的话，压根不会有这些值；
       if (token && userInfo && userMenus) {
         this.token = token
         this.userInfo = userInfo
         this.userMenus = userMenus
 
-        // 2.动态添加路由
+        // 2.动态添加路由（有值的话，再动态添加路由即可）
         const routes = mapMenusToRoutes(userMenus)
         routes.forEach((route) => router.addRoute('main', route))
       }

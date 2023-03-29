@@ -63,7 +63,7 @@ router.beforeEach((to) => {
     return '/login'
   }
 
-  // 如果是进入到main
+  // 如果是进入到main  
   if (to.path === '/main') {
     return firstMenu?.url
   }

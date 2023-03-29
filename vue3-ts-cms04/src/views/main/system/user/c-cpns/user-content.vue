@@ -64,6 +64,7 @@ const systemStore = useSystemStore()
 systemStore.postUsersListAction()
 
 // 2.获取usersList数据,进行展示
+// storeRefs是将数据变成响应式的，只要获取到的数据一发生变化，页面就会进行相应更新
 const { usersList } = storeToRefs(systemStore)
 </script>
 
