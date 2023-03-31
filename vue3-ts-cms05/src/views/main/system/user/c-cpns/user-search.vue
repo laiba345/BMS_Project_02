@@ -77,7 +77,7 @@ const searchForm = reactive({
   realname: '',
   cellphone: '',
   enable: '',
-  createAt: ''
+  createAt: '' // 服务器对传入的不同的数据，其校验资格是不一样的
 })
 
 // 重置操作
@@ -87,11 +87,12 @@ function handleResetClick() {
   formRef.value?.resetFields()
 
   // 2.将事件出去, content内部重新发送网络请求
+  // 将事件传递出去！！！
   emit('resetClick')
 }
 
 function handleQueryClick() {
-  emit('queryClick', searchForm)
+  emit('queryClick', searchForm) // 拿到searchForm传递出去即可
 }
 </script>
 

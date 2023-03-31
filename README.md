@@ -74,7 +74,14 @@ const roles = {
 ```
 - *弊端：每增加一个角色；都要增加一个key/value 
 - 登陆的接口中请求三个内容：token;用户信息：角色信息～role对象;菜单信息
+
+2. 要想获取数据
+  - 先去service中书写获取获取数据的方法
+  - 将service中的方法传入到pinia中
+  - 在pinia中的actions获取数据存储在state中
+  - 在组件中直接调用pinia中的actions
 #### 项目知识点复习day04
+
 
 2. 基于菜单(menu)的动态路由管理
 - userMenus => 动态展示菜单

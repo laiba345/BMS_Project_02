@@ -108,6 +108,7 @@ const emit = defineEmits(['newClick', 'editClick'])
 
 // 1.发起action，请求usersList的数据
 const systemStore = useSystemStore()
+// 绑定的是当前页面
 const currentPage = ref(1)
 const pageSize = ref(10)
 fetchUserListData()
@@ -120,19 +121,20 @@ function handleSizeChange() {
   fetchUserListData()
 }
 function handleCurrentChange() {
-  fetchUserListData()
+  fetchUserListData() // 直接调用即可；因为下面的size和offset都已经改变了
 }
 
 // 4.定义函数, 用于发送网络请求
 function fetchUserListData(formData: any = {}) {
-  // 1.获取offset/size
+  // 1.获取offset/size（动态获取）
   const size = pageSize.value
   const offset = (currentPage.value - 1) * size
   const pageInfo = { size, offset }
 
   // 2.发起网络请求
+  // !!!将所有的条件综合到一起来进行查询操作
   const queryInfo = { ...pageInfo, ...formData }
-  systemStore.postUsersListAction(queryInfo)
+  systemStore.postUsersListAction(queryInfo) // 将queryInfo设置好即可
 }
 
 // 5.删除/新建/编辑的操作

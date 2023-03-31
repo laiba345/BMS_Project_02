@@ -3,7 +3,7 @@
     <!-- 1.输入搜索关键字的表单 -->
     <el-form :model="searchForm" ref="formRef" label-width="80px" size="large">
       <el-row :gutter="20">
-        <el-col :span="8">
+        <el-col :s pan="8">
           <el-form-item label="用户名" prop="name">
             <el-input
               v-model="searchForm.name"
@@ -77,8 +77,11 @@ const searchForm = reactive({
 })
 
 // 重置操作
+// const formRef = ref<InstanceType<typeof ElForm>>()
 const formRef = ref<InstanceType<typeof ElForm>>()
 function handleResetClick() {
+  // 一个一个清空内容会很麻烦，可以一次性将所有内容清除，
+  // 组件库提供了一键清除功能
   formRef.value?.resetFields()
 }
 

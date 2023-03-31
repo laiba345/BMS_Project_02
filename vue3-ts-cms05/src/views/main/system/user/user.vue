@@ -19,7 +19,8 @@ import UserSearch from './c-cpns/user-search.vue'
 import UserContent from './c-cpns/user-content.vue'
 import UserModal from './c-cpns/user-modal.vue'
 
-// 对content组件的操作
+// 对content组件的操作 
+// !!!拿到组件中的 UserContent写法；这一点很关键
 const contentRef = ref<InstanceType<typeof UserContent>>()
 function handleQueryClick(formData: any) {
   contentRef.value?.fetchUserListData(formData)

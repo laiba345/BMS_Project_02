@@ -61,10 +61,12 @@ import useSystemStore from '@/store/main/system/system'
 
 // 1.发起action，请求usersList的数据
 const systemStore = useSystemStore()
+// 获取到了pinia对象以后，可以直接调用里面的属性和方法
 systemStore.postUsersListAction()
 
 // 2.获取usersList数据,进行展示
-// storeRefs是将数据变成响应式的，只要获取到的数据一发生变化，页面就会进行相应更新
+// storeRefs是将数据变成响应式的，只要获取到的数据一发生变化，页面就会进行相应更新、
+// 变为响应式的，所谓变为响应式的，其实就是当获取到的数据一发生变化，页面就会进行相应的更新操作
 const { usersList } = storeToRefs(systemStore)
 </script>
 
@@ -78,6 +80,7 @@ const { usersList } = storeToRefs(systemStore)
 .header {
   display: flex;
   justify-content: space-between;
+  // align-items: flex-end 表示底部对齐
   align-items: flex-end;
   margin-bottom: 10px;
 
