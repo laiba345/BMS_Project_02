@@ -84,6 +84,7 @@ const searchForm = reactive({
 const formRef = ref<InstanceType<typeof ElForm>>()
 function handleResetClick() {
   // 1.form中的数据全部重置
+  // ref获取响应式的数据，在拿到的时候，对于里面的值需要.value
   formRef.value?.resetFields()
 
   // 2.将事件出去, content内部重新发送网络请求
@@ -92,7 +93,9 @@ function handleResetClick() {
 }
 
 function handleQueryClick() {
-  emit('queryClick', searchForm) // 拿到searchForm传递出去即可
+  // @可以将数据传递出去
+  // 上面的searchForm可以将用户收集到的数据拿到
+  emit('queryClick', searchForm) 
 }
 </script>
 

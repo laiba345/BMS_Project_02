@@ -108,6 +108,7 @@ const emit = defineEmits(['newClick', 'editClick'])
 
 // 1.发起action，请求usersList的数据
 // 这样依赖useSystemStore中的数据都是能够获取到的
+// 其实很多数据都是存储在pinia当中的，
 const systemStore = useSystemStore()
 // 绑定的是当前页面
 const currentPage = ref(1)
@@ -115,6 +116,7 @@ const pageSize = ref(10)
 fetchUserListData()
 
 // 2.获取usersList数据,进行展示
+// 需要进行展示的数据其实就是userList和userTotalCount，用于分页功能的实现
 const { usersList, usersTotalCount } = storeToRefs(systemStore)
 
 // 3.页码相关的逻辑
@@ -128,6 +130,7 @@ function handleCurrentChange() {
 // 4.定义函数, 用于发送网络请求
 function fetchUserListData(formData: any = {}) {
   // 1.获取offset/size（动态获取）
+  // ref属性获取相应的值需要进行 .value操作
   const size = pageSize.value
   const offset = (currentPage.value - 1) * size
   const pageInfo = { size, offset }
@@ -135,6 +138,7 @@ function fetchUserListData(formData: any = {}) {
   // 2.发起网络请求
   // !!!将所有的条件综合到一起来进行查询操作
   const queryInfo = { ...pageInfo, ...formData }
+  // 很多对网络的请求操作，直接放到了pinia状态管理器当中
   systemStore.postUsersListAction(queryInfo) // 将queryInfo设置好即可
 }
 

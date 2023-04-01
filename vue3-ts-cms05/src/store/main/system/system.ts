@@ -22,7 +22,9 @@ const useSystemStore = defineStore('system', {
   actions: {
     async postUsersListAction(queryInfo: any) {
       const usersListResult = await postUsersListData(queryInfo)
+      // @通过网络请求对返回的数据进行解构，
       const { totalCount, list } = usersListResult.data
+      // @解构出来的数据进行一次次更新操作即可 
       this.usersTotalCount = totalCount
       this.usersList = list
     },
@@ -32,6 +34,7 @@ const useSystemStore = defineStore('system', {
       console.log(deleteResult)
 
       // 2.重新请求新的数据
+      // @删除结束以后，还需要再次发送请求，来获取删除后的数据来进行展示
       this.postUsersListAction({ offset: 0, size: 10 })
     },
     async newUserDataAction(userInfo: any) {

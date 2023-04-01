@@ -88,6 +88,7 @@ const editData = ref()
 // 2.获取roles/departments数据
 const mainStore = useMainStore()
 const systemStore = useSystemStore()
+// @使用解构赋值的操作将角色数据和部门数据，并转换为响应式的
 const { entireRoles, entireDepartments } = storeToRefs(mainStore)
 
 // 2.定义设置dialogVisible方法
@@ -100,9 +101,11 @@ function setModalVisible(isNew: boolean = true, itemData?: any) {
       // for循环进行初始化回显操作
       formData[key] = itemData[key]
     }
+    // 将itemData中的数据保留下来
+    // 上面是对数据进行相应的回显操作
     editData.value = itemData
   } else {
-    // 新建数据
+    // 新建数据，这里是新建数据的逻辑
     for (const key in formData) {
       formData[key] = ''
     }
@@ -114,10 +117,11 @@ function setModalVisible(isNew: boolean = true, itemData?: any) {
 function handleConfirmClick() {
   dialogVisible.value = false
   if (!isNewRef.value && editData.value) {
-    // 编辑用户的数据
+    // 编辑用户的数据（把一开始传入过来的数据保存的目的就是为了获取id）
+    // @创建新用户和更改编辑新用户都是通过调用最新的方法来实现的
     systemStore.editUserDataAction(editData.value.id, formData)
   } else {
-    // 创建新的用户
+    // 创建新的用户，formData就是上述表格收集到的数据
     systemStore.newUserDataAction(formData)
   }
 }

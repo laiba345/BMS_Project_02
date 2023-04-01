@@ -3,7 +3,9 @@ import utc from 'dayjs/plugin/utc'
 
 dayjs.extend(utc)
 
+// 直接将其导出了，export，后续直接在别的组件中可以尝试直接进行调用操作
 export function formatUTC(
+  // 类型的操作()
   utcString: string,
   format: string = 'YYYY/MM/DD HH:mm:ss'
 ) {
