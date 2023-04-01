@@ -38,7 +38,7 @@
           prop="enable"
           width="100px"
         >
-          <!-- 作用域插槽 -->
+          <!-- 作用域插槽，通过#default可以获取到整个数据 -->
           <template #default="scope">
             <el-button
               size="small"
@@ -107,6 +107,7 @@ import { ref } from 'vue'
 const emit = defineEmits(['newClick', 'editClick'])
 
 // 1.发起action，请求usersList的数据
+// 这样依赖useSystemStore中的数据都是能够获取到的
 const systemStore = useSystemStore()
 // 绑定的是当前页面
 const currentPage = ref(1)
