@@ -74,14 +74,7 @@ const roles = {
 ```
 - *弊端：每增加一个角色；都要增加一个key/value 
 - 登陆的接口中请求三个内容：token;用户信息：角色信息～role对象;菜单信息
-
-2. 要想获取数据
-  - 先去service中书写获取获取数据的方法
-  - 将service中的方法传入到pinia中
-  - 在pinia中的actions获取数据存储在state中
-  - 在组件中直接调用pinia中的actions
 #### 项目知识点复习day04
-
 
 2. 基于菜单(menu)的动态路由管理
 - userMenus => 动态展示菜单
@@ -91,3 +84,19 @@ const roles = {
 
 **总结**：第二是
 **总结**：第二
+### day05
+#### 项目知识点复习
+- 关于组件中的数据，想要获取最外面el-table的数据，可以使用作用域插槽
+  - 作用域插槽，通过template，#default="scope"来获取；通过scope可以获取到所有的数据信息
+```
+<template #default="scope">
+  <el-button
+    size="small"
+    :type="scope.row.enable ? 'primary' : 'danger'"
+    plain
+  >
+    {{ scope.row.enable ? '启用' : '禁用' }}
+  </el-button>
+</template>
+```
+#### 项目知识点复习-table
