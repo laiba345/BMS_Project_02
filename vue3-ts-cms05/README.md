@@ -1,46 +1,29 @@
-# vue3-ts-cms
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+# day05 重点
+## 高阶组件的封装
+- 最终想要得到的效果：书写几个配置，快速搭建页面
+  - 书写页面的时候，为了更高级的封装，组件命名：page-search.vue；意思是以后做search相关的内容，都可以使用
+  - 重构代码
+  - 先简单搭建效果出来，后续进行动态展示的时候，全部都可以进行抽取操作，后续直接一个遍历操作即可
+  - 针对页面的网络请求（service/main/system/system.ts）
+    - 请求的页面不要写死，应该设置成一个动态的页面
+    - 后端如果给的数据不规范，需要你自己进行转换操作
+    - 传入不同的pageName，所有的页面都可进行网络请求
+  - 在store中使用网络接口函数也是不是写死的，需要传入不同的页面
+  - 在书写网页逻辑的时候：**先去书写网络请求(service)，再去存储数据的地方store调用方法，获取数据存储在store当中**
+  - 执行完某些请求以后，想要获取最新的数据，需要发送新的网络请求
+  
+- 快速搭建好了项目之后，会发现新做的网络结构在很多方面需要重新进行修改操作，这样显得很麻烦，我们可以自己书写一个**配置文件**
+  - 在views/main/system/department/config 文件夹下进行页面结构的相关配置（将那种结构中需要填写的/不确定的内容抽取出来）
+  - 当类型很少的时候，也没有必要用动态组件，可以使用v-if
+  ```
+  <template v-if="item.type === 'input'">
+    <el-input
+      v-model="searchForm[item.prop]"
+      :placeholder="item.placeholder"
+    />
+  </template>
+  ```
+- 最终想要得到的效果
+  - 使用一个配置文件直接搞定一个页面
+  
+  
