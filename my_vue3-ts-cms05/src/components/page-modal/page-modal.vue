@@ -38,6 +38,12 @@
                   </template>
                 </el-select>
               </template>
+              <!-- @ 通过v-if来判断相应类型的展示操作 -->
+              <template v-if="item.type === 'custom'">
+                <!-- @在进行自定义的时候，继续预留我们的插槽，这一点很关键 -->
+                <!-- 此处遍历出来三个插槽 -->
+                <slot :name="item.slotName"></slot>
+              </template>
             </el-form-item>
           </template>
         </el-form>
@@ -71,8 +77,11 @@ export interface IModalProps {
     }
     formItems: any[]
   }
+  // 继续设置一些内容和信息，可传也可以不传
+  otherInfo?: any
 }
 
+// 此处的props就拿到了上述所有的东西
 const props = defineProps<IModalProps>()
 
 // 1.定义内部的属性
@@ -120,17 +129,24 @@ function setModalVisible(isNew: boolean = true, itemData?: any) {
 // 3.点击了确定的逻辑
 function handleConfirmClick() {
   dialogVisible.value = false
+
+  // @day06 用户在进行操作的时候可以传入一些别的信息，供服务器操作
+  let infoData = { ...formData }
+  if(props.otherInfo) {
+    infoData = { ...formData, ...props.otherInfo }
+  }
+
   if (!isNewRef.value && editData.value) {
     // 编辑用户的数据
     // @只不过我们在编辑数据的时候，没有写死，需要哪个进行网络请求，我们就用哪个
     systemStore.editPageDataAction(
       props.modalConfig.pageName,
       editData.value.id,
-      formData
+      infoData
     )
   } else {
     // 创建新的部门
-    systemStore.newPageDataAction(props.modalConfig.pageName, formData)
+    systemStore.newPageDataAction(props.modalConfig.pageName, infoData)
   }
 }
 

@@ -84,3 +84,28 @@ export function mapPathToBreadcrumbs(path: string, userMenus: any[]) {
   }
   return breadcrumbs
 }
+
+/* 
+  菜单映射到我们的id列表
+  需要遍历多层
+*/
+export function mapMenuListToIds(menuList: any[]) {
+  // 循环遍历太多层了，可以尝试递归的思想
+  const ids: number[] = []
+  // 我们需要递归来获取某些东西
+  function recurseGetId(menus: any[]) {
+    for (const item of menus) {
+      if (item.children) {
+        recurseGetId(item.children)
+      } else {
+        // 父级是不用进行设置的，我们应该找到其最底层
+        // 因为一设置上面的话，下面的东西也会被选择
+        ids.push(item.id)
+      }
+    }
+  }
+
+  recurseGetId(menuList)
+
+  return ids
+}

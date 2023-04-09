@@ -7,7 +7,12 @@
       </el-button>
     </div>
     <div class="table">
-      <el-table :data="pageList" border style="width: 100%">
+      <el-table
+        :data="pageList"
+        border
+        style="width: 100%"
+        v-bind="contentConfig.childrenTree"
+      >
         <template v-for="item in contentConfig.propsList" :key="item.prop">
           <template v-if="item.type === 'timer'">
             <el-table-column align="center" v-bind="item">
@@ -43,7 +48,7 @@
           <template v-else-if="item.type === 'custom'">
             <el-table-column align="center" v-bind="item">
               <template #default="scope">
-                <!-- 可以往作用域插槽上添加相应的属性操作 -->
+                <!-- 可以往作用域插槽上添加相应的属性操作，可以通过v-bind将数据传到父组件中 -->
                 <slot :name="item.slotName" v-bind="scope"></slot>
               </template>
             </el-table-column>
@@ -82,12 +87,13 @@ interface IProps {
   // 父组件直接传过来的；这一点需要清楚
   contentConfig: {
     // 多传入一个名字
-    pageName: string, 
+    pageName: string
     header?: {
       title?: string
       btnTitle: string
     }
     propsList: any[]
+    childrenTree?: any
   }
 }
 

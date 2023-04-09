@@ -1,6 +1,6 @@
 import type { IModalConfig, IModalProps } from '@/components/page-modal/type'
 const config = {
-  pageName:'department', 
+  pageName: 'department',
   header: {
     newTitle: '新建部门',
     editTitle: '编辑部门'
@@ -23,9 +23,7 @@ const config = {
       label: '上级部门',
       prop: 'parentId',
       placeholder: '请选择上级部门',
-      options: [
-       
-      ]
+      options: []
     }
   ]
 }
