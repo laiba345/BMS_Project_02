@@ -58,7 +58,7 @@ vh 表示视口高度的百分比，即 1vh 等于视口高度的 1%。例如，
 ### day03
 ![day03](./pictureOfEveryday/day03.png)
 
-### day04
+### day04 & day05
 ![day04&day05](./pictureOfEveryday/day05&day05.png)
 
 #### 项目知识点复习day04
@@ -101,3 +101,6 @@ const roles = {
 </template>
 ```
 #### 项目知识点复习-table
+
+### day06
+![day06](./pictureOfEveryday/day06.png)
