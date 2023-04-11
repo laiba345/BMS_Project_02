@@ -1,7 +1,8 @@
 import { ref } from 'vue'
 import type PageModal from '@/components/page-modal/page-modal.vue'
 
-// 函数类型的写法
+// 函数类型的ts写法
+// type EditFnType = (data: any)
 type EditFnType = (data: any) => void
 
 function usePageModal(editCallback?: EditFnType) {

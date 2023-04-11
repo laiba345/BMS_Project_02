@@ -7,6 +7,8 @@
       </el-button>
     </div>
     <div class="table">
+      <!-- 内部是直接通过childrenTree属性来配置是否有子菜单 -->
+      <!-- 该属性内部有两个属性：其中最重要的是需要有唯一标识rowKey -->
       <el-table
         :data="pageList"
         border
@@ -14,6 +16,7 @@
         v-bind="contentConfig.childrenTree"
       >
         <template v-for="item in contentConfig.propsList" :key="item.prop">
+          <!-- 通过v-if等来判断应该展示什么内容～ 并且在遍历的外面套上一层 -->
           <template v-if="item.type === 'timer'">
             <el-table-column align="center" v-bind="item">
               <template #default="scope">
@@ -24,6 +27,7 @@
           <template v-else-if="item.type === 'handler'">
             <el-table-column align="center" v-bind="item">
               <template #default="scope">
+                <!-- 通过作用域插槽，点击编辑就可以拿到对应的数据 -->
                 <el-button
                   size="small"
                   icon="Edit"
@@ -93,6 +97,7 @@ interface IProps {
       btnTitle: string
     }
     propsList: any[]
+    // 有的页面可能需要展示二级菜单等
     childrenTree?: any
   }
 }
@@ -128,11 +133,13 @@ function fetchPageListData(formData: any = {}) {
 
   // 2.发起网络请求
   const queryInfo = { ...pageInfo, ...formData }
+  // 为了抽取更加好点公用效果；传数据的时候，可以让别人组件多传入一个名字
   systemStore.postPageListAction(props.contentConfig.pageName, queryInfo)
 }
 
 // 5.删除/新建/编辑的操作
 function handleDeleteBtnClick(id: number) {
+  // @ 删除操作的话，直接调用方法进行删除了
   systemStore.deletePageByIdAction(props.contentConfig.pageName, id)
 }
 function handleNewUserClick() {

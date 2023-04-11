@@ -1,5 +1,6 @@
 <template>
   <div class="department">
+    <!-- 引入的是components下面的三个组件 -->
     <page-search
       :search-config="searchConfig"
       @query-click="handleQueryClick"
@@ -16,6 +17,7 @@
       <template #parent="scope">呵呵呵:{{ scope.row.parentId }}</template> -->
 
       <!-- 甚至可以自定义样式: -->
+      <!-- 此处的leader是子组件的插槽的名字 -->
       <template #leader="scope">
         <span class="leader">哈哈哈:{{ scope.row.leader }}</span>
       </template>
@@ -46,15 +48,21 @@ import usePageModal from '@/hooks/usePageModal'
 // @计算属性
 const modalConfigRef = computed(() => {
   const mainStore = useMainStore()
+  // @ 我们要拿到所有的部门供所有人来进行选择操作，之前在useMainStore
+  // 我们已经拿到过了所有的属性
+  // 对于部门我们想拿到的就是name和id
   const departments = mainStore.entireDepartments.map(item => {
+    // 存取到部门中的，一个是姓名一个是id
     return { label: item.name, value: item.id }
   })
   modalConfig.formItems.forEach(item => {
+    // 通过prop属性来判断是否是select
     if(item.prop === 'parentId') {
+      // 是的话，将数据放置到items.option当中
       item.options.push(...departments)
     }
   })
-  console.log(modalConfig)
+  // console.log(modalConfig)
   return modalConfig
 })
 

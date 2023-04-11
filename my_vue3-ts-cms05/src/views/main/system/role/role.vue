@@ -20,6 +20,7 @@
       <!-- 因为我们是知道自己的组件名字，所以可以直接书写 -->
       <template #menulist>
         <!-- 将此处变成我们想要展示的菜单列表即可 -->
+        <!-- 将要展示的数据放在此处即可 -->
         <el-tree
           ref="treeRef"
           :data="entireMenus"
@@ -51,6 +52,7 @@ import { mapMenuListToIds } from '@/utils/map-menus'
 
 // @逻辑关系 在相应的组件中，会发生相应的事件，我们进行相应的绑定操作即可
 const { contentRef, handleQueryClick, handleResetClick } = usePageContent()
+// @ 可以通过该回调函数，将数据返回到modalRef界面当中
 const { modalRef, handleNewClick, handleEditClick } = usePageModal(editCallback)
 
 // @获取完整的菜单
@@ -62,7 +64,9 @@ const { entireMenus } = storeToRefs(mainStore)
 const otherInfo = ref({})
 
 // @上述check有两个参数，可以分别打印拿到对应的结果参数即可
+// 上方el-tree是中@check绑定的回调方法有两个参数，自己学会看文档进行操作
 function handleElTreeCheck(data1: any, data2: any) {
+  // 想要拿到的列表信息都是保存在menuList当中的
   const menuList = [...data2.checkedKeys, ...data2.halfCheckedKeys]
   // console.log(menuList)
   otherInfo.value = { menuList }
@@ -76,7 +80,7 @@ function editCallback(itemData: any) {
   // 在这个组件中有很多的属性和方法，专门是为了操作相应的内容
   nextTick(() => {
     const menuIds = mapMenuListToIds(itemData.menuList)
-    console.log(menuIds)
+    // console.log(menuIds)
     treeRef.value?.setCheckedKeys(menuIds)
   })
 }

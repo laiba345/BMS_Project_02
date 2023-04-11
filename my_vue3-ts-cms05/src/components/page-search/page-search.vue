@@ -60,22 +60,32 @@ import type { ElForm } from 'element-plus'
 // 定义自定义事件/接收的属性
 interface IProps {
   searchConfig: {
+    // 添加了？表示可选
     labelWidth?: string
     formItems: any[]
   }
 }
 const emit = defineEmits(['queryClick', 'resetClick'])
+// defineProps是一个函数，用于定义父组件传递给子组件的属性，Vue3新引入的
+// 使用defineProps可以明确指定子组件期望接收哪些属性，并对这些属性进行类型验证
+// 但是vue3中的props默认都是非响应式的
 const props = defineProps<IProps>()
 
 // 定义form的数据
 const initialForm: any = {}
+
 for (const item of props.searchConfig.formItems) {
   initialForm[item.prop] = item.initialValue ?? ''
 }
+
+// Vue3中定义的defineProps默认都是非响应式的，需要使用reactive或ref变成响应式的
 const searchForm = reactive(initialForm)
 
-// 重置操作
+// 重置操作， 
+// 通过ref可以直接拿到该表单
 const formRef = ref<InstanceType<typeof ElForm>>()
+
+// 这个是组件中为我们封装好了的方法
 function handleResetClick() {
   // 1.form中的数据全部重置
   formRef.value?.resetFields()

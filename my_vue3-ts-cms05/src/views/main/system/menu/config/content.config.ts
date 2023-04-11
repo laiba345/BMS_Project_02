@@ -18,7 +18,9 @@ const contentConfig = {
     { type: 'timer', label: '更新时间', prop: 'updateAt', width: '150px' },
     { type: 'handler', label: '操作', width: '150px' }
   ],
+  // 上面都没有问题，有问题的一块就是每一个分类可能有自己的子菜单
   childrenTree: {
+    // 需要有自己的唯一标识
     rowKey: 'id', 
     treeProps: {
         children: 'children'
