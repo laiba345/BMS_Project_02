@@ -18,7 +18,8 @@
       ref="modalRef"
     >
       <!-- 因为我们是知道自己的组件名字，所以可以直接书写 -->
-      <template #menulist>
+      <!-- 具名插槽，在template中书写了，要么用简写# 或者v-slot: 的形式 -->
+      <template v-slot:menulist>
         <!-- 将此处变成我们想要展示的菜单列表即可 -->
         <!-- 将要展示的数据放在此处即可 -->
         <el-tree

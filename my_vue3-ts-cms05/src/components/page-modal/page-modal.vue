@@ -41,7 +41,7 @@
               <!-- @ 通过v-if来判断相应类型的展示操作 -->
               <template v-if="item.type === 'custom'">
                 <!-- @在进行自定义的时候，继续预留我们的插槽，这一点很关键 -->
-                <!-- 此处遍历出来三个插槽 -->
+                <!-- 此处遍历出来三个插槽，原因是定义的属性里面有三个slotName -->
                 <slot :name="item.slotName"></slot>
               </template>
             </el-form-item>
