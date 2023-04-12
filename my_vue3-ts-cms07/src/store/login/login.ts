@@ -6,7 +6,7 @@ import {
 } from '@/service/login/login'
 import type { IAccount } from '@/types'
 import { localCache } from '@/utils/cache'
-import { mapMenusToRoutes } from '@/utils/map-menus'
+import { mapMenusToPermissions, mapMenusToRoutes } from '@/utils/map-menus'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
 import useMainStore from '../main/main'
@@ -15,6 +15,7 @@ interface ILoginState {
   token: string
   userInfo: any
   userMenus: any
+  permissions: string[]
 }
 
 const useLoginStore = defineStore('login', {
@@ -22,7 +23,8 @@ const useLoginStore = defineStore('login', {
   state: (): ILoginState => ({
     token: '',
     userInfo: {},
-    userMenus: []
+    userMenus: [],
+    permissions: []
   }),
   actions: {
     async loginAccountAction(account: IAccount) {
@@ -50,6 +52,10 @@ const useLoginStore = defineStore('login', {
       const mainStore = useMainStore()
       mainStore.fetchEntireDataAction()
 
+      // 重要：获取登陆用户的所有按钮的权限
+      const permissions = mapMenusToPermissions(userMenus)
+      this.permissions = permissions
+
       // 重要: 动态的添加路由
       const routes = mapMenusToRoutes(userMenus)
       routes.forEach((route) => router.addRoute('main', route))
@@ -71,6 +77,11 @@ const useLoginStore = defineStore('login', {
         // 1..请求所有roles/departments数据
         const mainStore = useMainStore()
         mainStore.fetchEntireDataAction()
+
+        // @last 拿到userMenus后，再做一次；获取新的按钮权限
+        // 或者上面拿到以后直接存储到浏览器中
+        const permissions = mapMenusToPermissions(userMenus)
+        this.permissions = permissions
 
         // 2.动态添加路由
         const routes = mapMenusToRoutes(userMenus)

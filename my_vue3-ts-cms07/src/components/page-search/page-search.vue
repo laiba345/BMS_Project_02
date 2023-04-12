@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search" v-if="isQuery">
     <!-- 1.输入搜索关键字的表单 -->
     <el-form
       :model="searchForm"
@@ -56,10 +56,12 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { ElForm } from 'element-plus'
+import usePermissions from '@/hooks/usePermissions';
 
 // 定义自定义事件/接收的属性
 interface IProps {
   searchConfig: {
+    pageName:string
     // 添加了？表示可选
     labelWidth?: string
     formItems: any[]
@@ -70,6 +72,10 @@ const emit = defineEmits(['queryClick', 'resetClick'])
 // 使用defineProps可以明确指定子组件期望接收哪些属性，并对这些属性进行类型验证
 // 但是vue3中的props默认都是非响应式的
 const props = defineProps<IProps>()
+
+// 要用到props，所以写在props后面
+// 获取权限
+const isQuery = usePermissions(`${props.searchConfig.pageName}:query`)
 
 // 定义form的数据
 const initialForm: any = {}

@@ -109,3 +109,26 @@ export function mapMenuListToIds(menuList: any[]) {
 
   return ids
 }
+
+/* 
+  从菜单映射到按钮的权限
+*/
+export function mapMenusToPermissions(menuList: any[]) {
+  const permissions: string[] = []
+  // 三层数据，遍历起来非常麻烦；可以使用递归操作
+  function recurseGetPermission(menus: any[]) {
+    for (const item of menus) {
+      if (item.type === 3) {
+        // 只要类型是3，才进行相关操作
+        permissions.push(item.permission)
+      }else {
+        // 是第一层或者第二层接着进行递归操作即可
+        recurseGetPermission(item.children ?? [])
+      }
+    }
+  }
+
+  recurseGetPermission(menuList)
+  // console.log(permissions)
+  return permissions
+}
