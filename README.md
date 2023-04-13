@@ -104,3 +104,6 @@ const roles = {
 
 ### day06
 ![day06](./pictureOfEveryday/day06.png)
+
+### day07
+![day07](./pictureOfEveryday/day07.png)
