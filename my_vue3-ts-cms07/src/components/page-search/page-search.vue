@@ -56,12 +56,12 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { ElForm } from 'element-plus'
-import usePermissions from '@/hooks/usePermissions';
+import usePermissions from '@/hooks/usePermissions'
 
 // 定义自定义事件/接收的属性
 interface IProps {
   searchConfig: {
-    pageName:string
+    pageName: string
     // 添加了？表示可选
     labelWidth?: string
     formItems: any[]
@@ -87,7 +87,7 @@ for (const item of props.searchConfig.formItems) {
 // Vue3中定义的defineProps默认都是非响应式的，需要使用reactive或ref变成响应式的
 const searchForm = reactive(initialForm)
 
-// 重置操作， 
+// 重置操作，
 // 通过ref可以直接拿到该表单
 const formRef = ref<InstanceType<typeof ElForm>>()
 

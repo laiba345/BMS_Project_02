@@ -42,6 +42,8 @@ const useSystemStore = defineStore('system', {
 
       // 2.重新请求新的数据
       this.postUsersListAction({ offset: 0, size: 10 })
+
+
     },
     async editUserDataAction(id: number, userInfo: any) {
       // 1.更新用户的数据

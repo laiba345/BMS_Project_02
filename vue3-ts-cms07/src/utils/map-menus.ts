@@ -116,9 +116,11 @@ export function mapMenusToPermissions(menuList: any[]) {
 
   function recurseGetPermission(menus: any[]) {
     for (const item of menus) {
+      // 只有在第三层：才是我们想要的结果
       if (item.type === 3) {
         permissions.push(item.permission)
       } else {
+        // 前两层的话，进行递归操作即可
         recurseGetPermission(item.children ?? [])
       }
     }
