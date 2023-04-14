@@ -68,6 +68,7 @@ const useSystemStore = defineStore('system', {
       this.postPageListAction(pageName, { offset: 0, size: 10 })
 
       // 获取完整的数据
+      // 新建完一些数据，我们想拿到最新的数据展示；需要每次获取最新的数据进行展示
       const mainStore = useMainStore()
       mainStore.fetchEntireDataAction()
     },

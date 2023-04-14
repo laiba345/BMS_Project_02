@@ -65,8 +65,10 @@ function handleElTreeCheck(data1: any, data2: any) {
   console.log(data2.checkedKeys)
   otherInfo.value = { menuList }
 }
-
+// 我们在展示数据的时候，是通过ElTree组件来进行展示的
+// 我们通过对该实例对象上的属性进行相关操作即可
 const treeRef = ref<InstanceType<typeof ElTree>>()
+
 function newCallback() {
   nextTick(() => {
     treeRef.value?.setCheckedKeys([])

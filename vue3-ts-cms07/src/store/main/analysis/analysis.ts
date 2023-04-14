@@ -24,6 +24,7 @@ const useAnalysisStore = defineStore('analysis', {
     goodsAddressSale: []
   }),
   actions: {
+    // 这些获取到的都是promise对象；可以使用.then拿到resolve的值
     fetchAnalysisDataAction() {
       getAmountListData().then((res) => {
         this.amountList = res.data

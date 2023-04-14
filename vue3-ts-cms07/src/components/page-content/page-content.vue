@@ -114,6 +114,8 @@ const systemStore = useSystemStore()
 const currentPage = ref(1)
 const pageSize = ref(10)
 systemStore.$onAction(({ name, after }) => {
+  // 其中里面也是包含了语法糖，在这些action结束之后，
+  // 再执行 currentPage.value = 1 
   after(() => {
     if (
       name === 'deletePageByIdAction' ||

@@ -22,6 +22,7 @@
 import { CountUp } from 'countup.js'
 import { ref, onMounted } from 'vue'
 
+// 需要传入的是一个个数据类型
 interface IProps {
   amount?: string
   title?: string
@@ -31,6 +32,7 @@ interface IProps {
   subtitle?: string
 }
 
+// withDefault：它可以让您创建一个新的组件选项对象，该对象将组件选项与提供的默认值合并。
 const props = withDefaults(defineProps<IProps>(), {
   title: '商品总销量',
   tips: '所有的商品总销量',
