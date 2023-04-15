@@ -1,46 +1,21 @@
-# vue3-ts-cms
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+day01
+- 项目介绍
+    - 解析目录结构中每个文件的作用
+- 项目代码规范
+    - prettier
+- 项目内容搭建
+    - 目录结构搭建: 各种文件夹
+    - CSS样式的重置: 常见的网页样式重置操作
+        - src => assets => css => reset.less
+    - vue-router路由
+        - 目前在router文件夹中的index.ts文件下，
+        - 当前就一个登陆 & 注册 & 重定向
+        - 路由导航守卫
+            - 用于在**路由切换时触发一些特定的逻辑**
+    - pinia状态管理
+        - 每一个不同的页面；需要保存一些相关的数据，都可以在pinia中定义一个文件来对应处理
+    - axios网络请求
+        - 之前封装过；
+        - 在service文件夹当中
+    - 区分开发环境和生产环境的几种方式
+        - 
