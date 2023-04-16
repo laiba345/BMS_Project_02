@@ -54,6 +54,7 @@ const accountRules: FormRules = {
 
 // 3.执行帐号的登录逻辑
 const formRef = ref<InstanceType<typeof ElForm>>()
+
 const loginStore = useLoginStore()
 function loginAction() {
   formRef.value?.validate((valid) => {

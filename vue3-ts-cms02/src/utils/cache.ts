@@ -4,12 +4,13 @@ enum CacheType {
 }
 
 class Cache {
+  // localStorage是Storage类型之一
   storage: Storage
 
   constructor(type: CacheType) {
     this.storage = type === CacheType.Local ? localStorage : sessionStorage
   }
-
+  // 
   setCache(key: string, value: any) {
     if (value) {
       this.storage.setItem(key, JSON.stringify(value))

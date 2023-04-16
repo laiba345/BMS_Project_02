@@ -21,7 +21,7 @@ const useLoginStore = defineStore('login', {
       this.name = loginResult.data.name
       this.token = loginResult.data.token
 
-      // 2.进行本地缓存
+      // 2.进行本地缓存 ～ 其中localCache对应的其实就是localStoage
       localCache.setCache(LOGIN_TOKEN, this.token)
     }
   }
