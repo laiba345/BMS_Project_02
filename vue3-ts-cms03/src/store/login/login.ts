@@ -44,7 +44,7 @@ const useLoginStore = defineStore('login', {
       // 因为需要传入的就是id
       const userMenusResult = await getUserMenusByRoleId(this.userInfo.role.id)
       const userMenus = userMenusResult.data
-      // console.log(userMenus)
+      // console.log(userMenus, '@')  
       this.userMenus = userMenus // 将获取到的数据都保存到state当中才行
 
       // 4.进行本地缓存
