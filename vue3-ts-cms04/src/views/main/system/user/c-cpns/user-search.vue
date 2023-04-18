@@ -3,7 +3,7 @@
     <!-- 1.输入搜索关键字的表单 -->
     <el-form :model="searchForm" ref="formRef" label-width="80px" size="large">
       <el-row :gutter="20">
-        <el-col :s pan="8">
+        <el-col :span="8">
           <el-form-item label="用户名" prop="name">
             <el-input
               v-model="searchForm.name"
