@@ -5,6 +5,8 @@ Vue3 + TypeScript （CodyWhy）
 ![后台管理系统](./pictureOfEveryday/mainMenu.png)
 
 # 项目介绍
+## 项目文件介绍
+- 上面的每一个文件夹都是一个项目；项目我分为了7次来一次次完成，每一次写完一部分都会用一文件夹保存；
 ## 技术点
 -  Vue3 + TypeScript + Element Plus + Pinia + Vue Router + Axios + Echarts + Vite
 
