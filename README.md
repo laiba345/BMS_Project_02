@@ -16,7 +16,39 @@ Vue3 + TypeScript （CodyWhy）
 
 ## 主要职责
 1. 基于角色权限的不同来动态添加路由，以展示不同的后台菜单页面；
-2. 不同角色数据对数据的操作权限不同，根据用户操作权限来决定页面中增删改操作的图标是否展示；
+  - **每个页面都有其对应的路由(在每个对应的文件夹中都书写了自己的路由信息)；一般的做法：在注册路由信息中都写死了这些页面路由；我们的做法：通过不同的用户，登陆到后台管理系统中的权限不同获取到的菜单来动态决定是否加载路由**
+  - 目前的路由信息都是放在一个个独立文件中；之前全部放在一个数组中，方便获取；
+  - 根据菜单信息来获取我们想要的路由信息；先获取本地的路由信息localRoutes，在获取服务器给我们返回的菜单信息中的路由；比较菜单信息中路由的url 和 本地路由信息的 path；看它们是否匹配；
+  - 匹配的话；routes.forEach((route) => router.addRoute('main', route))即可
+2. **按钮的权限管理**：不同角色数据对数据的操作权限不同（），**为了提升用户体验**；根据用户操作权限来决定页面中增删改操作的图标是否展示；
+  - 新建用户界面，会给用户分配不同的权限
+  - userMenus该服务器获取到的数据中已经包含了用户权限
+    - 通过什么来判断呢？ 1、id（动态生成的，不好）2、name（文本的东西不好）3、后台专门设置好了 permission；设置成唯一的；
+    - 如何操作？
+      - 之前的菜单数据把左侧菜单映射出来了
+      - 按钮权限还没有拿到；**获取登陆用户的所有按钮的权限**
+        - 刷新不等于登录；要想刷新后依然拿到数据，可以在第一次登陆以后将数据缓存起来
+  - 进入到某个页面怎么判断权限
+    - page-content.vue这个组件是最有代表的；增删改查
+    - 创建4个权限变量;通过v-if来判断是否展示；**查询权限**操作fetchPageListData()方法；没有的话直接return 
+    ```
+    // 0.获取是否有对应的增删改查的权限
+    const isCreate = usePermissions(`${props.contentConfig.pageName}:create`)
+      - const loginStore = useLoginStore()
+      - const { permission } = loginStore
+      - const isCreate = permission.find((item) => item.includes('department:create')) // 写死了
+      - const isCreate = permission.find((item) => item.includes(`${props.contentConfig.pageName}:create`))
+    const isDelete = usePermissions(`${props.contentConfig.pageName}:delete`)
+    const isUpdate = usePermissions(`${props.contentConfig.pageName}:update`)
+    const isQuery = usePermissions(`${props.contentConfig.pageName}:query`)
+    ```
+    - 上述逻辑在别的页面也是需要实现的
+    - **可以将这些逻辑抽取到hooks**当中
+      - 代码也在上方
+    - 每个配置中最好都传入相应的权限页面；pageName
+  - 测试  
+    - 角色管理中进行测试
+      
 3. 单一页面通常由上、下、弹出框三个子组件组成，将三个组件进行抽取，后续通过传入某一页面的动态配置信息
 
 # 项目中所遇到的问题
