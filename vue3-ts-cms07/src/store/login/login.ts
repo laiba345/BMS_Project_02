@@ -81,6 +81,7 @@ const useLoginStore = defineStore('login', {
         // 2.获取按钮的权限
         const permissions = mapMenusToPermissions(userMenus)
         this.permissions = permissions
+        // console.log(permissions)
 
         // 3.动态添加路由
         const routes = mapMenusToRoutes(userMenus)

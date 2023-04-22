@@ -3,7 +3,7 @@
     <!-- 1.logo -->
     <div class="logo">
       <img class="img" src="@/assets/img/logo.svg" alt="" />
-      <h2 v-show="!isFold" class="title">弘源管理系统</h2>
+      <h2 v-show="!isFold" class="title">宏源管理系统</h2>
     </div>
 
     <!-- 2.menu -->

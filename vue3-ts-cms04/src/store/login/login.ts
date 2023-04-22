@@ -66,6 +66,8 @@ const useLoginStore = defineStore('login', {
 
         // 2.动态添加路由（有值的话，再动态添加路由即可）
         const routes = mapMenusToRoutes(userMenus)
+        // console.log(routes)
+        // path: '/main/analysis', redirect: '/main/analysis/overview'}
         routes.forEach((route) => router.addRoute('main', route))
       }
     }

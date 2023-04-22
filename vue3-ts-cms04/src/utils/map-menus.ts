@@ -20,6 +20,8 @@ function loadLocalRoutes() {
     localRoutes.push(module.default)
   }
 
+  console.log('@', localRoutes)
+
   return localRoutes
 }
 // 
@@ -27,6 +29,7 @@ export let firstMenu: any = null
 export function mapMenusToRoutes(userMenus: any[]) {
   // 1.加载本地路由
   const localRoutes = loadLocalRoutes()
+  // console.log('@', localRoutes)
 
   // 2.根据菜单去匹配正确的路由
   const routes: RouteRecordRaw[] = []

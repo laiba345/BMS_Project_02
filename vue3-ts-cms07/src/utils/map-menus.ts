@@ -126,6 +126,7 @@ export function mapMenusToPermissions(menuList: any[]) {
     }
   }
   recurseGetPermission(menuList)
+  // console.log('@', permissions)
 
   return permissions
 }
