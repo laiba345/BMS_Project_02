@@ -2,7 +2,7 @@
 Vue3 + TypeScript （CodyWhy）
 
 # 项目实现效果图
-![后台管理系统](./pictureOfEveryday/mainMenu.png)
+--![后台管理系统](./pictureOfEveryday/mainMenu.png)
 
 # 项目介绍
 ## 项目文件介绍
