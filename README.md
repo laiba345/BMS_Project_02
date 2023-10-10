@@ -2,7 +2,7 @@
 Vue3 + TypeScript （CodyWhy）
 
 # 项目实现效果图
-
+![](./pictureOfEveryday/Menus.png)
 
 # 项目介绍
 ## 项目文件介绍
