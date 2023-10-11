@@ -45,6 +45,8 @@ Vue3 + TypeScript （CodyWhy）
 4. 面包✍谢; 在main-header当中; 可以通过mapPathToBreadcrumbs来获取相应的面包屑的相关功能;
 
 ## 页面开发的相关问题; 
+**增删改查**
+**查**
 1. 用户界面 => views => main => system => user   storeToRefs有助于将非响应式数据转换为Vue 3的响应式数据; 不确定里面具体的某一个值可以使用插槽来进行处理, 拿到enable的值来进行判断;
   - 作用域插槽, 指定相应的插槽; 使用到高阶组件必须要掌握作用域插槽
 2. 时间格式化问题
@@ -54,7 +56,38 @@ Vue3 + TypeScript （CodyWhy）
   - searchForm可以传递相应的数据,很关键
   - 通过中间桥梁user.vue组件来实现父子组件的相关通信
     - 传到子组件当中, 通过const contentRef = ref<InstanceType<typeof UserContent>>(); 来实现相关操作ref<InstanceType<typeof UserContent>>() 是一段 TypeScript 代码，用于创建一个 Vue 3 的ref对象，该ref对象引用了一个组件的实例（InstanceType<typeof UserContent>）。
-    - user-Content.vue中将相关的网络请求暴露出去; 其实包括查询和重置操作都是需要重新发送网络请求; 
+    - user-Content.vue中将相关的网络请求暴露出去; 其实包括查询和重置操作都是需要重新发送网络请求;
+   
+**删**
+- 也是在 views => main => system => user => user-content.vue当中  handleDeleteBtnClick; 删除的时候主要是根据数据的id来进行相关的删除操作; (需要知道id才可以拿到相应的结果)
+  - 在service中, 书写了相关的对服务器方法的操作, 而真正的网络请求是放在store当中的;
+  - **在删除完数据以后,需要重新在请求一次数据**
+**增**
+- views => main => system => user => user-modal.vue。 handleConfirmClick
+
+**改**
+- views => main => system => user => user-content.vue
+- 点击了编辑按钮,然后进行相应的操作即可;  @click="handleEditBtnClick(scope.row)" 但是组件**之间的传递是兄弟组件通信**, 所以还是需要需要通过user.vue组件
+
+## 高阶组件的封装
+- 书写某个配置信息然后来快速搭建某个页面;
+- views => main => system => department =>
+- service => main => system => system.ts 中针对不同的页面, 传入pageName即可; **先对发送网络请求这一块进行了相关的封装操作**
+- 在store => main => system => type.ts 文件夹中又增加了两个属性
+···
+/** 针对页面的数据: 增删改查 */
+// 对于不同的请求，我们可以适当的传入页面
+async postPageListAction(pageName: string, queryInfo: any) {
+  const pageListResult = await postPageListData(pageName, queryInfo)
+  const { totalCount, list } = pageListResult.data
+
+  this.pageList = list  // pageList和pageTotalCount都是新的
+  this.pageTotalCount = totalCount
+},
+···
+- 交互; 点击的相关操作,后续的相关操作进行一系列的维护
+
+
  
 ## pinia的认知
 1. 响应式系统；Pinia 是为 Vue 3 设计的，它利用了 Vue 3 的 Composition API 和 Proxy 响应式系统。
