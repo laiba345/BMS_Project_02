@@ -85,7 +85,8 @@ async postPageListAction(pageName: string, queryInfo: any) {
   this.pageTotalCount = totalCount
 },
 ···
-- 交互; 点击的相关操作,后续的相关操作进行一系列的维护
+- 交互; 点击的相关操作,后续的相关操作进行一系列的维护; 很多时候都需要重新启动数据; **数据回显: 是先拿到数据, 后面再拿到相应的内容**
+    - 数据回显的时候, 是需要先拿到之前的数据
 
 
  
