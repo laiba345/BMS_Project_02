@@ -43,7 +43,18 @@ Vue3 + TypeScript （CodyWhy）
 2. 登录成功时, 第一次到进入的页面,动态注册所有的页面中,第一个页面 firstMenu 在utils => firstMenu中, 然后在router => index.ts中即可;
 3. 菜单的相关定位, 定位到defaultActive中; components => main-menu.vue; 计算定位到哪里mapPathToMenu; useRouter()可以拿到具体的路径
 4. 面包✍谢; 在main-header当中; 可以通过mapPathToBreadcrumbs来获取相应的面包屑的相关功能;
-5. 
+
+## 页面开发的相关问题; 
+1. 用户界面 => views => main => system => user   storeToRefs有助于将非响应式数据转换为Vue 3的响应式数据; 不确定里面具体的某一个值可以使用插槽来进行处理, 拿到enable的值来进行判断;
+  - 作用域插槽, 指定相应的插槽; 使用到高阶组件必须要掌握作用域插槽
+2. 时间格式化问题
+3. 分页器放在system => user => userContent中
+  - fetchUserListData 封装好, 在多个地方可以重复调用
+4. 查询操作; 兄弟组件传递数据; 当你在 Vue 3 的模板中使用 v-on 指令（通常以 @ 表示）来监听组件触发的事件时，Vue 自动为你提供了事件的处理函数，但对于自定义事件，类型检查和代码提示可能不够严谨。这就是 defineEmits 出现的原因，它让你能够明确声明组件的自定义事件，使开发者能够更容易地理解和使用组件。
+  - searchForm可以传递相应的数据,很关键
+  - 通过中间桥梁user.vue组件来实现父子组件的相关通信
+    - 传到子组件当中, 通过const contentRef = ref<InstanceType<typeof UserContent>>(); 来实现相关操作ref<InstanceType<typeof UserContent>>() 是一段 TypeScript 代码，用于创建一个 Vue 3 的ref对象，该ref对象引用了一个组件的实例（InstanceType<typeof UserContent>）。
+    - user-Content.vue中将相关的网络请求暴露出去; 其实包括查询和重置操作都是需要重新发送网络请求; 
  
 ## pinia的认知
 1. 响应式系统；Pinia 是为 Vue 3 设计的，它利用了 Vue 3 的 Composition API 和 Proxy 响应式系统。
