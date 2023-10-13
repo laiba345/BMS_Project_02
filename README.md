@@ -88,7 +88,52 @@ async postPageListAction(pageName: string, queryInfo: any) {
 - 交互; 点击的相关操作,后续的相关操作进行一系列的维护; 很多时候都需要重新启动数据; **数据回显: 是先拿到数据, 后面再拿到相应的内容**
     - 数据回显的时候, 是需要先拿到之前的数据
 
+## 页面的抽取
+- 在components => page-search 等进行相关页面的抽取; 
+- 在views => main => system => config 进行相关页面的配置
+- defineEmits 是 Vue 3 中的一个选项，用于定义组件的自定义事件。
+- **你需要看哪些东西是动态的**
+{
+  type: 'input', // input表单, 还可能是日期选择
+  prop: 'name',
+  label: '部门名称',
+  placeholder: '请输入查询的部门名称',
+  initialValue: 'bbb'
+},
+- 导致在components => page-search.vue中, <template v-for="item in searchConfig.formItems" :key="item.prop"> 使用进行遍历即可
+- 使用动态组件来进行相关的拼接操作; <component :is = "`el-${item.type}`"> 不怎么好控制, 可以用v-bind来进行绑定操作
+- 通过v-if来进行一次次的判断即可
 
+**网络请求的抽取**
+- components.d.ts中可能会自动导入相关的类型
+- 网络请求部门
+  - 页面pageName => user/department/role
+  - store => pageName
+  - service => pagename 拼接url => 增删改茶
+- 将一个页面划分为三个组件: 高阶组件; 有的东西需要进行定制化
+  - page-search: search.congfig.ts
+  - page-content;
+  - page-modal
+```
+- 配置相关的代码属性
+interface IProps {  // 接口命名为IProps
+  // 父组件直接传过来的；这一点需要清楚
+  contentConfig: {
+    // 多传入一个名字
+    pageName: string
+    header?: {
+      title?: string
+      btnTitle: string
+    }
+    propsList: any[]
+    // 有的页面可能需要展示二级菜单等
+    childrenTree?: any
+  }
+}
+- 在page-content当中全是el-table-column, 我们需要配置成相关的属性
+  - 传入propsList即可, 生成不同的, 生成type主要是为了进行相关的区别操作
+  - 如果是大量的对象数据可以直接使用v-bind进行绑定
+  - 如果是作用插槽, 不同的内容进行展示的话, 需要使用到v-if和v-else来分别进行展现
  
 ## pinia的认知
 1. 响应式系统；Pinia 是为 Vue 3 设计的，它利用了 Vue 3 的 Composition API 和 Proxy 响应式系统。
