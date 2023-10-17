@@ -1,4 +1,4 @@
-![image](https://github.com/laiba345/BMS_Project_02/assets/51855280/67dbca48-b1dd-496d-a4d6-a1d6d54f9852)# BMS_Project_02
+# BMS_Project_02
 Vue3 + TypeScript （CodyWhy）
 
 # 项目实现效果图
