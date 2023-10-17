@@ -10,6 +10,42 @@ Vue3 + TypeScript （CodyWhy）
 ## 技术点
 -  Vue3 + TypeScript + Element Plus + Pinia + Vue Router + Axios + Echarts + Vite
 
+## 项目的逻辑结构
+- .editorconfig; 通常用于定义代码编辑器和IDE的编码风格规则，以确保多个开发者在一个项目中能够保持一致的代码格式和样式。
+- .env;
+  - 用于配置环境变量。这些环境变量可以在项目中的不同环境中设置不同的值，以便控制应用程序的行为和配置。
+- .env.development;
+  - VITE_URL = dev; 意味着在开发环境中，你可以使用 VITE_URL 这个环境变量来访问 dev 或者任何你想要在开发环境中使用的值。
+  - const url = import.meta.env.VITE_URL; // 在开发环境中，url 的值将会是 "dev"，因为它是从 .env.development 文件中获取的。
+- .env.production
+  - VITE_URL = prod；表示你为生产环境指定了一个名为 VITE_URL 的环境变量，并将其值设置为 prod。这意味着在生产环境中，你可以使用 VITE_URL 这个环境变量来访问 prod 或者任何你想要在生产环境中使用的值。
+- .eslintrc.cjs； 通常用于配置 ESLint，一个用于检测和纠正 JavaScript 代码中潜在问题的工具。具体地，这个配置文件是一个 CommonJS 格式的配置文件，通常命名为 .eslintrc.cjs
+```
+require('@rushstack/eslint-patch/modern-module-resolution') // 导入了一个模块 @rushstack/eslint-patch/modern-module-resolution，这通常用于支持现代模块解析。这是一个特定于某些项目和工具链的配置，用于确保正确的模块解析行为。
+
+module.exports = { // 这是配置对象的开始，包含了 ESLint 的规则和选项。
+  root: true, // 表示这是 ESLint 配置的根文件，即它停止在父级目录中查找其他配置文件。
+  extends: [  // 这是一个数组，包含了该配置文件继承的其他配置。它使用了多个 ESLint 插件和扩展配置，包括 Vue 3、JavaScript 标准规则、TypeScript、Prettier 等。这些配置将用于检查和格式化代码。
+    'plugin:vue/vue3-essential', // 这是一个扩展配置，它包括了 Vue 3 项目中的一组必要的 ESLint 规则，以确保你的 Vue 3 组件的代码质量和一致性。
+    'eslint:recommended',  // 是 ESLint 官方推荐的规则集合, 包含了一些通用的 JavaScript 代码规则，以帮助你避免常见的错误和最佳实践。
+    '@vue/eslint-config-typescript', // Vue 团队维护的用于 TypeScript 项目的 ESLint 配置。它包括了与 TypeScript 相关的规则，以确保你的 TypeScript 代码的质量和一致性。
+    '@vue/eslint-config-prettier', // 这个配置用于集成 Prettier 和 ESLint，以确保 ESLint 规则不与 Prettier 的代码格式规则发生冲突。它确保 ESLint 和 Prettier 可以一起协同工作，以格式化你的代码并检测代码质量问题。
+    'plugin:prettier/recommended' // 这个扩展配置用于启用 Prettier 插件，它将在 ESLint 中集成 Prettier，并自动应用 Prettier 的格式规则，以确保代码风格一致。
+  ],
+  parserOptions: { // 这是一个对象，用于配置解析器选项。ecmaVersion: 'latest' 表示使用最新版本的 ECMAScript 标准。
+    ecmaVersion: 'latest'
+  },
+  rules: {
+    'vue/multi-word-component-names': 'off', // 关闭了 Vue 插件中的规则 
+    'no-undef': 'off' // 关闭了全局未定义变量的检查规则。
+  }
+}
+```
+- .gitignore；文件是一个用来告诉 Git 哪些文件或目录应该被忽略，不被纳入版本控制的配置文件。在一个 Vite 构建的 Vue 3 项目中，.gitignore 文件的作用如下：
+  - 排除不需要版本控制的文件：在项目中，有些文件和目录是自动生成的，或者包含敏感信息，或者是临时文件，这些通常不应该包括在版本控制系统中。.gitignore 文件用于指定这些文件和目录，以确保它们不会被提交到代码库。
+  - 提高代码库的干净度：忽略不需要版本控制的文件可以帮助保持代码库的整洁性，只包括真正的源代码和必要资源文件。这可以使代码库更容易维护、更小巧、更易于协作和更快速。
+  - 保护敏感信息：敏感信息如密钥、密码等通常不应该存储在代码库中。通过.gitignore 文件，你可以确保这些敏感信息不会被不小心提交到版本控制系统中，从而提高安全性。
+- 
 ## 项目介绍
 - 此项目通过不同的角色登陆到后台管理系统，根据自己角色的权限对数据进行添加、编辑、删除及看到相
 关数据的可视化界面；主要分为系统总览、系统管理、角色中心、随便聊聊几大模块，方便用户操作。
