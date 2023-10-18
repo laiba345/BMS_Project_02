@@ -18,7 +18,8 @@ import HeaderInfo from './c-cpns/header-info.vue'
 import HeaderCrumb from './c-cpns/header-crumb.vue'
 
 // 0.内部自定义事件
-const emit = defineEmits(['foldChange'])
+// <script setup> 块中定义一个 emit 函数，它用于触发自定义事件，并将事件传递给父组件。
+const emit = defineEmits(['foldChange']) // 父组件在监听这个事件时，需要使用 kebab-case（短横线命名）的事件名
 
 // 1.记录状态
 const isFold = ref(false)
