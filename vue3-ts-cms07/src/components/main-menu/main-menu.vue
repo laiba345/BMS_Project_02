@@ -67,6 +67,8 @@ function handleItemClick(item: any) {
 }
 
 // 3.ElMenu的默认菜单
+// 这行代码通过 useRouter 函数获取了当前页面的路由实例 router。
+// useRouter 是 Vue Router 提供的函数，用于获取路由实例，以便在组件内部进行路由导航等操作。
 const route = useRoute()
 const defaultActive = computed(() => {
   const pathMenu = mapPathToMenu(route.path, userMenus)
