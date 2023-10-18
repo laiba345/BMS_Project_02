@@ -4,6 +4,9 @@ import { firstMenu } from '@/utils/map-menus'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
+  // createWebHashHistory() 表示创建了一个基于哈希的路由历史管理器
+  // 哈希路由的主要特点是将路由信息存储在 URL 的哈希部分； http://example.com/#section-2
+  // # 符号之后的部分，即 section-2，就是哈希部分。
   history: createWebHashHistory(),
   // 映射关系: path => component
   routes: [
@@ -56,15 +59,19 @@ const router = createRouter({
 // 返回值: 返回值决定导航的路径(不返回或者返回undefined, 默认跳转)
 // 举个栗子: / => /main
 // to: /main from: / 返回值: /abc
+// Vue Router 中的路由守卫函数 beforeEach，它用于在每次路由导航发生之前进行一些检查或操作。
+// 它会在每次路由导航之前执行其中的逻辑。
 router.beforeEach((to) => {
   // 只有登录成功(token), 才能真正进入到main页面
   const token = localCache.getCache(LOGIN_TOKEN)
+  // 如果要前往的路由路径以 "/main" 开头，表示用户试图访问主页面。
   if (to.path.startsWith('/main') && !token) {
     return '/login'
   }
 
   // 如果是进入到main
   if (to.path === '/main') {
+    // firstMenu?.url 表示在之前的逻辑中找到的第一个菜单项的 URL，它将作为重定向的目标，用户将被重定向到第一个菜单项对应的页面。
     return firstMenu?.url
   }
 })
