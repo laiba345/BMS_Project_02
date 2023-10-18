@@ -427,6 +427,14 @@ interface IProps {  // 接口命名为IProps
 - 然后用配套的mutation方法修改这些状态，并且只能用mutation修改状态，在组件中调用commit方法提交mutation；
 - 如果应用中有异步操作或复杂逻辑组合，需要编写action，执行结束如果有状态修改仍需提交mutation，组件中通过dispatch派发action。
 - 最后是模块化，通过modules选项组织拆分出去的各个子模块，在访问状态（state）时需注意添加子模块的名称，如果子模块有设置namespace，那么提交mutation和派发action时还需要额外的命名空间前缀。
+## 插槽的理解
+slot插槽，一般在组件内部使用，封装组件时，在组件内部不确定该位置以何种形式的元素展示时，可以通过slot占据这个位置，该位置的元素需要父组件以内容形式传递过来，
+- **默认插槽**：子组件用<slot>标签来确定渲染的位置，标签里面可以放DOM结构作为后备内容，当父组件在使用的时候，可以直接在子组件的标签内写入内容，该部分内容将插入子组件的<slot>标签位置。如果父组件使用的时候没有往插槽传入内容，后备内容就会显示在页面。
+- **具名插槽**：子组件用name属性来表示插槽的名字，没有指定name的插槽，会有隐含的名称叫做 default。父组件中在使用时在默认插槽的基础上通过v-slot指令指定元素需要放在哪个插槽中，v-slot值为子组件插槽name属性值。使用v-slot指令指定元素放在哪个插槽中，必须配合<template>元素，且一个<template>元素只能对应一个预留的插槽，即不能多个<template> 元素都使用v-slot指令指定相同的插槽。v-slot的简写是#，例如v-slot:header可以简写为#header。
+- **作用域插槽**：子组件在<slot>标签上绑定props数据，**以将子组件数据传给父组件使用**。父组件获取插槽绑定 props 数据的方法：
+      - scope="接收的变量名"：<template scope="接收的变量名">
+      - slot-scope="接收的变量名"：<template slot-scope="接收的变量名">
+      - v-slot:插槽名="接收的变量名"：<template v-slot:插槽名="接收的变量名">
 
 **根据菜单动态的添加路由对象(独立的文件中)**
 1. 获取菜单(userMenus) ~ 代码书写的位置 ~ store => login.ts => 通过mapMenusToRoutes来实现映射
