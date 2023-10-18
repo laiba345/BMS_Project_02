@@ -113,6 +113,9 @@ const isQuery = usePermissions(`${props.contentConfig.pageName}:query`)
 const systemStore = useSystemStore()
 const currentPage = ref(1)
 const pageSize = ref(10)
+// 这段代码的目的是监听特定的 action 执行，当执行这些 action 之后，
+// 将 currentPage 重置为 1，然后执行 fetchPageListData() 以获取页面列表数据。
+// 这有助于在执行特定操作后重新加载页面数据。
 systemStore.$onAction(({ name, after }) => {
   // 其中里面也是包含了语法糖，在这些action结束之后，
   // 再执行 currentPage.value = 1 
