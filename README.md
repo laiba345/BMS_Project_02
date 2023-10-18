@@ -18,177 +18,6 @@ Vue3 + TypeScript （CodyWhy）
 - contentRef.value?.fetchPageListData(queryInfo):
   - 在函数内部，它尝试访问 contentRef 的值（即 PageContent 组件的实例），然后调用该实例的 fetchPageListData 方法，同时传递 queryInfo 作为参数。这意味着在查询点击事件时，它会尝试调用 PageContent 组件的 fetchPageListData 方法。
 
-## 项目的逻辑结构
-- .editorconfig; 通常用于定义代码编辑器和IDE的编码风格规则，以确保多个开发者在一个项目中能够保持一致的代码格式和样式。
-- .env;
-  - 用于配置环境变量。这些环境变量可以在项目中的不同环境中设置不同的值，以便控制应用程序的行为和配置。
-- .env.development;
-  - VITE_URL = dev; 意味着在开发环境中，你可以使用 VITE_URL 这个环境变量来访问 dev 或者任何你想要在开发环境中使用的值。
-  - const url = import.meta.env.VITE_URL; // 在开发环境中，url 的值将会是 "dev"，因为它是从 .env.development 文件中获取的。
-- .env.production
-  - VITE_URL = prod；表示你为生产环境指定了一个名为 VITE_URL 的环境变量，并将其值设置为 prod。这意味着在生产环境中，你可以使用 VITE_URL 这个环境变量来访问 prod 或者任何你想要在生产环境中使用的值。
-- .eslintrc.cjs； 通常用于配置 ESLint，一个用于检测和纠正 JavaScript 代码中潜在问题的工具。具体地，这个配置文件是一个 CommonJS 格式的配置文件，通常命名为 .eslintrc.cjs
-```
-require('@rushstack/eslint-patch/modern-module-resolution') // 导入了一个模块 @rushstack/eslint-patch/modern-module-resolution，这通常用于支持现代模块解析。这是一个特定于某些项目和工具链的配置，用于确保正确的模块解析行为。
-
-module.exports = { // 这是配置对象的开始，包含了 ESLint 的规则和选项。
-  root: true, // 表示这是 ESLint 配置的根文件，即它停止在父级目录中查找其他配置文件。
-  extends: [  // 这是一个数组，包含了该配置文件继承的其他配置。它使用了多个 ESLint 插件和扩展配置，包括 Vue 3、JavaScript 标准规则、TypeScript、Prettier 等。这些配置将用于检查和格式化代码。
-    'plugin:vue/vue3-essential', // 这是一个扩展配置，它包括了 Vue 3 项目中的一组必要的 ESLint 规则，以确保你的 Vue 3 组件的代码质量和一致性。
-    'eslint:recommended',  // 是 ESLint 官方推荐的规则集合, 包含了一些通用的 JavaScript 代码规则，以帮助你避免常见的错误和最佳实践。
-    '@vue/eslint-config-typescript', // Vue 团队维护的用于 TypeScript 项目的 ESLint 配置。它包括了与 TypeScript 相关的规则，以确保你的 TypeScript 代码的质量和一致性。
-    '@vue/eslint-config-prettier', // 这个配置用于集成 Prettier 和 ESLint，以确保 ESLint 规则不与 Prettier 的代码格式规则发生冲突。它确保 ESLint 和 Prettier 可以一起协同工作，以格式化你的代码并检测代码质量问题。
-    'plugin:prettier/recommended' // 这个扩展配置用于启用 Prettier 插件，它将在 ESLint 中集成 Prettier，并自动应用 Prettier 的格式规则，以确保代码风格一致。
-  ],
-  parserOptions: { // 这是一个对象，用于配置解析器选项。ecmaVersion: 'latest' 表示使用最新版本的 ECMAScript 标准。
-    ecmaVersion: 'latest'
-  },
-  rules: {
-    'vue/multi-word-component-names': 'off', // 关闭了 Vue 插件中的规则 
-    'no-undef': 'off' // 关闭了全局未定义变量的检查规则。
-  }
-}
-```
-- .gitignore；文件是一个用来告诉 Git 哪些文件或目录应该被忽略，不被纳入版本控制的配置文件。在一个 Vite 构建的 Vue 3 项目中，.gitignore 文件的作用如下：
-  - 排除不需要版本控制的文件：在项目中，有些文件和目录是自动生成的，或者包含敏感信息，或者是临时文件，这些通常不应该包括在版本控制系统中。.gitignore 文件用于指定这些文件和目录，以确保它们不会被提交到代码库。
-  - 提高代码库的干净度：忽略不需要版本控制的文件可以帮助保持代码库的整洁性，只包括真正的源代码和必要资源文件。这可以使代码库更容易维护、更小巧、更易于协作和更快速。
-  - 保护敏感信息：敏感信息如密钥、密码等通常不应该存储在代码库中。通过.gitignore 文件，你可以确保这些敏感信息不会被不小心提交到版本控制系统中，从而提高安全性。
-- .prettierignore；文件是用于配置 Prettier 格式化工具的忽略规则的文件。Prettier 是一种代码格式化工具，它可以自动格式化代码，使其符合预定义的代码样式规则。
-  - .prettierignore 文件的作用是告诉 Prettier 哪些文件或目录应该被忽略，不要格式化它们。 # 忽略构建产物  /dist/  /build/
-- .prettierrc.json；文件是用于配置 Prettier 格式化工具的配置文件。Prettier 是一种代码格式化工具，它可以自动格式化代码，使其符合预定义的代码样式规则。
-```
-{
-  "useTabs": false, // 这表示不使用制表符（tabs）作为缩进，而使用空格（space）来进行缩进。
-  "tabWidth": 2, // 这定义了缩进宽度，表示每级缩进由 2 个空格组成。这是指定缩进大小的设置，适用于在代码中使用空格进行缩进的情况。
-  "printWidth": 80, // 这是一行代码的最大字符数。如果一行的字符超过 80 个字符，Prettier 将尝试自动换行以确保不超过这个宽度。
-  "singleQuote": true, // 这表示在代码中使用单引号作为字符串的引号风格，而不是双引号。例如，字符串将被格式化为 'example' 而不是 "example"。
-  "trailingComma": "none", //  这指定了对象、数组、函数参数等地方是否允许尾随逗号。在这里，设置为 "none" 表示不允许尾随逗号。
-  "semi": false // 这指定是否应在语句的末尾添加分号。在这里，设置为 false 表示不添加分号，这在一些 JavaScript 项目中是一种常见的风格。
-}
-```
-- auto-imports.d.ts; 用于自动导入类型定义和模块，以提供更好的代码编辑体验和类型检查。这文件通常与 TypeScript 一起使用，特别是在 Vue 3 项目中，以提供类型推断和自动导入。
-- commitlint.config.js; 用于配置 Commitlint，一个工具，它帮助规范化 Git 提交信息的格式，以便更好地跟踪和管理代码库的版本历史。在 Vue 3 项目中，使用 Commitlint 可以确保提交信息遵循一致的格式，以帮助开发团队更容易地理解每次提交的内容。
-  - module.exports = { extends: ['@commitlint/config-conventional'] };   Conventional Commits 的一种标准配置，规定了提交信息的格式和类型
-- components.d.ts; 用于声明自定义组件的类型，以帮助 TypeScript 在编译时提供类型检查和自动补全。这种类型声明文件通常用于增强 Vue 组件的类型安全性，确保组件的属性和方法在使用时是正确的。
-```
-declare module '@vue/runtime-core' {  // 导入了 Vue 3 的核心运行时库  这一行开始了模块声明，它告诉 TypeScript，接下来我们要为'@vue/runtime-core'模块增加类型声明。
-  export interface GlobalComponents { // 这部分代码定义了一个全局类型接口 GlobalComponents，它包含了一些组件名称和类型的映射。
-    BarEchart: typeof import('./src/components/page-echarts/src/bar-echart.vue')['default'] // BarEchart, BaseEchart, copy 是自定义组件的名称，它们映射到这些组件的类型。
-    BaseEchart: typeof import('./src/components/page-echarts/src/base-echart.vue')['default']
-```
-- env.d.ts; 用于增强 TypeScript 在 Vue 3 项目中对环境变量的类型推断和自动补全。这个文件允许你定义项目中使用的环境变量的类型，以帮助 TypeScript 确保你在代码中正确地使用这些环境变量，从而提高类型安全性和开发效率。
-```
-declare module '*.vue' {
-  import { DefineComponent } from 'vue' // 模块声明告诉 TypeScript 如何处理导入以 *.vue 结尾的文件。
-  const component: DefineComponent //  导入了 Vue 3 的 DefineComponent 类型，用于定义 Vue 单文件组件的类型。
-  export default component // 导出了默认的 component，表示它是一个 Vue 单文件组件。
-  interface IModalConfig {} // 定义了一个空的接口 IModalConfig，这个接口在这个声明模块中可用。
-  export { IModalConfig } // 导出了 IModalConfig 接口，以便其他模块可以访问它。
-}
-
-declare module '*.mjs' // 这个模块声明告诉 TypeScript 如何处理导入以 *.mjs 结尾的文件。这个声明没有提供具体的类型定义或导出，仅告诉 TypeScript 如何处理这种类型的模块。
-```
-- index.html；通常位于项目的根目录，并是整个前端应用的初始页面。当你在浏览器中访问应用时，浏览器会加载 index.html 文件，然后根据其中的内容加载和渲染应用的资源和内容，启动 Vue 3 应用。这个文件是前端项目的入口点，决定了网页的结构和行为。
-  - <div id="app"></div>：这是一个<div>元素，其id属性设置为"app"。在典型的Vue.js应用中，Vue会挂载应用的根组件到这个<div>元素上。
-  - <script type="module" src="/src/main.ts"></script>：这是一个JavaScript脚本标签，它引入了Vue.js应用的入口文件。type="module"表示这是一个ES6模块，src属性指定了入口文件的位置。
-- package-lock.json；文件是用于确保项目的依赖关系的精确版本锁定的文件，通常用于 Node.js 项目中，包括 Vite 构建的 Vue 3 项目。以确保项目的依赖关系是稳定和一致的。这对于构建可维护的、
-- package.json；它通常包含有关项目的元数据和依赖信息。 它不仅用于管理项目的依赖关系，还包含了有关项目的各种元数据和配置信息，从构建到发布，都与项目的生命周期密切相关。 这个配置的目的是，当开发者使用 git commit 命令来提交代码变更时，会启动 Commitizen 工具，并使用 cz-conventional-changelog 插件来引导他们创建符合约定的提交信息。
-  - 项目元数据：package.json 文件包含有关项目的元数据，如项目的名称、版本号、作者、描述等。这些信息对于项目的文档、发布和维护都非常重要。
-  - 依赖管理：package.json 文件列出了项目依赖的软件包，包括开发依赖和生产依赖。这些依赖描述了项目所需的第三方库和工具。
-  - `package.json` 和 `package-lock.json` 是 Node.js 项目中的两个关键文件，用于管理项目的依赖关系和元数据。
-    - 1. **package.json**：
-     - `package.json` 是一个包含有关项目元数据的文件，如项目的名称、版本、作者、描述等。
-     - 它还包含了项目的依赖关系，分为两种类型：
-       - **生产依赖**：`dependencies` 字段包含了项目在生产环境中运行时需要的依赖。
-       - **开发依赖**：`devDependencies` 字段包含了仅在开发和构建过程中需要的依赖，如构建工具、测试库等。
-     - `package.json` 中的脚本字段（`scripts`）允许定义自定义命令，以运行各种开发和构建任务。
-     - 该文件还可包含有关项目的许可证信息、存储库地址、脚本、依赖版本范围等。
-    - 2. **package-lock.json**：
-       - `package-lock.json` 文件是自动生成的，它记录了项目的精确依赖关系，包括依赖的版本和依赖树。
-       - 这个文件的主要目的是确保项目在不同的开发环境和不同的机器上都使用相同版本的依赖。它锁定了每个依赖包的确切版本，以避免意外的依赖更新。
-       - `package-lock.json` 还包含了关于每个依赖包的元数据，如下载地址、哈希值等，以便确保每次安装的依赖都是完全一致的。
-    - **总之，`package.json` 包含项目的基本信息、依赖声明和自定义脚本，而 `package-lock.json` 用于确保项目的依赖关系在不同环境中的一致性。这两个文件在 Node.js 项目中非常重要，特别是在构建可维护的、稳定的应用程序时。**
-- tsconfig.config.json； 文件是 TypeScript 的配置文件，用于指定 TypeScript 编译器的设置和选项。
-```
-{
-  "extends": "@vue/tsconfig/tsconfig.node.json", // 这一行使用了继承配置，它扩展自 @vue/tsconfig/tsconfig.node.json 配置文件，意味着这个配置文件继承了 @vue/tsconfig/tsconfig.node.json 的所有设置。
-  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*"], // 这一行指定了 TypeScript 编译器应该包括在编译中的文件。具体来说，它包括了文件名匹配模式，用于匹配 vite.config.*、vitest.config.* 和 cypress.config.* 等文件。这通常用于确保这些文件中的 TypeScript 代码会被编译。
-  "compilerOptions": { // TypeScript 编译器的配置选项。
-    "composite": true, // 这个设置允许 TypeScript 使用增量编译（incremental compilation）来提高编译性能。
-    "types": ["node"] // 这个设置指定了项目中要包括的类型声明文件。在这里，它包括了 Node.js 相关的类型声明，以便在项目中使用 Node.js 核心模块和 API。
-  }
-}
-```
-- tsconfig.json; 用于指定 TypeScript 编译器的设置和选项。这个配置文件通常位于 TypeScript 项目的根目录，并定义了如何编译 TypeScript 代码以及一些其他编译相关的行为。
-```
-{
-  "extends": "@vue/tsconfig/tsconfig.web.json", // 这行配置使用了继承，它继承自 @vue/tsconfig/tsconfig.web.json 文件的配置，意味着这个配置文件继承了 tsconfig.web.json 中的所有设置。
-  "include": ["src/**/*", "src/**/*.vue", "env.d.ts", "auto-imports.d.ts", "components.d.ts"], // 这里指定了应该包括在编译中的文件或文件夹的列表。这些文件包括了项目中的 TypeScript 文件、Vue 单文件组件、以及额外的 .d.ts 类型声明文件。
-  "exclude": ["commitlint.config.js"], // 这里指定了应该排除在编译之外的文件。在这个示例中，排除了 commitlint.config.js 文件。
-  "compilerOptions": { // 部分包含了 TypeScript 编译器的配置选项。
-    "baseUrl": ".", //  指定了用于解析相对模块导入的基本目录
-    "paths": {
-      "@/*": ["./src/*"] // 指定了路径映射，允许缩短模块导入的路径。
-    },
-    // "types": ["element-plus/global"] // 被注释掉的这行通常用于指定要包括的类型声明文件。在这个示例中被注释掉，但通常用于引入第三方库的类型声明。
-  },
-
-  "references": [
-    {
-      "path": "./tsconfig.config.json" // 这部分指定了项目的引用关系。在这个示例中，它引用了另一个 tsconfig.config.json 文件，这用于处理项目的依赖关系。这意味着这个项目依赖于另一个项目。
-    }
-  ]
-}
-```
-  - 在 Vite 搭建的项目中，`tsconfig.config.json` 和 `tsconfig.json` 都是 TypeScript 的配置文件，但它们在用途上通常有不同的含义：
-    - 1. **tsconfig.json**：
-       - `tsconfig.json` 是 TypeScript 的标准配置文件，用于指定 TypeScript 编译器的设置和选项。
-       - 在 Vite 项目中，`tsconfig.json` 用于配置 TypeScript 编译器的行为，包括编译选项、类型检查、路径映射等。它定义了项目中 TypeScript 代码的编译规则。
-       - 这个文件通常位于 TypeScript 项目的根目录，用于控制整个项目的 TypeScript 编译设置。
-    - 2. **tsconfig.config.json**：
-       - `tsconfig.config.json` 的名称中的 "config" 部分并没有特定的含义，它通常是 Vite 项目中的一个自定义配置文件，特别是用于配置 TypeScript 的路径别名。
-       - 在 Vite 项目中，`tsconfig.config.json` 通常包含了与项目相关的 TypeScript 路径映射（alias）配置，以便在项目中使用别名来引用模块。这对于确保在开发期间正确处理模块路径非常有用。
-    - 总之，`tsconfig.json` 是标准的 TypeScript 配置文件，用于控制 TypeScript 编译器的行为。而 `tsconfig.config.json` 在 Vite 项目中通常用于自定义 TypeScript 路径映射，以改善模块导入的可读性和维护性。这两个配置文件有不同的用途和内容，但它们共同用于确保 TypeScript 与 Vite 的集成工作良好。
-- vite.config.ts；是一个配置文件，用于自定义和配置 Vite 项目的构建和开发行为。这个文件允许你对 Vite 的默认行为进行修改、添加插件、自定义路由、指定输出目录等等，以满足项目的特定需求。
-```
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { // 这些导入语句用于配置 Vue 组件的自动导入和样式按需加载。ElementPlusResolver 和 ElementPlusResolve 是与 Element Plus UI 框架相关的解析器和样式加载器。
-  createStyleImportPlugin,
-  ElementPlusResolve
-} from 'vite-plugin-style-import'
-
-// https://vitejs.dev/config/
-export default defineConfig({ // 这是配置文件的主体部分，使用 defineConfig 函数定义了 Vite 项目的配置。在这个配置对象中，可以定义各种项目的构建和开发行为。
-  plugins: [ // 这里配置了项目中使用的 Vite 插件，包括 Vue 插件和自动导入相关的插件。这些插件可以提供不同功能，如 Vue 支持、自动导入模块、自动导入组件、按需加载样式等。
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    }),
-    createStyleImportPlugin({
-      resolves: [ElementPlusResolve()],
-      libs: [
-        {
-          libraryName: 'element-plus',
-          esModule: true,
-          resolveStyle: (name: string) => {
-            return `element-plus/theme-chalk/${name}.css`
-          }
-        }
-      ]
-    })
-  ],
-  resolve: { // 这里配置了解析选项，包括路径别名。这允许你使用 @ 别名来引用项目中的文件，以便更简洁地导入模块。
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
-```
 ## 项目介绍
 - 此项目通过不同的角色登陆到后台管理系统，根据自己角色的权限对数据进行添加、编辑、删除及看到相
 关数据的可视化界面；主要分为系统总览、系统管理、角色中心、随便聊聊几大模块，方便用户操作。
@@ -412,9 +241,7 @@ interface IProps {  // 接口命名为IProps
   - 如果是相应的对象, 进行相应的一一对应即可;
   - 服务器返回的数据存在嵌套; 如果服务器给你的数据不是你想要的,你需要把数据转换成你想要的;
   - 动画的实现是通过const countup1 = new CountUp(count1Ref.value!, props.number1, countOption)来实现的
-  - 
 --------------------------------------------------------------------------------------------------------------------
- 
 ## pinia的认知
 1. 响应式系统；Pinia 是为 Vue 3 设计的，它利用了 Vue 3 的 Composition API 和 Proxy 响应式系统。
 2. 类型安全；Pinia 提供了更好的类型安全支持，因为它是使用 TypeScript 编写的，并且能够与 TypeScript 的类型系统良好集成。
@@ -486,6 +313,178 @@ slot插槽，一般在组件内部使用，封装组件时，在组件内部不�
     - 角色管理中进行测试
       
 3. 单一页面通常由上、下、弹出框三个子组件组成，将三个组件进行抽取，后续通过传入某一页面的动态配置信息
+
+## 项目的逻辑结构
+- .editorconfig; 通常用于定义代码编辑器和IDE的编码风格规则，以确保多个开发者在一个项目中能够保持一致的代码格式和样式。
+- .env;
+  - 用于配置环境变量。这些环境变量可以在项目中的不同环境中设置不同的值，以便控制应用程序的行为和配置。
+- .env.development;
+  - VITE_URL = dev; 意味着在开发环境中，你可以使用 VITE_URL 这个环境变量来访问 dev 或者任何你想要在开发环境中使用的值。
+  - const url = import.meta.env.VITE_URL; // 在开发环境中，url 的值将会是 "dev"，因为它是从 .env.development 文件中获取的。
+- .env.production
+  - VITE_URL = prod；表示你为生产环境指定了一个名为 VITE_URL 的环境变量，并将其值设置为 prod。这意味着在生产环境中，你可以使用 VITE_URL 这个环境变量来访问 prod 或者任何你想要在生产环境中使用的值。
+- .eslintrc.cjs； 通常用于配置 ESLint，一个用于检测和纠正 JavaScript 代码中潜在问题的工具。具体地，这个配置文件是一个 CommonJS 格式的配置文件，通常命名为 .eslintrc.cjs
+```
+require('@rushstack/eslint-patch/modern-module-resolution') // 导入了一个模块 @rushstack/eslint-patch/modern-module-resolution，这通常用于支持现代模块解析。这是一个特定于某些项目和工具链的配置，用于确保正确的模块解析行为。
+
+module.exports = { // 这是配置对象的开始，包含了 ESLint 的规则和选项。
+  root: true, // 表示这是 ESLint 配置的根文件，即它停止在父级目录中查找其他配置文件。
+  extends: [  // 这是一个数组，包含了该配置文件继承的其他配置。它使用了多个 ESLint 插件和扩展配置，包括 Vue 3、JavaScript 标准规则、TypeScript、Prettier 等。这些配置将用于检查和格式化代码。
+    'plugin:vue/vue3-essential', // 这是一个扩展配置，它包括了 Vue 3 项目中的一组必要的 ESLint 规则，以确保你的 Vue 3 组件的代码质量和一致性。
+    'eslint:recommended',  // 是 ESLint 官方推荐的规则集合, 包含了一些通用的 JavaScript 代码规则，以帮助你避免常见的错误和最佳实践。
+    '@vue/eslint-config-typescript', // Vue 团队维护的用于 TypeScript 项目的 ESLint 配置。它包括了与 TypeScript 相关的规则，以确保你的 TypeScript 代码的质量和一致性。
+    '@vue/eslint-config-prettier', // 这个配置用于集成 Prettier 和 ESLint，以确保 ESLint 规则不与 Prettier 的代码格式规则发生冲突。它确保 ESLint 和 Prettier 可以一起协同工作，以格式化你的代码并检测代码质量问题。
+    'plugin:prettier/recommended' // 这个扩展配置用于启用 Prettier 插件，它将在 ESLint 中集成 Prettier，并自动应用 Prettier 的格式规则，以确保代码风格一致。
+  ],
+  parserOptions: { // 这是一个对象，用于配置解析器选项。ecmaVersion: 'latest' 表示使用最新版本的 ECMAScript 标准。
+    ecmaVersion: 'latest'
+  },
+  rules: {
+    'vue/multi-word-component-names': 'off', // 关闭了 Vue 插件中的规则 
+    'no-undef': 'off' // 关闭了全局未定义变量的检查规则。
+  }
+}
+```
+- .gitignore；文件是一个用来告诉 Git 哪些文件或目录应该被忽略，不被纳入版本控制的配置文件。在一个 Vite 构建的 Vue 3 项目中，.gitignore 文件的作用如下：
+  - 排除不需要版本控制的文件：在项目中，有些文件和目录是自动生成的，或者包含敏感信息，或者是临时文件，这些通常不应该包括在版本控制系统中。.gitignore 文件用于指定这些文件和目录，以确保它们不会被提交到代码库。
+  - 提高代码库的干净度：忽略不需要版本控制的文件可以帮助保持代码库的整洁性，只包括真正的源代码和必要资源文件。这可以使代码库更容易维护、更小巧、更易于协作和更快速。
+  - 保护敏感信息：敏感信息如密钥、密码等通常不应该存储在代码库中。通过.gitignore 文件，你可以确保这些敏感信息不会被不小心提交到版本控制系统中，从而提高安全性。
+- .prettierignore；文件是用于配置 Prettier 格式化工具的忽略规则的文件。Prettier 是一种代码格式化工具，它可以自动格式化代码，使其符合预定义的代码样式规则。
+  - .prettierignore 文件的作用是告诉 Prettier 哪些文件或目录应该被忽略，不要格式化它们。 # 忽略构建产物  /dist/  /build/
+- .prettierrc.json；文件是用于配置 Prettier 格式化工具的配置文件。Prettier 是一种代码格式化工具，它可以自动格式化代码，使其符合预定义的代码样式规则。
+```
+{
+  "useTabs": false, // 这表示不使用制表符（tabs）作为缩进，而使用空格（space）来进行缩进。
+  "tabWidth": 2, // 这定义了缩进宽度，表示每级缩进由 2 个空格组成。这是指定缩进大小的设置，适用于在代码中使用空格进行缩进的情况。
+  "printWidth": 80, // 这是一行代码的最大字符数。如果一行的字符超过 80 个字符，Prettier 将尝试自动换行以确保不超过这个宽度。
+  "singleQuote": true, // 这表示在代码中使用单引号作为字符串的引号风格，而不是双引号。例如，字符串将被格式化为 'example' 而不是 "example"。
+  "trailingComma": "none", //  这指定了对象、数组、函数参数等地方是否允许尾随逗号。在这里，设置为 "none" 表示不允许尾随逗号。
+  "semi": false // 这指定是否应在语句的末尾添加分号。在这里，设置为 false 表示不添加分号，这在一些 JavaScript 项目中是一种常见的风格。
+}
+```
+- auto-imports.d.ts; 用于自动导入类型定义和模块，以提供更好的代码编辑体验和类型检查。这文件通常与 TypeScript 一起使用，特别是在 Vue 3 项目中，以提供类型推断和自动导入。
+- commitlint.config.js; 用于配置 Commitlint，一个工具，它帮助规范化 Git 提交信息的格式，以便更好地跟踪和管理代码库的版本历史。在 Vue 3 项目中，使用 Commitlint 可以确保提交信息遵循一致的格式，以帮助开发团队更容易地理解每次提交的内容。
+  - module.exports = { extends: ['@commitlint/config-conventional'] };   Conventional Commits 的一种标准配置，规定了提交信息的格式和类型
+- components.d.ts; 用于声明自定义组件的类型，以帮助 TypeScript 在编译时提供类型检查和自动补全。这种类型声明文件通常用于增强 Vue 组件的类型安全性，确保组件的属性和方法在使用时是正确的。
+```
+declare module '@vue/runtime-core' {  // 导入了 Vue 3 的核心运行时库  这一行开始了模块声明，它告诉 TypeScript，接下来我们要为'@vue/runtime-core'模块增加类型声明。
+  export interface GlobalComponents { // 这部分代码定义了一个全局类型接口 GlobalComponents，它包含了一些组件名称和类型的映射。
+    BarEchart: typeof import('./src/components/page-echarts/src/bar-echart.vue')['default'] // BarEchart, BaseEchart, copy 是自定义组件的名称，它们映射到这些组件的类型。
+    BaseEchart: typeof import('./src/components/page-echarts/src/base-echart.vue')['default']
+```
+- env.d.ts; 用于增强 TypeScript 在 Vue 3 项目中对环境变量的类型推断和自动补全。这个文件允许你定义项目中使用的环境变量的类型，以帮助 TypeScript 确保你在代码中正确地使用这些环境变量，从而提高类型安全性和开发效率。
+```
+declare module '*.vue' {
+  import { DefineComponent } from 'vue' // 模块声明告诉 TypeScript 如何处理导入以 *.vue 结尾的文件。
+  const component: DefineComponent //  导入了 Vue 3 的 DefineComponent 类型，用于定义 Vue 单文件组件的类型。
+  export default component // 导出了默认的 component，表示它是一个 Vue 单文件组件。
+  interface IModalConfig {} // 定义了一个空的接口 IModalConfig，这个接口在这个声明模块中可用。
+  export { IModalConfig } // 导出了 IModalConfig 接口，以便其他模块可以访问它。
+}
+
+declare module '*.mjs' // 这个模块声明告诉 TypeScript 如何处理导入以 *.mjs 结尾的文件。这个声明没有提供具体的类型定义或导出，仅告诉 TypeScript 如何处理这种类型的模块。
+```
+- index.html；通常位于项目的根目录，并是整个前端应用的初始页面。当你在浏览器中访问应用时，浏览器会加载 index.html 文件，然后根据其中的内容加载和渲染应用的资源和内容，启动 Vue 3 应用。这个文件是前端项目的入口点，决定了网页的结构和行为。
+  - <div id="app"></div>：这是一个<div>元素，其id属性设置为"app"。在典型的Vue.js应用中，Vue会挂载应用的根组件到这个<div>元素上。
+  - <script type="module" src="/src/main.ts"></script>：这是一个JavaScript脚本标签，它引入了Vue.js应用的入口文件。type="module"表示这是一个ES6模块，src属性指定了入口文件的位置。
+- package-lock.json；文件是用于确保项目的依赖关系的精确版本锁定的文件，通常用于 Node.js 项目中，包括 Vite 构建的 Vue 3 项目。以确保项目的依赖关系是稳定和一致的。这对于构建可维护的、
+- package.json；它通常包含有关项目的元数据和依赖信息。 它不仅用于管理项目的依赖关系，还包含了有关项目的各种元数据和配置信息，从构建到发布，都与项目的生命周期密切相关。 这个配置的目的是，当开发者使用 git commit 命令来提交代码变更时，会启动 Commitizen 工具，并使用 cz-conventional-changelog 插件来引导他们创建符合约定的提交信息。
+  - 项目元数据：package.json 文件包含有关项目的元数据，如项目的名称、版本号、作者、描述等。这些信息对于项目的文档、发布和维护都非常重要。
+  - 依赖管理：package.json 文件列出了项目依赖的软件包，包括开发依赖和生产依赖。这些依赖描述了项目所需的第三方库和工具。
+  - `package.json` 和 `package-lock.json` 是 Node.js 项目中的两个关键文件，用于管理项目的依赖关系和元数据。
+    - 1. **package.json**：
+     - `package.json` 是一个包含有关项目元数据的文件，如项目的名称、版本、作者、描述等。
+     - 它还包含了项目的依赖关系，分为两种类型：
+       - **生产依赖**：`dependencies` 字段包含了项目在生产环境中运行时需要的依赖。
+       - **开发依赖**：`devDependencies` 字段包含了仅在开发和构建过程中需要的依赖，如构建工具、测试库等。
+     - `package.json` 中的脚本字段（`scripts`）允许定义自定义命令，以运行各种开发和构建任务。
+     - 该文件还可包含有关项目的许可证信息、存储库地址、脚本、依赖版本范围等。
+    - 2. **package-lock.json**：
+       - `package-lock.json` 文件是自动生成的，它记录了项目的精确依赖关系，包括依赖的版本和依赖树。
+       - 这个文件的主要目的是确保项目在不同的开发环境和不同的机器上都使用相同版本的依赖。它锁定了每个依赖包的确切版本，以避免意外的依赖更新。
+       - `package-lock.json` 还包含了关于每个依赖包的元数据，如下载地址、哈希值等，以便确保每次安装的依赖都是完全一致的。
+    - **总之，`package.json` 包含项目的基本信息、依赖声明和自定义脚本，而 `package-lock.json` 用于确保项目的依赖关系在不同环境中的一致性。这两个文件在 Node.js 项目中非常重要，特别是在构建可维护的、稳定的应用程序时。**
+- tsconfig.config.json； 文件是 TypeScript 的配置文件，用于指定 TypeScript 编译器的设置和选项。
+```
+{
+  "extends": "@vue/tsconfig/tsconfig.node.json", // 这一行使用了继承配置，它扩展自 @vue/tsconfig/tsconfig.node.json 配置文件，意味着这个配置文件继承了 @vue/tsconfig/tsconfig.node.json 的所有设置。
+  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*"], // 这一行指定了 TypeScript 编译器应该包括在编译中的文件。具体来说，它包括了文件名匹配模式，用于匹配 vite.config.*、vitest.config.* 和 cypress.config.* 等文件。这通常用于确保这些文件中的 TypeScript 代码会被编译。
+  "compilerOptions": { // TypeScript 编译器的配置选项。
+    "composite": true, // 这个设置允许 TypeScript 使用增量编译（incremental compilation）来提高编译性能。
+    "types": ["node"] // 这个设置指定了项目中要包括的类型声明文件。在这里，它包括了 Node.js 相关的类型声明，以便在项目中使用 Node.js 核心模块和 API。
+  }
+}
+```
+- tsconfig.json; 用于指定 TypeScript 编译器的设置和选项。这个配置文件通常位于 TypeScript 项目的根目录，并定义了如何编译 TypeScript 代码以及一些其他编译相关的行为。
+```
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json", // 这行配置使用了继承，它继承自 @vue/tsconfig/tsconfig.web.json 文件的配置，意味着这个配置文件继承了 tsconfig.web.json 中的所有设置。
+  "include": ["src/**/*", "src/**/*.vue", "env.d.ts", "auto-imports.d.ts", "components.d.ts"], // 这里指定了应该包括在编译中的文件或文件夹的列表。这些文件包括了项目中的 TypeScript 文件、Vue 单文件组件、以及额外的 .d.ts 类型声明文件。
+  "exclude": ["commitlint.config.js"], // 这里指定了应该排除在编译之外的文件。在这个示例中，排除了 commitlint.config.js 文件。
+  "compilerOptions": { // 部分包含了 TypeScript 编译器的配置选项。
+    "baseUrl": ".", //  指定了用于解析相对模块导入的基本目录
+    "paths": {
+      "@/*": ["./src/*"] // 指定了路径映射，允许缩短模块导入的路径。
+    },
+    // "types": ["element-plus/global"] // 被注释掉的这行通常用于指定要包括的类型声明文件。在这个示例中被注释掉，但通常用于引入第三方库的类型声明。
+  },
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json" // 这部分指定了项目的引用关系。在这个示例中，它引用了另一个 tsconfig.config.json 文件，这用于处理项目的依赖关系。这意味着这个项目依赖于另一个项目。
+    }
+  ]
+}
+```
+  - 在 Vite 搭建的项目中，`tsconfig.config.json` 和 `tsconfig.json` 都是 TypeScript 的配置文件，但它们在用途上通常有不同的含义：
+    - 1. **tsconfig.json**：
+       - `tsconfig.json` 是 TypeScript 的标准配置文件，用于指定 TypeScript 编译器的设置和选项。
+       - 在 Vite 项目中，`tsconfig.json` 用于配置 TypeScript 编译器的行为，包括编译选项、类型检查、路径映射等。它定义了项目中 TypeScript 代码的编译规则。
+       - 这个文件通常位于 TypeScript 项目的根目录，用于控制整个项目的 TypeScript 编译设置。
+    - 2. **tsconfig.config.json**：
+       - `tsconfig.config.json` 的名称中的 "config" 部分并没有特定的含义，它通常是 Vite 项目中的一个自定义配置文件，特别是用于配置 TypeScript 的路径别名。
+       - 在 Vite 项目中，`tsconfig.config.json` 通常包含了与项目相关的 TypeScript 路径映射（alias）配置，以便在项目中使用别名来引用模块。这对于确保在开发期间正确处理模块路径非常有用。
+    - 总之，`tsconfig.json` 是标准的 TypeScript 配置文件，用于控制 TypeScript 编译器的行为。而 `tsconfig.config.json` 在 Vite 项目中通常用于自定义 TypeScript 路径映射，以改善模块导入的可读性和维护性。这两个配置文件有不同的用途和内容，但它们共同用于确保 TypeScript 与 Vite 的集成工作良好。
+- vite.config.ts；是一个配置文件，用于自定义和配置 Vite 项目的构建和开发行为。这个文件允许你对 Vite 的默认行为进行修改、添加插件、自定义路由、指定输出目录等等，以满足项目的特定需求。
+```
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { // 这些导入语句用于配置 Vue 组件的自动导入和样式按需加载。ElementPlusResolver 和 ElementPlusResolve 是与 Element Plus UI 框架相关的解析器和样式加载器。
+  createStyleImportPlugin,
+  ElementPlusResolve
+} from 'vite-plugin-style-import'
+
+// https://vitejs.dev/config/
+export default defineConfig({ // 这是配置文件的主体部分，使用 defineConfig 函数定义了 Vite 项目的配置。在这个配置对象中，可以定义各种项目的构建和开发行为。
+  plugins: [ // 这里配置了项目中使用的 Vite 插件，包括 Vue 插件和自动导入相关的插件。这些插件可以提供不同功能，如 Vue 支持、自动导入模块、自动导入组件、按需加载样式等。
+    vue(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    }),
+    createStyleImportPlugin({
+      resolves: [ElementPlusResolve()],
+      libs: [
+        {
+          libraryName: 'element-plus',
+          esModule: true,
+          resolveStyle: (name: string) => {
+            return `element-plus/theme-chalk/${name}.css`
+          }
+        }
+      ]
+    })
+  ],
+  resolve: { // 这里配置了解析选项，包括路径别名。这允许你使用 @ 别名来引用项目中的文件，以便更简洁地导入模块。
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
+```
 
 # 项目中所遇到的问题
 ## 对于自动到.git文件中的文件上传自github上出现向右白色箭头无法点击访问的情况
