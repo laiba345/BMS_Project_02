@@ -69,6 +69,20 @@ function handleElTreeCheck(data1: any, data2: any) {
 // 我们通过对该实例对象上的属性进行相关操作即可
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
+```
+newCallback 函数：
+
+当调用 newCallback 时，它会使用 nextTick 函数来延迟执行一些操作。
+在这个函数内部，首先获取到 treeRef 引用的树形组件实例（treeRef.value)。
+然后，通过 treeRef.value?.setCheckedKeys([]) 的方式将树形组件的勾选状态重置为空数组，这通常用于初始化一个新的数据项时，清空之前的勾选状态。
+editCallback 函数：
+
+同样，editCallback 函数也使用 nextTick 来延迟执行一些操作。
+在这个函数内部，首先获取到 treeRef 引用的树形组件实例（treeRef.value)。
+然后，通过 mapMenuListToIds(itemData.menuList) 函数将 itemData 中的菜单列表转换为一个菜单 ID 的数组。
+最后，使用 treeRef.value?.setCheckedKeys(menuIds) 将树形组件的勾选状态设置为已选中的菜单 ID 数组。这通常用于编辑数据时，将之前保存的勾选状态还原到树形组件中。
+这两个函数的作用是确保树形组件在新建或编辑数据时，能够正确地初始化和设置勾选状态，以便用户在界面上看到正确的数据状态。
+```
 function newCallback() {
   nextTick(() => {
     treeRef.value?.setCheckedKeys([])
