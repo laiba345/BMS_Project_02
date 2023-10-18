@@ -1,5 +1,7 @@
+// 动态获取 Vue Router 的路由配置对象（RouteRecordRaw）
 import type { RouteRecordRaw } from 'vue-router'
 
+// 用于加载本地路由配置对象。
 function loadLocalRoutes() {
   // 1.动态获取所有的路由对象, 放到数组中
   // * 路由对象都在独立的文件中
@@ -8,32 +10,39 @@ function loadLocalRoutes() {
 
   // 1.1.读取router/main所有的ts文件
   const files: Record<string, any> = import.meta.glob(
+    // 这部分代码使用 import.meta.glob 方法，
+    // 动态地获取指定路径中的所有 TypeScript 文件（.ts）并将它们加载到 files 对象中。
+    // import.meta.glob 是一个在 ES Modules 中用于动态导入模块的功能。它允许您通过使用通配符来动态加载满足特定条件的模块。
     '../router/main/**/*.ts',
     {
+      // eager: true 表示立即加载这些文件。
       eager: true
     }
   )
   // 1.2.将加载的对象放到localRoutes
+  // 使用 for...in 循环遍历 files 对象中的每个文件。
   for (const key in files) {
     const module = files[key]
+    // localRoutes.push(module.default)：将当前文件的默认导出（路由配置对象）添加到 localRoutes 数组中。
     localRoutes.push(module.default)
   }
-
+  
   return localRoutes
 }
 
-export let firstMenu: any = null
+// 这段代码的目的是将用户的菜单数据映射为路由配置对象，并返回这些路由配置对象的数组
+export let firstMenu: any = null  // 用于记录第一个被匹配到的菜单项。
 export function mapMenusToRoutes(userMenus: any[]) {
   // 1.加载本地路由
   const localRoutes = loadLocalRoutes()
 
   // 2.根据菜单去匹配正确的路由
-  const routes: RouteRecordRaw[] = []
+  const routes: RouteRecordRaw[] = []  // 创建一个空数组 routes: RouteRecordRaw[] 用于存储最终的路由配置对象。
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       const route = localRoutes.find((item) => item.path === submenu.url)
       if (route) {
-        // 1.给route的顶层菜单增加重定向功能(但是只需要添加一次即可)
+        // 1.给route的顶层菜单增加重定向功能(但是只需要添加一次即可); 防止添加重复
         if (!routes.find((item) => item.path === menu.url)) {
           routes.push({ path: menu.url, redirect: route.path })
         }
@@ -63,6 +72,7 @@ export function mapPathToMenu(path: string, userMenus: any[]) {
   }
 }
 
+// 面包屑； 获取菜单栏中的数据进行展示
 interface IBreadcrumbs {
   name: string
   path: string
@@ -75,7 +85,7 @@ export function mapPathToBreadcrumbs(path: string, userMenus: any[]) {
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       if (submenu.url === path) {
-        // 1.顶层菜单
+        // 1.顶层菜单   
         breadcrumbs.push({ name: menu.name, path: menu.url })
         // 2.匹配菜单
         breadcrumbs.push({ name: submenu.name, path: submenu.url })
@@ -86,7 +96,7 @@ export function mapPathToBreadcrumbs(path: string, userMenus: any[]) {
 }
 
 /**
- * 菜单映射到id的列表
+ * 菜单映射到id的列表； 每一个菜单都有自己对应的id
  * @param menuList
  */
 export function mapMenuListToIds(menuList: any[]) {
@@ -107,7 +117,7 @@ export function mapMenuListToIds(menuList: any[]) {
 }
 
 /**
- * 从菜单映射到按钮的权限
+ * 从菜单映射到按钮的权限； 
  * @param menuList 菜单的列表
  * @returns 权限的数组(字符串数组)
  */
