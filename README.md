@@ -10,6 +10,14 @@ Vue3 + TypeScript （CodyWhy）
 ## 技术点
 -  Vue3 + TypeScript + Element Plus + Pinia + Vue Router + Axios + Echarts + Vite
 
+## 常见的问题
+- const emit = defineEmits(['foldChange']) 这行代码的作用是在 Vue 3 的 <script setup> 块中定义一个 emit 函数，它用于触发自定义事件，并将事件传递给父组件。具体作用如下：
+- const contentRef = ref<InstanceType<typeof PageContent>>():
+  - 这一行代码创建了一个名为 contentRef 的响应式引用。
+  - 这个引用的类型是 InstanceType<typeof PageContent>，它表示引用的数据类型应该是 PageContent 组件的实例类型。这意味着 contentRef 将用于引用 PageContent 组件的实例。
+- contentRef.value?.fetchPageListData(queryInfo):
+  - 在函数内部，它尝试访问 contentRef 的值（即 PageContent 组件的实例），然后调用该实例的 fetchPageListData 方法，同时传递 queryInfo 作为参数。这意味着在查询点击事件时，它会尝试调用 PageContent 组件的 fetchPageListData 方法。
+
 ## 项目的逻辑结构
 - .editorconfig; 通常用于定义代码编辑器和IDE的编码风格规则，以确保多个开发者在一个项目中能够保持一致的代码格式和样式。
 - .env;
