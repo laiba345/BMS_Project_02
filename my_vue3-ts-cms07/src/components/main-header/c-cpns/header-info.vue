@@ -3,6 +3,10 @@
     <!-- 1.操作小图标 -->
     <div class="operation">
       <span>
+        <img src="@/assets/img/user.svg" alt="">
+      </span>
+
+      <span>
         <el-icon><Message /></el-icon>
       </span>
       <span>
@@ -34,7 +38,7 @@
               <el-icon><InfoFilled /></el-icon>
               <span>个人信息</span>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item @click="changePsd">
               <el-icon><Unlock /></el-icon>
               <span>修改密码</span>
             </el-dropdown-item>
@@ -46,10 +50,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constants'
 import { localCache } from '@/utils/cache'
+import changePassword from './change-password.vue'
 
+const changePasswordDialogRef = ref(null)
 const router = useRouter()
 function handleExitClick() {
   localCache.removeCache(LOGIN_TOKEN)
@@ -59,6 +66,7 @@ function handleExitClick() {
 
 <style lang="less" scoped>
 .header-info {
+  height: 300px;
   display: flex;
   align-items: center;
 }
