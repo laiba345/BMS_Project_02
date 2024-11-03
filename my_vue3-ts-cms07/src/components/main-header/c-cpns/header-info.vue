@@ -30,7 +30,7 @@
               <el-icon><CircleClose /></el-icon>
               <span>退出系统</span>
             </el-dropdown-item>
-            <el-dropdown-item divided>
+            <el-dropdown-item divided @click="handleAdd">
               <el-icon><InfoFilled /></el-icon>
               <span>个人信息</span>
             </el-dropdown-item>
@@ -43,9 +43,12 @@
       </el-dropdown>
     </div>
   </div>
+  <add-or-edit-dialog ref="addoreditDialog" />
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import AddOrEditDialog from '@/components/AddOrEditDialog.vue'
 import { useRouter } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constants'
 import { localCache } from '@/utils/cache'
@@ -54,6 +57,18 @@ const router = useRouter()
 function handleExitClick() {
   localCache.removeCache(LOGIN_TOKEN)
   router.push('/login')
+}
+
+const addoreditDialog = ref(null)
+const row = { id: 1, name: '测试数据' }
+
+const handleAdd = () => {
+  console.log('1')
+  addoreditDialog.value.open('add', {}) // 打开对话框，模式为添加
+}
+
+const handleEdit = (row) => {
+  addoreditDialog.value.open('edit', row) // 打开对话框，模式为编辑，传递数据
 }
 </script>
 
