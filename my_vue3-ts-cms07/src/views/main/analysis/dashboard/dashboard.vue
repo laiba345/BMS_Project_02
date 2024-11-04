@@ -15,28 +15,38 @@
 
       <el-container>
         <!-- 左侧 Sidebar -->
-        <el-aside width="300px" class="left-sidebar">
-          <div class="panel">Core Server Usage</div>
-          <div class="panel">HDD Storage</div>
-          <div class="panel">CPU Usage</div>
-          <div class="panel">RAM Usage</div>
+        <el-aside width="500px" class="left-sidebar">
+          <div class="panel small-panel">Core Server Usage</div>
+          <div class="panel chart-panel">
+            <HDDStorage />
+          </div>
+          <div class="panel chart-panel">
+            <CPUUsage />
+          </div>
+          <div class="panel chart-panel">
+            <RAMUsage />
+          </div>
         </el-aside>
 
         <!-- 中间主内容区 -->
         <el-main class="main-content">
           <div class="world-map">
             <!-- 中心的世界地图或其他核心内容 -->
-            <p>World Map</p>
+            <WorldChart />
           </div>
           <div class="status-info">
-            <div class="info-box">Server Distribution</div>
-            <div class="info-box">Server Status By Group</div>
+            <div class="info-box">
+              <ServerDistribution /> 
+            </div>
+            <div class="info-box">
+              <ServerStatusByGroup />
+            </div>
           </div>
         </el-main>
 
-        <!-- 右侧 Sidebar -->
-        <el-aside width="300px" class="right-sidebar">
-          <div class="panel">Test Server Distribution</div>
+        <!-- 右侧 Sidebar -->right-sidebar
+        <el-aside width="400px" class="">
+          <div class="panel small-panel">Core Server Usage</div>
           <div class="panel">Test Server Healthy Status</div>
           <div class="panel">Alert</div>
         </el-aside>
@@ -50,6 +60,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import HDDStorage from '../echarts/HDDStorage.vue';
+import CPUUsage from '../echarts/CPUUsage.vue';
+import RAMUsage from '../echarts/RAMUsage.vue';
+import WorldChart from '../echarts/WorldChart.vue';
+import ServerDistribution from '../echarts/ServerDistribution.vue';
+import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue';
 const datePart = ref('')
 const weekdayPart = ref('')
 const currentTime = ref('')
@@ -76,7 +92,7 @@ const updateTime = () => {
 onMounted(() => {
   updateTime()
   const timer = setInterval(updateTime, 1000)
-  onMounted(() => {
+  onUnmounted(() => {
     clearInterval(timer)
   })
 })
@@ -104,26 +120,30 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-
-  .weekday {
-    margin-left: 10px;
-  }
-  .curTime {
-    font-size: larger;
-    line-height: 1;
-    margin-left: 5px;
-  }
-  .fixed-width-btn {
-    width: 60px;
-    margin-left: 5px;
-  }
 }
 
-.left-sidebar,
-.right-sidebar {
+.left-sidebar {
   background-color: #2a2d3e;
   padding: 10px;
   color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto; /* 如果内容过多，则启用滚动条 */
+}
+
+.small-panel {
+  height: 30px; /* 设置小面板的高度 */
+  text-align: center;
+}
+
+.chart-panel {
+  flex: 1; /* 自适应高度，均分剩余空间 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3a3f51;
 }
 
 .main-content {
@@ -154,14 +174,6 @@ onMounted(() => {
   background-color: #3a3f51;
   padding: 20px;
   color: white;
-}
-
-.panel {
-  background-color: #3a3f51;
-  margin-bottom: 10px;
-  padding: 15px;
-  color: white;
-  text-align: center;
 }
 
 .footer {
