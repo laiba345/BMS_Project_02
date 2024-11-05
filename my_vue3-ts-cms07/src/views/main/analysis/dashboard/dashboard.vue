@@ -8,8 +8,12 @@
           <span>{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
           <span class="curTime">{{ currentTime }}</span>
-          <el-button type="primary" size="mini" class="fixed-width-btn">Logout</el-button>
-          <el-button type="primary" size="mini" class="fixed-width-btn">Esc</el-button>
+          <el-button type="primary" size="mini" class="fixed-width-btn"
+            >Logout</el-button
+          >
+          <el-button type="primary" size="mini" class="fixed-width-btn"
+            >Esc</el-button
+          >
         </div>
       </el-header>
 
@@ -36,7 +40,7 @@
           </div>
           <div class="status-info">
             <div class="info-box">
-              <ServerDistribution /> 
+              <ServerDistribution />
             </div>
             <div class="info-box">
               <ServerStatusByGroup />
@@ -44,11 +48,41 @@
           </div>
         </el-main>
 
-        <!-- 右侧 Sidebar -->right-sidebar
-        <el-aside width="400px" class="">
-          <div class="panel small-panel">Core Server Usage</div>
+        <!-- 右侧 Sidebar -->
+        <!-- <el-aside width="400px" class="right-sidebar">
+          <div class="panel">Core Server Usage</div>
+          <div class="panel">此处是一个组件</div>
           <div class="panel">Test Server Healthy Status</div>
+          <div class="panel">此处是一个组件</div>
           <div class="panel">Alert</div>
+          <div class="panel">此处是一个组件</div>
+        </el-aside> -->
+
+        <!-- 右侧 Sidebar -->
+        <el-aside width="500px" class="right-sidebar">
+          <!-- 第一个图组件和标题 -->
+          <div class="panel">
+            <div class="small-panel">Test Server Distribution</div>
+            <div class="chart-panel">
+              <TestServerDistribution />
+            </div>
+          </div>
+
+          <!-- 第二个图组件和标题 -->
+          <div class="panel">
+            <div class="small-panel">Test Server Healthy Status</div>
+            <div class="chart-panel">
+              <TestServerHealthStatus />
+            </div>
+          </div>
+
+          <!-- 第三个图组件和标题 -->
+          <div class="panel">
+            <div class="small-panel">Alert</div>
+            <div class="chart-panel">
+              <AlertSection />
+            </div>
+          </div>
         </el-aside>
       </el-container>
 
@@ -60,12 +94,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import HDDStorage from '../echarts/HDDStorage.vue';
-import CPUUsage from '../echarts/CPUUsage.vue';
-import RAMUsage from '../echarts/RAMUsage.vue';
-import WorldChart from '../echarts/WorldChart.vue';
-import ServerDistribution from '../echarts/ServerDistribution.vue';
-import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue';
+import HDDStorage from '../echarts/HDDStorage.vue'
+import CPUUsage from '../echarts/CPUUsage.vue'
+import RAMUsage from '../echarts/RAMUsage.vue'
+import WorldChart from '../echarts/WorldChart.vue'
+import ServerDistribution from '../echarts/ServerDistribution.vue'
+import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue'
+import TestServerDistribution from '../echarts/TestServerDistribution.vue'
+import TestServerHealthStatus from '../echarts/TestServerHealthStatus.vue'
+import AlertSection from '../echarts/AlertSection.vue'
 const datePart = ref('')
 const weekdayPart = ref('')
 const currentTime = ref('')
@@ -98,7 +135,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .dashboard-layout {
   height: 100vh; /* 全屏布局 */
 }
@@ -131,6 +168,38 @@ onMounted(() => {
   flex-direction: column;
   gap: 10px;
   overflow-y: auto; /* 如果内容过多，则启用滚动条 */
+}
+.right-sidebar {
+  background-color: #2a2d3e;
+  padding: 10px;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .small-panel {
+    height: 30px; /* 设置标题面板高度 */
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .chart-panel {
+    flex: 1; /* 使图表区域自适应高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3a3f51;
+    padding: 10px;
+  }
 }
 
 .small-panel {

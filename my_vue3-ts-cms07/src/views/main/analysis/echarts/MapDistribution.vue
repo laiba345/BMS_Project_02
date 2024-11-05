@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div ref="chart" class="world-map-chart"></div>
 </template>
 
@@ -77,4 +77,4 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 600px;
 }
-</style>
+</style> -->

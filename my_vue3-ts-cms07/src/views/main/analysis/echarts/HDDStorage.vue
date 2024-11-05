@@ -1,115 +1,48 @@
+<!-- src/components/HDDStorage.vue -->
 <template>
-  <div ref="chartRef" class="chart"></div>
+  <div class="gauge-container">
+    <GaugeChart v-for="(item, index) in gauges" :key="index" />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import * as echarts from 'echarts'
+import GaugeChart from './GaugeChart.vue'
 
-// 使用 ref 绑定图表 DOM
-const chartRef = ref(null)
-let chartInstance = null
-
-// 配置项
-const chartOptions = {
-  series: [
-    {
-      type: 'gauge',
-      axisLine: {
-        lineStyle: {
-          width: 30,
-          color: [
-            [0.3, '#67e0e3'],
-            [0.7, '#37a2da'],
-            [1, '#fd666d']
-          ]
-        }
-      },
-      pointer: {
-        itemStyle: {
-          color: 'auto'
-        }
-      },
-      axisTick: {
-        distance: -30,
-        length: 8,
-        lineStyle: {
-          color: '#fff',
-          width: 2
-        }
-      },
-      splitLine: {
-        distance: -30,
-        length: 30,
-        lineStyle: {
-          color: '#fff',
-          width: 4
-        }
-      },
-      axisLabel: {
-        color: 'inherit',
-        distance: 40,
-        fontSize: 20
-      },
-      detail: {
-        valueAnimation: true,
-        formatter: '{value} km/h',
-        color: 'inherit'
-      },
-      data: [
-        {
-          value: 70 // 初始值
-        }
-      ]
-    }
-  ]
-}
-
-// 初始化图表
-const initChart = () => {
-  if (chartRef.value) {
-    chartInstance = echarts.init(chartRef.value) // 初始化 ECharts 实例
-    chartInstance.setOption(chartOptions) // 设置图表配置
-  }
-}
-
-// 更新图表数据的函数
-const updateChartData = () => {
-  if (chartInstance) {
-    chartInstance.setOption({
-      series: [
-        {
-          data: [
-            {
-              value: +(Math.random() * 100).toFixed(2) // 随机更新值
-            }
-          ]
-        }
-      ]
-    })
-  }
-}
-
-// 在组件挂载时初始化图表并设置定时更新
-onMounted(() => {
-  initChart()
-
-  // 每 2 秒更新一次图表数据
-  const interval = setInterval(updateChartData, 2000)
-
-  // 在组件卸载时清除定时器和销毁图表实例
-  onBeforeUnmount(() => {
-    clearInterval(interval)
-    if (chartInstance) {
-      chartInstance.dispose()
-    }
-  })
-})
+const gauges = [1, 2, 3, 4, 5] // 定义5个仪表盘的索引
 </script>
 
 <style scoped>
-.chart {
-  width: 100%;
+.gauge-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 三列布局 */
+  grid-template-rows: 1fr 1fr; /* 两行布局 */
+  /* gap: 10px; */
+  width: 500px;
   height: 400px;
+}
+
+.gauge-container > *:nth-child(1) {
+  grid-row: 1; /* 第一行左侧 */
+  grid-column: 1;
+}
+
+.gauge-container > *:nth-child(2) {
+  grid-row: 1; /* 第一行中间 */
+  grid-column: 2;
+}
+
+.gauge-container > *:nth-child(3) {
+  grid-row: 1; /* 第一行右侧 */
+  grid-column: 3;
+}
+
+.gauge-container > *:nth-child(4) {
+  grid-row: 2; /* 第二行左侧 */
+  grid-column: 1 / span 2; /* 跨越左侧和中间 */
+}
+
+.gauge-container > *:nth-child(5) {
+  grid-row: 2; /* 第二行右侧 */
+  grid-column: 2 / span 2; /* 跨越中间和右侧 */
 }
 </style>

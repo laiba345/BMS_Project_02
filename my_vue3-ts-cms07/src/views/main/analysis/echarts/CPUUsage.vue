@@ -24,7 +24,8 @@ const chartOptions = {
     padding: [10, 0, 0, 0], // 控制标题上下左右的间距（[上, 右, 下, 左]）
     textStyle: {
       fontSize: 18,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      color: 'rgb(235, 237, 238)' // 设置标题颜色
     }
   },
   legend: {
@@ -39,12 +40,36 @@ const chartOptions = {
   },
   xAxis: {
     type: 'category',
-    data: xAxisData
+    data: xAxisData,
+    axisTick: { show: false }, // 隐藏横坐标的刻度
+    axisLabel: {
+      color: 'rgb(235, 237, 238)' // 设置横坐标标签颜色
+    },
+    axisLine: {
+      lineStyle: {
+        color: 'rgb(235, 237, 238)' // 设置横坐标轴颜色
+      }
+    }
   },
   yAxis: {
     type: 'value',
     min: 0,
-    max: 120
+    max: 120,
+    axisTick: { show: false }, // 隐藏纵坐标的刻度
+    axisLabel: {
+      color: 'rgb(235, 237, 238)' // 设置纵坐标标签颜色
+    },
+    axisLine: {
+      lineStyle: {
+        color: 'rgb(235, 237, 238)' // 设置纵坐标轴颜色
+      }
+    },
+    splitLine: {
+      lineStyle: {
+        type: 'dashed', // 设置网格线为虚线
+        color: 'rgb(235, 237, 238)' // 设置网格线颜色
+      }
+    }
   },
   grid: {
     top: '18%', // 调整顶部间距，缩小标题和图表的距离
