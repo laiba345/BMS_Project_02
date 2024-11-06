@@ -87,7 +87,7 @@
       </el-container>
 
       <!-- 底部 Footer -->
-      <el-footer class="footer"> Footer Content </el-footer>
+      <!-- <el-footer class="footer"> Footer Content </el-footer> -->
     </el-container>
   </div>
 </template>
@@ -252,3 +252,5 @@ onMounted(() => {
   text-align: center;
 }
 </style>
+
+

@@ -1,89 +1,109 @@
 <template>
-  <div ref="chart" class="chart"></div>
+  <div id="main" style="width: 600px; height: 400px;"></div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
+import { onMounted } from 'vue';
 
-const chart = ref(null); // DOM 元素引用
-let chartInstance: any = null; // ECharts 实例
-
-// 初始化 ECharts 图表
-const initChart = () => {
-  if (chart.value) {
-    chartInstance = echarts.init(chart.value);
-
-    // 设置图表的配置
-    const option = {
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        top: '5%',
-        left: 'center'
-      },
-      series: [
-        {
-          name: 'Access From',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          itemStyle: {
-            borderRadius: 10,
-            borderColor: '#fff',
-            borderWidth: 2
-          },
-          label: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: 40,
-              fontWeight: 'bold'
-            }
-          },
-          labelLine: {
-            show: false
-          },
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
-          ]
-        }
-      ]
-    };
-
-    // 将配置应用到图表实例
-    chartInstance.setOption(option);
-  }
-};
-
-// 组件挂载时初始化图表，并监听窗口大小变化
 onMounted(() => {
-  initChart();
-  window.addEventListener('resize', () => {
-    chartInstance && chartInstance.resize();
-  });
-});
+  const chartDom = document.getElementById('main');
+  const myChart = echarts.init(chartDom);
 
-// 组件卸载时清除事件和销毁 ECharts 实例
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', () => {
-    chartInstance && chartInstance.resize();
-  });
-  chartInstance && chartInstance.dispose();
+  const option = {
+    tooltip: {
+      trigger: 'item',
+      textStyle: {
+        color: 'rgb(185, 189, 193)', // 数值颜色
+      },
+    },
+    legend: {
+      orient: 'horizontal',
+      bottom: '5%', // 图例放置在饼图的下方
+      textStyle: {
+        color: 'rgb(111, 145, 165)', // 图例字体颜色
+      },
+    },
+    series: [
+      // 中间装饰环
+      {
+        type: 'pie',
+        radius: ['28%', '30%'], // 设置为环形
+        label: { show: false }, // 隐藏标签
+        data: [
+          { value: 1, itemStyle: { color: 'rgb(36, 90, 144)' } }, // 环的颜色
+        ],
+        silent: true, // 禁止交互效果
+      },
+      // 外层实际数据饼图
+      {
+        name: 'Access From',
+        type: 'pie',
+        radius: ['40%', '55%'], // 调整饼环的大小
+        avoidLabelOverlap: false,
+        label: {
+          show: true,
+          formatter: '{b} {c}', // 显示标签名和数值
+          color: 'rgb(95, 124, 146)', // 标签颜色
+          fontSize: 14,
+          fontWeight: 'bold',
+        },
+        labelLine: {
+          show: true,           // 显示指示线
+          length: 20,           // 第一段指示线长度
+          length2: 10,          // 第二段指示线长度
+          smooth: true,         // 设置指示线为平滑曲线
+          lineStyle: {
+            type: 'dashed',     // 虚线
+            width: 1.5,         // 线条宽度
+          },
+        },
+        data: [
+          {
+            value: 18,
+            name: 'SRGBU',
+            itemStyle: { color: 'rgb(0, 180, 51)' },
+            labelLine: {
+              lineStyle: { color: 'rgb(0, 180, 51)' }, // 与扇区颜色一致的虚线
+            },
+            label: {
+              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              fontWeight: 'bold',
+            },
+          },
+          {
+            value: 12,
+            name: 'WNBU',
+            itemStyle: { color: 'rgb(7, 106, 235)' },
+            labelLine: {
+              lineStyle: { color: 'rgb(7, 106, 235)' }, // 与扇区颜色一致的虚线
+            },
+            label: {
+              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              fontWeight: 'bold',
+            },
+          },
+          {
+            value: 26,
+            name: 'PURE',
+            itemStyle: { color: 'rgb(254, 188, 34)' },
+            labelLine: {
+              lineStyle: { color: 'rgb(254, 188, 34)' }, // 与扇区颜色一致的虚线
+            },
+            label: {
+              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              fontWeight: 'bold',
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  myChart.setOption(option);
 });
 </script>
 
 <style scoped>
-.chart {
-  width: 100%;
-  height: 400px; /* 设置图表高度 */
-}
+/* 可根据需要添加自定义样式 */
 </style>

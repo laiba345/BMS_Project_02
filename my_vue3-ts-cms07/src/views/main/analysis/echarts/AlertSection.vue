@@ -1,80 +1,44 @@
 <template>
-  <el-timeline>
+  <el-timeline style="max-width: 600px">
     <el-timeline-item
-      v-for="(event, index) in events"
+      v-for="(activity, index) in activities"
       :key="index"
-      :color="timelineNodeColor"
-      placement="top"
+      :icon="activity.icon"
+      :type="activity.type"
+      :color="activity.color"
+      :size="activity.size"
+      :hollow="activity.hollow"
+      :timestamp="activity.timestamp"
     >
-      <template #dot>
-        <el-badge
-          :type="event.color === 'red' ? 'danger' : 'primary'"
-          :value="event.type"
-          class="badge"
-        ></el-badge>
-      </template>
-      <div class="event-title">{{ event.title }}</div>
-      <div class="event-content">{{ event.description }}</div>
+      {{ activity.content }}
     </el-timeline-item>
   </el-timeline>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script lang="ts" setup>
 
-const timelineNodeColor = 'rgb(11, 25, 42)';
-
-const events = ref([
+const activities = [
   {
-    type: 'Task',
-    title: 'Fusion 1a',
-    description: 'Task to_master execution failed',
-    color: 'red',
+    content: 'Fusion 1a',
+    timestamp: 'Task to_master execution failed',
+    color: 'rgb(7, 106, 235)'
   },
   {
-    type: 'Resource',
-    title: 'Focsrgbu 10',
-    description: 'Task to_master execution failed',
-    color: 'red',
+    content: 'Focsrgbu 10',
+    timestamp: 'Task to_master execution failed',
+    color: 'rgb(7, 106, 235)'
   },
   {
-    type: 'Service',
-    title: 'Focsrgbu 9',
-    description: 'High Disk Usage exceeds 70%',
-    color: 'red',
+    content: 'Focsrgbu 9',
+    timestamp: 'High Disk Usage exceeds 70%',
+    color: 'rgb(7, 106, 235)'
   },
   {
-    type: 'Service',
-    title: 'Focsrgbu 9',
-    description: 'Task to_master execution failed',
-    color: 'red',
-  },
-]);
+    content: 'Focsrgbu 8',
+    timestamp: 'Task to_master execution failed',
+    color: 'rgb(7, 106, 235)'
+  }
+]
 </script>
 
-<style scoped>
-.el-timeline-item__dot {
-  /* 设置时间节点颜色 */
-  background-color: rgb(7, 106, 235) !important;
-}
 
-.badge {
-  margin-left: 10px; /* 与时间线的间距 */
-  background-color: red;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.event-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4e8cf9;
-  margin-bottom: 4px;
-}
-
-.event-content {
-  font-size: 14px;
-  color: white;
-}
-</style>

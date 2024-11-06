@@ -20,68 +20,61 @@ const initChart = () => {
         trigger: 'axis',
         axisPointer: {
           type: 'shadow' // 显示阴影指示器
-        }
+        },
       },
       legend: {
-        data: ['Profit', 'Expenses', 'Income']
+        data: ['Normal', 'Disnormal'],
+        orient: 'horizontal', // 设置图例为水平布局
+        bottom: '5%', // 将图例放置在下方
+        textStyle: { color: 'rgb(140, 178, 200)' } // 图例字体颜色
       },
       grid: {
         left: '3%',
         right: '4%',
-        bottom: '3%',
+        bottom: '15%', // 为图例留出空间
         containLabel: true
       },
-      xAxis: [
-        {
-          type: 'value'
-        }
-      ],
-      yAxis: [
-        {
-          type: 'category',
-          axisTick: {
-            show: false
-          },
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        }
-      ],
+      xAxis: {
+        type: 'value',
+        min: -15,
+        max: 120,
+        splitNumber: 7, // 将x轴分为几段
+        splitLine: { show: true, lineStyle: { color: 'rgb(140, 178, 200)', type: 'solid' } },
+        axisLabel: {
+          color: 'rgb(140, 178, 200)', // 横坐标字体颜色
+          formatter: (value) => Math.abs(value) // 显示绝对值
+        },
+        axisLine: { lineStyle: { color: 'rgb(140, 178, 200)' } } // 横坐标轴线颜色
+      },
+      yAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        axisLine: { lineStyle: { color: 'rgb(140, 178, 200)' } }, // 纵坐标轴线颜色
+        axisLabel: { color: 'rgb(140, 178, 200)' }, // 纵坐标字体颜色
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] // 示例数据
+      },
       series: [
         {
-          name: 'Profit',
+          name: 'Normal',
           type: 'bar',
+          stack: 'total', // 堆叠
           label: {
             show: true,
-            position: 'inside'
+            position: 'insideRight'
           },
-          emphasis: {
-            focus: 'series'
-          },
-          data: [200, 170, 240, 244, 200, 220, 210]
+          itemStyle: { color: 'rgb(1, 142, 46)' }, // Normal颜色
+          data: [30, 40, 50, 60, 70, 80, 90] // 示例数据
         },
         {
-          name: 'Income',
+          name: 'Disnormal',
           type: 'bar',
-          stack: 'Total',
-          label: {
-            show: true
-          },
-          emphasis: {
-            focus: 'series'
-          },
-          data: [320, 302, 341, 374, 390, 450, 420]
-        },
-        {
-          name: 'Expenses',
-          type: 'bar',
-          stack: 'Total',
+          stack: 'total', // 堆叠
           label: {
             show: true,
-            position: 'left'
+            position: 'insideLeft'
           },
-          emphasis: {
-            focus: 'series'
-          },
-          data: [-120, -132, -101, -134, -190, -230, -210]
+          itemStyle: { color: 'rgb(255, 0, 0)' }, // Disnormal颜色
+          data: [-10, -15, -20, -25, -30, -35, -40] // 示例数据
         }
       ]
     };
