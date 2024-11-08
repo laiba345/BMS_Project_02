@@ -19,7 +19,7 @@
 
       <el-container>
         <!-- 左侧 Sidebar -->
-        <el-aside width="500px" class="left-sidebar">
+        <el-aside style="flex-basis: 22%" class="left-sidebar">
           <div class="panel small-panel">Core Server Usage</div>
           <div class="panel chart-panel">
             <HDDStorage />
@@ -49,17 +49,7 @@
         </el-main>
 
         <!-- 右侧 Sidebar -->
-        <!-- <el-aside width="400px" class="right-sidebar">
-          <div class="panel">Core Server Usage</div>
-          <div class="panel">此处是一个组件</div>
-          <div class="panel">Test Server Healthy Status</div>
-          <div class="panel">此处是一个组件</div>
-          <div class="panel">Alert</div>
-          <div class="panel">此处是一个组件</div>
-        </el-aside> -->
-
-        <!-- 右侧 Sidebar -->
-        <el-aside width="500px" class="right-sidebar">
+        <el-aside style="flex-basis: 25%" class="right-sidebar">
           <!-- 第一个图组件和标题 -->
           <div class="panel">
             <div class="small-panel">Test Server Distribution</div>
@@ -137,7 +127,8 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .dashboard-layout {
-  height: 100vh; /* 全屏布局 */
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .header {
@@ -167,8 +158,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow-y: auto; /* 如果内容过多，则启用滚动条 */
+  overflow-x: hidden;
 }
+
 .right-sidebar {
   background-color: #2a2d3e;
   padding: 10px;
@@ -177,38 +169,17 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow-x: hidden;
   overflow-y: auto;
-
-  .panel {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .small-panel {
-    height: 30px; /* 设置标题面板高度 */
-    text-align: center;
-    font-weight: bold;
-    color: #ffffff;
-  }
-
-  .chart-panel {
-    flex: 1; /* 使图表区域自适应高度 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #3a3f51;
-    padding: 10px;
-  }
 }
 
 .small-panel {
-  height: 30px; /* 设置小面板的高度 */
+  height: 30px;
   text-align: center;
 }
 
 .chart-panel {
-  flex: 1; /* 自适应高度，均分剩余空间 */
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,33 +187,35 @@ onMounted(() => {
 }
 
 .main-content {
+  // height: 100vh;
   background-color: #1e1f2b;
   padding: 10px;
   display: flex;
   flex-direction: column;
   color: white;
-}
+  overflow-x: hidden;
 
-.world-map {
-  flex: 1;
-  background-color: #2b2d3e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  color: #6ab7ff;
+  .world-map {
+    flex: 1;
+    background-color: #2b2d3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #6ab7ff;
+  }
+
+  .info-box {
+    flex: 1;
+    background-color: #3a3f51;
+    padding: 20px;
+    color: white;
+  }
 }
 
 .status-info {
   display: flex;
   gap: 10px;
-}
-
-.info-box {
-  flex: 1;
-  background-color: #3a3f51;
-  padding: 20px;
-  color: white;
 }
 
 .footer {
@@ -254,3 +227,4 @@ onMounted(() => {
 </style>
 
 
+上述的页面布局，在最右边可能是因为每个子组件高度太高撑开了，导致最右边

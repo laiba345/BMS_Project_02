@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .world-map-chart {
   width: 100%;
-  height: 800px;
+  height: 626px;
 }
 </style>
 

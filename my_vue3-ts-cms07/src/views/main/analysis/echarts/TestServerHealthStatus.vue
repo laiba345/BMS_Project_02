@@ -104,6 +104,6 @@ onBeforeUnmount(() => {
 <style scoped>
 .chart {
   width: 100%;
-  height: 400px; /* 设置图表高度 */
+  height: 350px; 
 }
 </style>
