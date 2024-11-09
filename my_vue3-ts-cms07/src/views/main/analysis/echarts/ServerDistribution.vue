@@ -85,7 +85,13 @@ const initChart = () => {
             formatter: '{c}' // 显示具体数值
           }
         }
-      ]
+      ],
+      grid: {
+        top: '20%', // 增加顶部间距以避免标题和图表的重叠
+        bottom: '10%', // 增加底部间距，确保图例或标签不会被遮挡
+        // left: '5%', // 增加左边距
+        right: '5%' // 增加右边距
+      }
     };
 
     // 将配置应用到图表实例
@@ -97,7 +103,7 @@ const initChart = () => {
 onMounted(() => {
   initChart();
   window.addEventListener('resize', () => {
-    chartInstance && chartInstance.resize();
+    chartInstance && chartInstance.resize();  // 自动调整图表大小
   });
 });
 
@@ -112,9 +118,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .chart {
-  width: 100%;
-  height: 400px; /* 图表高度 */
+  width: 100%;    /* 自适应父容器的宽度 */
+  height: 350px;  /* 设置图表高度 */
 }
 </style>
-
-你好上述代码的背景柱和实体柱还是一样的大小

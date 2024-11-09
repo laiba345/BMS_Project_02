@@ -39,6 +39,7 @@ const tableData = ref([
 
 <style scoped>
 .status-table {
+  height: 200px; 
   text-align: left;
   color: white;
   font-family: Arial, sans-serif;

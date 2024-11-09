@@ -17,8 +17,8 @@ const gauges = [1, 2, 3, 4, 5] // 定义5个仪表盘的索引
   grid-template-columns: 1fr 1fr 1fr; /* 三列布局 */
   grid-template-rows: 1fr 1fr; /* 两行布局 */
   /* gap: 10px; */
-  width: 500px;
-  height: 400px;
+  width: 100%;
+  height: 260px;
 }
 
 .gauge-container > *:nth-child(1) {
