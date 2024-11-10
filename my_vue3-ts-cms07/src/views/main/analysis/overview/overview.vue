@@ -74,20 +74,22 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  background-color: #2c3e50;
+  /* background-color: #2c3e50; */
   color: white;
 }
 
 .side-section {
   padding: 10px;
-  background-color: #1c2733;
+  /* background-color: #1c2733; */
 }
 
 .main-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1c2733;
+  /* background-color: #1c2733; */
+  background: url('../echarts/dashboard/BackgroundTwo.png') no-repeat center center !important;
+  background-size: cover !important;
 }
 
 .footer {

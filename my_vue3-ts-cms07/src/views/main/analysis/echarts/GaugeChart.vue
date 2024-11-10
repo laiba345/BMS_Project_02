@@ -12,43 +12,117 @@ let chartInstance: any = null
 // 配置项
 const chartOptions = {
   series: [
+    // 背景半环 1
     {
       type: 'gauge',
-      radius: '70%', // 调整仪表盘的半径
+      radius: '50%',
+      startAngle: 180,
+      endAngle: 0,
+      splitNumber: 1,
+      axisLine: {
+        lineStyle: {
+          width: 10,
+          color: [[1, 'rgba(232, 51, 36)']] // 背景颜色（深灰色）
+        }
+      },
+      pointer: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        show: false
+      },
+      axisLabel: {
+        show: false
+      },
+      detail: {
+        show: false
+      }
+    },
+    // 背景半环 2
+    // {
+    //   type: 'gauge',
+    //   radius: '70%',
+    //   startAngle: 180,
+    //   endAngle: 0,
+    //   splitNumber: 1,
+    //   axisLine: {
+    //     lineStyle: {
+    //       width: 14,
+    //       color: [[1, 'rgba(25, 44, 71, 0.2)']] // 背景颜色（浅灰色）
+    //     }
+    //   },
+    //   pointer: {
+    //     show: false
+    //   },
+    //   axisTick: {
+    //     show: false
+    //   },
+    //   splitLine: {
+    //     show: false
+    //   },
+    //   axisLabel: {
+    //     show: false
+    //   },
+    //   detail: {
+    //     show: false
+    //   }
+    // },
+    // 主仪表盘
+    {
+      type: 'gauge',
+      radius: '76%',
       startAngle: 180,
       endAngle: 0,
       axisLine: {
         lineStyle: {
-          width: 15, // 将仪表盘宽度调细
+          width: 11,
           color: [
-            [0.5, 'rgb(0, 166, 47)'],    // 0-50 绿色
-            [0.7, 'rgb(251, 186, 34)'],  // 50-70 橙色
-            [1, 'rgb(254, 0, 0)']        // 70-100 红色
+            [0.5, 'rgb(0, 166, 47)'],
+            [0.7, 'rgb(251, 186, 34)'],
+            [1, 'rgb(254, 0, 0)']
           ]
         }
       },
       pointer: {
+        icon: 'path://M-2 0 L2 0 L0 -100 Z',
+        length: '80%',
+        width: 5,
         itemStyle: {
-          color: 'rgb(224, 225, 228)' // 固定指针颜色
+          color: '#E0E1E4'
+        }
+      },
+      anchor: {
+        show: true,
+        // showAbove: true,
+        size: 12,
+        itemStyle: {
+          color: '#E0E1E4',
+          borderWidth: 3,
+          borderColor: '#333',
+          shadowBlur: 10,
+          shadowColor: 'rgba(224, 225, 228, 0.6)'
         }
       },
       axisTick: {
         show: true,
-        distance: 25, // 将刻度放置在仪表盘外部
-        length: 6, // 刻度线长度
+        distance: 25,
+        length: 6,
         lineStyle: {
           color: '#fff',
           width: 1
         }
       },
       splitLine: {
-        show: false // 隐藏分隔线
+        show: false
       },
       axisLabel: {
         color: 'inherit',
-        distance: 35, // 将刻度标签放在仪表盘外部
+        distance: -40,
         fontSize: 12,
-        formatter: (value) => (value % 20 === 0 ? value : '') // 只显示[0, 20, 40, 60, 80, 100]
+        formatter: (value) => (value % 20 === 0 ? value : '')
       },
       detail: {
         valueAnimation: true,
@@ -111,6 +185,3 @@ onMounted(() => {
   height: 100%;
 }
 </style>
-
-
-

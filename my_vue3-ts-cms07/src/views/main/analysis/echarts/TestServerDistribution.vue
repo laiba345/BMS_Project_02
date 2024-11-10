@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 100%; height: 260px;"></div>
+  <div id="main" class="echart" style="width: 100%; height: 260px;"></div>
 </template>
 
 <script setup lang="ts">
@@ -106,4 +106,8 @@ onMounted(() => {
 
 <style scoped>
 /* 可根据需要添加自定义样式 */
+.chart {
+  width: 100%;
+  height: 100%;
+}
 </style>

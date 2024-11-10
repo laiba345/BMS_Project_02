@@ -6,7 +6,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts'
 
-// 使用 ref 绑定图表的 DOM 容器
 const chartRef = ref(null)
 let chartInstance: any = null
 
@@ -33,21 +32,22 @@ const chartOptions = {
   title: {
     text: 'CPU Usage',
     left: 'center',
-    padding: [10, 0, 0, 0], // 控制标题上下左右的间距（[上, 右, 下, 左]）
+    padding: [10, 0, 0, 0],
     textStyle: {
-      fontSize: 18,
+      fontSize: 14,
       fontWeight: 'bold',
-      color: 'rgb(235, 237, 238)' // 设置标题颜色
+      color: '#FFFFFF'
     }
   },
   legend: {
     bottom: '0%',
     data: ['Fusion 1a', 'Fusion 1b', 'DC 1a', 'DC 1b', 'Log 1a'],
-    icon: 'rect', // 设置图例的图标为小矩形
-    itemWidth: 14, // 控制图例矩形的宽度
-    itemHeight: 8, // 控制图例矩形的高度
+    icon: 'rect',
+    itemWidth: 14,
+    itemHeight: 8,
+    itemGap: 20, // 调整图例项之间的间距
     textStyle: {
-      color: 'rgb(246, 246, 247)' // 设置图例文字颜色
+      color: 'rgb(246, 246, 247)'
     }
   },
   tooltip: {
@@ -56,43 +56,38 @@ const chartOptions = {
   xAxis: {
     type: 'category',
     data: xAxisData,
-    axisTick: { show: false }, // 隐藏横坐标的刻度
+    axisTick: { show: false },
     axisLabel: {
-      color: 'rgb(235, 237, 238)' // 设置横坐标标签颜色
+      color: 'rgb(235, 237, 238)'
     },
     axisLine: {
       lineStyle: {
-        color: 'rgb(235, 237, 238)' // 设置横坐标轴颜色
+        color: 'rgb(235, 237, 238)'
       }
     }
   },
   yAxis: {
     type: 'value',
     min: 0,
-    max: 120, // 设置纵坐标的最大值为120
-    splitNumber: 6, // 将刻度分成6个区间（显示0到120的刻度）
-    axisTick: { show: false }, // 隐藏纵坐标的刻度
+    max: 120, // 固定纵坐标最大值为 120
+    splitNumber: 6,
+    axisTick: { show: false },
     axisLabel: {
-      color: 'rgb(235, 237, 238)' // 设置纵坐标标签颜色
+      color: 'rgb(235, 237, 238)'
     },
     axisLine: {
-      show: true, // 确保显示纵坐标轴的线
+      show: true, 
       lineStyle: {
-        color: 'rgb(235, 237, 238)' // 设置纵坐标轴颜色
+        color: 'rgb(235, 237, 238)'
       }
     },
     splitLine: {
       lineStyle: {
-        type: 'dashed', // 设置网格线为虚线
-        color: 'rgb(235, 237, 238)' // 设置网格线颜色
+        type: 'dashed',
+        color: 'rgb(235, 237, 238)'
       }
-    }
-  },
-  grid: {
-    top: '12%',
-    bottom: '12%',
-    // left: '5%',
-    right: '5%'
+    },
+    boundaryGap: ['0%', '5%'] // 添加上限额外的 5% 空间
   },
   series: [
     {
@@ -100,44 +95,54 @@ const chartOptions = {
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      lineStyle: { color: 'rgb(44, 101, 220)' } // 设置 Fusion 1a 的折线颜色
+      showSymbol: false, // 隐藏数据点
+      lineStyle: { color: 'rgb(44, 101, 220)' }
     },
     {
       name: 'Fusion 1b',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      lineStyle: { color: 'rgb(44, 95, 54)' } // 设置 Fusion 1b 的折线颜色
+      showSymbol: false, // 隐藏数据点
+      lineStyle: { color: 'rgb(44, 95, 54)' }
     },
     {
       name: 'DC 1a',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      lineStyle: { color: 'rgb(237, 142, 86)' } // 设置 DC 1a 的折线颜色
+      showSymbol: false, // 隐藏数据点
+      lineStyle: { color: 'rgb(237, 142, 86)' }
     },
     {
       name: 'DC 1b',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      lineStyle: { color: 'rgb(244, 191, 74)' } // 设置 DC 1b 的折线颜色
+      showSymbol: false, // 隐藏数据点
+      lineStyle: { color: 'rgb(244, 191, 74)' }
     },
     {
       name: 'Log 1a',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      lineStyle: { color: 'rgb(234, 51, 35)' } // 设置 Log 1a 的折线颜色
+      showSymbol: false, // 隐藏数据点
+      lineStyle: { color: 'rgb(234, 51, 35)' }
     }
-  ]
+  ], 
+  grid: {
+    top: '12%',
+    bottom: '12%',
+    right: '5%'
+  },
 }
 
 // 初始化图表
 const initChart = () => {
   if (chartRef.value) {
-    chartInstance = echarts.init(chartRef.value) // 初始化 ECharts 实例
-    chartInstance.setOption(chartOptions) // 设置图表的配置
+    chartInstance = echarts.init(chartRef.value)
+    chartInstance.setOption(chartOptions)
   }
 }
 

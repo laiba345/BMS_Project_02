@@ -3,9 +3,9 @@
     <el-container>
       <!-- 顶部 Header -->
       <el-header class="header">
-        <div class="title">Genius Cloud</div>
+        <div class="title"></div>
         <div class="datetime">
-          <span>{{ datePart }}</span>
+          <span class="curDay">{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
           <span class="curTime">{{ currentTime }}</span>
           <el-button type="primary" size="mini" class="fixed-width-btn"
@@ -17,17 +17,17 @@
         </div>
       </el-header>
 
-      <el-container>
+      <el-container class="MainContent">
         <!-- 左侧 Sidebar -->
         <el-aside style="flex-basis: 22%" class="left-sidebar">
-          <div class="panel small-panel">Core Server Usage</div>
-          <div class="panel chart-panel">
+          <div class="small-panel"></div>
+          <div class="chart-panel">
             <HDDStorage />
           </div>
-          <div class="panel chart-panel">
+          <div class="chart-panel">
             <CPUUsage />
           </div>
-          <div class="panel chart-panel">
+          <div class="chart-panel">
             <RAMUsage />
           </div>
         </el-aside>
@@ -127,27 +127,61 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .dashboard-layout {
+  width: 1980px;
   height: 100vh;
   overflow-x: hidden;
+  .MainContent {
+    background: url('../echarts/dashboard/BackgroundTwo.png') no-repeat center center !important;
+    background-size: cover !important;
+  }
 }
 
 .header {
+  height: 98px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
   background-color: #1c1e26;
-  color: white;
-}
+  background-image: url('../echarts/dashboard/GeniusCloudHeader.png'); /* 替换为实际背景图片路径 */
+    background-size: cover; /* 图片覆盖整个背景 */
+    background-position: center; /* 图片居中显示 */
+    background-repeat: no-repeat; /* 不重复显示背景图片 */
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.datetime {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  .title {
+    width: 289px;
+    height: 53px;
+    margin-top: 22px;
+    margin-left: 20px;
+    color: #edf6ff;
+    font-size: 44px;
+    font-weight: 700;
+  }
+  .datetime {
+    // width: 635px;
+    height: 42px;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .curDay {
+      font-size: 24px;
+      font-weight: 400;
+      color: #ACC9E6;
+    }
+    .weekday {
+      font-size: 22px;
+      font-weight: 400;
+      color: #ACC9E6;
+    }
+    .curTime {
+      font-size: 36px;
+      font-weight: 400;
+      color: #ACC9E6;
+    }
+    .fixed-width-btn {
+      margin-left: 2px;
+    }
+  }
 }
 
 .left-sidebar {
@@ -159,6 +193,20 @@ onMounted(() => {
   flex-direction: column;
   gap: 10px;
   overflow-x: hidden;
+
+
+  .small-panel {
+    position: relative;
+    height: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: #edf6ff;
+    // background-color: #2a2d3e;
+    background-image: url('../echarts/dashboard/CoreServerUsage.png'); /* 替换为实际背景图片路径 */
+    background-size: cover; /* 图片覆盖整个背景 */
+    background-position: center; /* 图片居中显示 */
+    background-repeat: no-repeat; /* 不重复显示背景图片 */
+  }
 }
 
 .right-sidebar {
@@ -174,7 +222,7 @@ onMounted(() => {
 }
 
 .small-panel {
-  height: 30px;
+  height: 32px;
   text-align: center;
 }
 
@@ -204,18 +252,16 @@ onMounted(() => {
     margin-bottom: 10px;
     color: #6ab7ff;
   }
-
-  .info-box {
-    flex: 1;
-    background-color: #3a3f51;
-    padding: 20px;
-    color: white;
+  .status-info {
+    display: flex;
+    gap: 10px;
+    .info-box {
+      flex: 1;
+      background-color: #3a3f51;
+      padding: 20px;
+      color: white;
+    }
   }
-}
-
-.status-info {
-  display: flex;
-  gap: 10px;
 }
 
 .footer {
@@ -225,6 +271,3 @@ onMounted(() => {
   text-align: center;
 }
 </style>
-
-
-上述的页面布局，在最右边可能是因为每个子组件高度太高撑开了，导致最右边
