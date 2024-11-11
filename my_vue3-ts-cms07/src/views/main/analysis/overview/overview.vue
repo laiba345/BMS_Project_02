@@ -88,7 +88,7 @@ export default {
   align-items: center;
   justify-content: center;
   /* background-color: #1c2733; */
-  background: url('../echarts/dashboard/BackgroundTwo.png') no-repeat center center !important;
+  background: url('../echarts/dashboard/BackgroundMask.png') no-repeat center center !important;
   background-size: cover !important;
 }
 

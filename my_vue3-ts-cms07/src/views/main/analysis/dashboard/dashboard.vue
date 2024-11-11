@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard-layout">
     <el-container>
-      <!-- 顶部 Header -->
       <el-header class="header">
         <div class="title"></div>
         <div class="datetime">
@@ -18,7 +17,6 @@
       </el-header>
 
       <el-container class="MainContent">
-        <!-- 左侧 Sidebar -->
         <el-aside style="flex-basis: 22%" class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
@@ -32,10 +30,8 @@
           </div>
         </el-aside>
 
-        <!-- 中间主内容区 -->
         <el-main class="main-content">
           <div class="world-map">
-            <!-- 中心的世界地图或其他核心内容 -->
             <WorldChart />
           </div>
           <div class="status-info">
@@ -48,36 +44,28 @@
           </div>
         </el-main>
 
-        <!-- 右侧 Sidebar -->
         <el-aside style="flex-basis: 25%" class="right-sidebar">
-          <!-- 第一个图组件和标题 -->
           <div class="panel">
-            <div class="small-panel">Test Server Distribution</div>
+            <div class="small-panelOne"></div>
             <div class="chart-panel">
               <TestServerDistribution />
             </div>
           </div>
 
-          <!-- 第二个图组件和标题 -->
           <div class="panel">
-            <div class="small-panel">Test Server Healthy Status</div>
+            <div class="small-panelTwo"></div>
             <div class="chart-panel">
               <TestServerHealthStatus />
             </div>
           </div>
-
-          <!-- 第三个图组件和标题 -->
           <div class="panel">
-            <div class="small-panel">Alert</div>
+            <div class="small-panelThree"></div>
             <div class="chart-panel">
               <AlertSection />
             </div>
           </div>
         </el-aside>
       </el-container>
-
-      <!-- 底部 Footer -->
-      <!-- <el-footer class="footer"> Footer Content </el-footer> -->
     </el-container>
   </div>
 </template>
@@ -129,12 +117,28 @@ onMounted(() => {
 .dashboard-layout {
   width: 1980px;
   height: 100vh;
+  position: static;
   overflow-x: hidden;
-  .MainContent {
-    background: url('../echarts/dashboard/BackgroundTwo.png') no-repeat center center !important;
-    background-size: cover !important;
-  }
+  background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center
+    center !important;
+  background-size: cover !important;
+  background-color: transparent !important;
+  z-index: 9999;
+  // mask-image: url('../echarts/dashboard/BackgroundMask.png');
+  // mask-size: cover;
+  // mask-position: center;
 }
+
+// .dashboard-layout::after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background: rgba(255, 255, 255, 0.4); /* 使用 40% 透明度白色叠加层 */
+//   pointer-events: none; /* 确保叠加层不会影响点击事件 */
+// }
 
 .header {
   height: 98px;
@@ -142,10 +146,10 @@ onMounted(() => {
   justify-content: space-between;
   padding: 10px;
   background-color: #1c1e26;
-  background-image: url('../echarts/dashboard/GeniusCloudHeader.png'); /* 替换为实际背景图片路径 */
-    background-size: cover; /* 图片覆盖整个背景 */
-    background-position: center; /* 图片居中显示 */
-    background-repeat: no-repeat; /* 不重复显示背景图片 */
+  background-image: url('../echarts/dashboard/GeniusCloudHeader.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   .title {
     width: 289px;
@@ -166,17 +170,17 @@ onMounted(() => {
     .curDay {
       font-size: 24px;
       font-weight: 400;
-      color: #ACC9E6;
+      color: #acc9e6;
     }
     .weekday {
       font-size: 22px;
       font-weight: 400;
-      color: #ACC9E6;
+      color: #acc9e6;
     }
     .curTime {
       font-size: 36px;
       font-weight: 400;
-      color: #ACC9E6;
+      color: #acc9e6;
     }
     .fixed-width-btn {
       margin-left: 2px;
@@ -194,7 +198,6 @@ onMounted(() => {
   gap: 10px;
   overflow-x: hidden;
 
-
   .small-panel {
     position: relative;
     height: 32px;
@@ -202,23 +205,45 @@ onMounted(() => {
     font-size: 14px;
     color: #edf6ff;
     // background-color: #2a2d3e;
-    background-image: url('../echarts/dashboard/CoreServerUsage.png'); /* 替换为实际背景图片路径 */
-    background-size: cover; /* 图片覆盖整个背景 */
-    background-position: center; /* 图片居中显示 */
-    background-repeat: no-repeat; /* 不重复显示背景图片 */
+    background-image: url('../echarts/dashboard/CoreServerUsage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
 .right-sidebar {
   background-color: #2a2d3e;
-  padding: 10px;
-  color: white;
+  padding: 5px;
+  // color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  // gap: 10px;
   overflow-x: hidden;
   overflow-y: auto;
+
+  .small-panelOne {
+    height: 32px;
+    background-image: url('../echarts/dashboard/TestServerDistribution.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .small-panelTwo {
+    height: 32px;
+    background-image: url('../echarts/dashboard/TestServerHealthyStatus.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .small-panelThree {
+    height: 32px;
+    background-image: url('../echarts/dashboard/Alert.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .small-panel {
@@ -251,6 +276,12 @@ onMounted(() => {
     justify-content: center;
     margin-bottom: 10px;
     color: #6ab7ff;
+    // .upMap {
+    //   width: 824px;
+    //   height: 459px;
+    //   margin-top: 40px;
+    //   margin-left: 86px;
+    // }
   }
   .status-info {
     display: flex;

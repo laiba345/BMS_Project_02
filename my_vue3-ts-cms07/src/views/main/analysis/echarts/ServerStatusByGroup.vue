@@ -46,9 +46,9 @@
   }
   
   .table-title {
-    color: rgb(227, 229, 231);
+    color: #FFFFFF;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 60px;
   }
   

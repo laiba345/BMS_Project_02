@@ -21,7 +21,7 @@
           left: 'left',
           textStyle: {
             fontSize: 16,
-            fontWeight: 'bold',
+            fontWeight: '700',
             color: '#FFFFFF'
           }
         },
