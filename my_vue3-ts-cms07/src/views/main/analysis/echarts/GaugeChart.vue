@@ -12,7 +12,7 @@ let chartInstance: any = null
 // 配置项
 const chartOptions = {
   series: [
-    // 背景半环 1
+    // 背景半环 1 (不变)
     {
       type: 'gauge',
       radius: '50%',
@@ -22,7 +22,7 @@ const chartOptions = {
       axisLine: {
         lineStyle: {
           width: 10,
-          color: [[1, 'rgba(232, 51, 36)']] // 背景颜色（深灰色）
+          color: [[1, 'rgba(27, 67, 108, 0.6)']]
         }
       },
       pointer: {
@@ -41,39 +41,10 @@ const chartOptions = {
         show: false
       }
     },
-    // 背景半环 2
-    // {
-    //   type: 'gauge',
-    //   radius: '70%',
-    //   startAngle: 180,
-    //   endAngle: 0,
-    //   splitNumber: 1,
-    //   axisLine: {
-    //     lineStyle: {
-    //       width: 14,
-    //       color: [[1, 'rgba(25, 44, 71, 0.2)']] // 背景颜色（浅灰色）
-    //     }
-    //   },
-    //   pointer: {
-    //     show: false
-    //   },
-    //   axisTick: {
-    //     show: false
-    //   },
-    //   splitLine: {
-    //     show: false
-    //   },
-    //   axisLabel: {
-    //     show: false
-    //   },
-    //   detail: {
-    //     show: false
-    //   }
-    // },
     // 主仪表盘
     {
       type: 'gauge',
-      radius: '76%',
+      radius: '72%',
       startAngle: 180,
       endAngle: 0,
       axisLine: {
@@ -96,7 +67,6 @@ const chartOptions = {
       },
       anchor: {
         show: true,
-        // showAbove: true,
         size: 12,
         itemStyle: {
           color: '#E0E1E4',
@@ -111,7 +81,7 @@ const chartOptions = {
         distance: 25,
         length: 6,
         lineStyle: {
-          color: '#fff',
+          color: '#FFFFFF', // 修改刻度颜色为白色
           width: 1
         }
       },
@@ -119,16 +89,16 @@ const chartOptions = {
         show: false
       },
       axisLabel: {
-        color: 'inherit',
-        distance: -40,
-        fontSize: 12,
+        color: '#FFFFFF', // 修改刻度标签颜色为白色
+        distance: -37,
+        fontSize: 11,
         formatter: (value) => (value % 20 === 0 ? value : '')
       },
       detail: {
         valueAnimation: true,
         formatter: '{value} %',
-        color: 'inherit',
-        fontSize: 14
+        color: '#FFFFFF', // 修改显示数值的颜色为白色
+        fontSize: 12
       },
       data: [
         {
@@ -138,6 +108,7 @@ const chartOptions = {
     }
   ]
 }
+
 
 // 初始化图表
 const initChart = () => {
@@ -185,3 +156,4 @@ onMounted(() => {
   height: 100%;
 }
 </style>
+

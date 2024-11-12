@@ -17,7 +17,7 @@
       </el-header>
 
       <el-container class="MainContent">
-        <el-aside style="flex-basis: 22%" class="left-sidebar">
+        <el-aside style="flex-basis: 24%" class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
             <HDDStorage />
@@ -27,6 +27,10 @@
           </div>
           <div class="chart-panel">
             <RAMUsage />
+          </div>
+          <div class="button-group">
+            <button class="button left-button">G1-CISCO-FLH</button>
+            <button class="button right-button">G2-PURE-FLH</button>
           </div>
         </el-aside>
 
@@ -44,7 +48,7 @@
           </div>
         </el-main>
 
-        <el-aside style="flex-basis: 25%" class="right-sidebar">
+        <el-aside style="flex-basis: 24%" class="right-sidebar">
           <div class="panel">
             <div class="small-panelOne"></div>
             <div class="chart-panel">
@@ -210,6 +214,42 @@ onMounted(() => {
     background-position: center;
     background-repeat: no-repeat;
   }
+  .button-group {
+    display: flex;
+    align-items: center;
+    .button {
+      width: 92px;
+      height: 16px; 
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 400;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .left-button {
+      background-color: rgba(7, 106, 235, 0.3);
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-right: 1px solid transparent;
+    }
+    .right-button {
+      background-color: #076aeb;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-left: 1px solid transparent;
+    }
+    .button:hover {
+      background-color: #005bb5; 
+    }
+    .button:active {
+      transform: scale(0.95); 
+    }
+  }
 }
 
 .right-sidebar {
@@ -256,7 +296,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #3a3f51;
+  // background-color: #3a3f51;
 }
 
 .main-content {

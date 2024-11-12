@@ -20,7 +20,7 @@
           text: 'Server Distribution',
           left: 'left',
           textStyle: {
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: '700',
             color: '#FFFFFF'
           }

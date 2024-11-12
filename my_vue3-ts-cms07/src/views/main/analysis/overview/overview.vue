@@ -3,7 +3,12 @@
     <!-- 顶部导航 -->
     <el-header class="dashboard-header">
       <h1>Genius Cloud</h1>
-      <el-date-picker v-model="date" type="datetime" readonly placeholder="选择日期" />
+      <el-date-picker
+        v-model="date"
+        type="datetime"
+        readonly
+        placeholder="选择日期"
+      />
       <el-button type="primary">退出登录</el-button>
     </el-header>
 
@@ -38,16 +43,16 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import HDDStorage from '../echarts/HDDStorage.vue';
-import CPUUsage from '../echarts/CPUUsage.vue';
-import RAMUsage from '../echarts/RAMUsage.vue';
-import MapDistribution from '../echarts/MapDistribution.vue';
-import TestServerDistribution from '../echarts/TestServerDistribution.vue';
-import TestServerHealthStatus from '../echarts/TestServerHealthStatus.vue';
-import ServerDistribution from '../echarts/ServerDistribution.vue';
-import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue';
-import AlertSection from '../echarts/AlertSection.vue';
+import { ref } from 'vue'
+import HDDStorage from '../echarts/HDDStorage.vue'
+import CPUUsage from '../echarts/CPUUsage.vue'
+import RAMUsage from '../echarts/RAMUsage.vue'
+import MapDistribution from '../echarts/MapDistribution.vue'
+import TestServerDistribution from '../echarts/TestServerDistribution.vue'
+import TestServerHealthStatus from '../echarts/TestServerHealthStatus.vue'
+import ServerDistribution from '../echarts/ServerDistribution.vue'
+import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue'
+import AlertSection from '../echarts/AlertSection.vue'
 
 export default {
   components: {
@@ -62,10 +67,10 @@ export default {
     AlertSection
   },
   setup() {
-    const date = ref(new Date());
-    return { date };
+    const date = ref(new Date())
+    return { date }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -74,8 +79,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  /* background-color: #2c3e50; */
-  color: white;
+  /* background-color: #076AEB1A; */
+
+  /* color: white; */
 }
 
 .side-section {
@@ -87,9 +93,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: #1c2733; */
-  background: url('../echarts/dashboard/BackgroundMask.png') no-repeat center center !important;
+
+  width: 100%;
+  height: 100%;
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center !important;
   background-size: cover !important;
+  background-color: rgba(18, 33, 51);
+  /* mask-image: url('../echarts/dashboard/BackgroundMask.png');
+  mask-size: cover;
+  mask-position: center; */
 }
 
 .footer {
@@ -97,4 +112,3 @@ export default {
   background-color: #1c2733;
 }
 </style>
-

@@ -1,7 +1,10 @@
 <!-- src/components/HDDStorage.vue -->
 <template>
-  <div class="gauge-container">
-    <GaugeChart v-for="(item, index) in gauges" :key="index" />
+  <div class="HDDStorage">
+    <span class="title">HDD Storage</span>
+    <div class="gauge-container">
+      <GaugeChart v-for="(item, index) in gauges" :key="index" />
+    </div>
   </div>
 </template>
 
@@ -12,14 +15,40 @@ const gauges = [1, 2, 3, 4, 5] // 定义5个仪表盘的索引
 </script>
 
 <style scoped>
+
+.HDDStorage {
+  background-color: rgb(13, 29, 48);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%; 
+}
+
+.title {
+  height: 20px; 
+  line-height: 20px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center; 
+  font-size: 14px; 
+  font-weight: 700; 
+}
+
 .gauge-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* 三列布局 */
   grid-template-rows: 1fr 1fr; /* 两行布局 */
-  gap: -100px;
+  gap: 0px;
   width: 100%;
-  height: 260px;
-  margin-top: 20px;
+  height: 240px;
+  align-items: center;
+  justify-items: center;
+}
+
+.gauge-container > * {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
 }
 
 .gauge-container > *:nth-child(1) {
@@ -47,3 +76,7 @@ const gauges = [1, 2, 3, 4, 5] // 定义5个仪表盘的索引
   grid-column: 2 / span 2; /* 跨越中间和右侧 */
 }
 </style>
+
+
+
+

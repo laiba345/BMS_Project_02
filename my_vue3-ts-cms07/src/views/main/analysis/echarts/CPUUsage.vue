@@ -29,6 +29,7 @@ const generateRandomData = () =>
 
 // 折线图的配置项
 const chartOptions = {
+  backgroundColor: 'rgb(13, 29, 48)',
   title: {
     text: 'CPU Usage',
     left: 'center',
@@ -47,7 +48,7 @@ const chartOptions = {
     itemHeight: 8,
     itemGap: 20, // 调整图例项之间的间距
     textStyle: {
-      color: 'rgb(246, 246, 247)'
+      color: '#B9E8FF'
     }
   },
   tooltip: {
@@ -69,14 +70,14 @@ const chartOptions = {
   yAxis: {
     type: 'value',
     min: 0,
-    max: 120, // 固定纵坐标最大值为 120
+    max: 120,
     splitNumber: 6,
     axisTick: { show: false },
     axisLabel: {
       color: 'rgb(235, 237, 238)'
     },
     axisLine: {
-      show: true, 
+      show: true,
       lineStyle: {
         color: 'rgb(235, 237, 238)'
       }
@@ -87,7 +88,7 @@ const chartOptions = {
         color: 'rgb(235, 237, 238)'
       }
     },
-    boundaryGap: ['0%', '5%'] // 添加上限额外的 5% 空间
+    boundaryGap: ['0%', '5%']
   },
   series: [
     {
@@ -95,65 +96,67 @@ const chartOptions = {
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      showSymbol: false, // 隐藏数据点
-      lineStyle: { color: 'rgb(44, 101, 220)' }
+      showSymbol: false,
+      lineStyle: { color: '#076AEB' },
+      itemStyle: { color: '#076AEB' } // 设置图例颜色为折线颜色
     },
     {
       name: 'Fusion 1b',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      showSymbol: false, // 隐藏数据点
-      lineStyle: { color: 'rgb(44, 95, 54)' }
+      showSymbol: false,
+      lineStyle: { color: '#01A42F' },
+      itemStyle: { color: '#01A42F' }
     },
     {
       name: 'DC 1a',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      showSymbol: false, // 隐藏数据点
-      lineStyle: { color: 'rgb(237, 142, 86)' }
+      showSymbol: false,
+      lineStyle: { color: '#FF8A48' },
+      itemStyle: { color: '#FF8A48' }
     },
     {
       name: 'DC 1b',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      showSymbol: false, // 隐藏数据点
-      lineStyle: { color: 'rgb(244, 191, 74)' }
+      showSymbol: false,
+      lineStyle: { color: '#FEBC22' },
+      itemStyle: { color: '#FEBC22' }
     },
     {
       name: 'Log 1a',
       type: 'line',
       data: generateRandomData(),
       smooth: true,
-      showSymbol: false, // 隐藏数据点
-      lineStyle: { color: 'rgb(234, 51, 35)' }
+      showSymbol: false,
+      lineStyle: { color: '#FF0000' },
+      itemStyle: { color: '#FF0000' }
     }
-  ], 
+  ],
+
   grid: {
     top: '12%',
     bottom: '12%',
-    right: '5%'
-  },
+    right: '3%',
+    left: '8%'
+  }
 }
 
-// 初始化图表
 const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
     chartInstance.setOption(chartOptions)
   }
 }
-
-// 销毁图表实例
 onBeforeUnmount(() => {
   if (chartInstance) {
     chartInstance.dispose()
   }
 })
-
-// 在组件挂载时初始化图表
 onMounted(() => {
   initChart()
 })
