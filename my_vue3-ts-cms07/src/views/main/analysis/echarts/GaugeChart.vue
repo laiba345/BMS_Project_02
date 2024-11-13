@@ -12,7 +12,6 @@ let chartInstance: any = null
 // 配置项
 const chartOptions = {
   series: [
-    // 背景半环 1 (不变)
     {
       type: 'gauge',
       radius: '50%',
@@ -41,7 +40,6 @@ const chartOptions = {
         show: false
       }
     },
-    // 主仪表盘
     {
       type: 'gauge',
       radius: '72%',
@@ -81,7 +79,7 @@ const chartOptions = {
         distance: 25,
         length: 6,
         lineStyle: {
-          color: '#FFFFFF', // 修改刻度颜色为白色
+          color: '#FFFFFF',
           width: 1
         }
       },
@@ -89,15 +87,15 @@ const chartOptions = {
         show: false
       },
       axisLabel: {
-        color: '#FFFFFF', // 修改刻度标签颜色为白色
+        color: '#FFFFFF',
         distance: -37,
         fontSize: 11,
-        formatter: (value) => (value % 20 === 0 ? value : '')
+        formatter: (value: any) => (value % 20 === 0 ? value : '')
       },
       detail: {
         valueAnimation: true,
         formatter: '{value} %',
-        color: '#FFFFFF', // 修改显示数值的颜色为白色
+        color: '#FFFFFF',
         fontSize: 12
       },
       data: [
@@ -109,8 +107,6 @@ const chartOptions = {
   ]
 }
 
-
-// 初始化图表
 const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
@@ -118,7 +114,6 @@ const initChart = () => {
   }
 }
 
-// 更新图表数据的函数
 const updateChartData = () => {
   if (chartInstance) {
     chartInstance.setOption({
@@ -135,12 +130,10 @@ const updateChartData = () => {
   }
 }
 
-// 在组件挂载时初始化图表并设置定时更新
 onMounted(() => {
   initChart()
   const interval = setInterval(updateChartData, 2000)
 
-  // 在组件卸载时清除定时器和销毁图表实例
   onBeforeUnmount(() => {
     clearInterval(interval)
     if (chartInstance) {

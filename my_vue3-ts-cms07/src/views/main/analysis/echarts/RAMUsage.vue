@@ -9,7 +9,6 @@ import * as echarts from 'echarts'
 const chartRef = ref(null)
 let chartInstance: any = null
 
-// 横坐标数据
 const xAxisData = [
   '14:15',
   '14:35',
@@ -21,13 +20,11 @@ const xAxisData = [
   '16:35'
 ]
 
-// 生成随机数据函数
 const generateRandomData = () =>
   Array.from({ length: xAxisData.length }, () =>
     Math.floor(Math.random() * 121)
   )
 
-// 折线图的配置项
 const chartOptions = {
   backgroundColor: 'rgb(13, 29, 48)',
   title: {
@@ -46,7 +43,7 @@ const chartOptions = {
     icon: 'rect',
     itemWidth: 14,
     itemHeight: 8,
-    itemGap: 20, // 调整图例项之间的间距
+    itemGap: 20, 
     textStyle: {
       color: '#B9E8FF'
     }
@@ -98,7 +95,7 @@ const chartOptions = {
       smooth: true,
       showSymbol: false,
       lineStyle: { color: '#076AEB' },
-      itemStyle: { color: '#076AEB' } // 设置图例颜色为折线颜色
+      itemStyle: { color: '#076AEB' } 
     },
     {
       name: 'Fusion 1b',

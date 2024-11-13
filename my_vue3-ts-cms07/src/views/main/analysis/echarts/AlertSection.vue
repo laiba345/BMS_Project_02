@@ -53,7 +53,6 @@
     },
   ]);
   
-  // 自定义时间线图标
   const customDot = (status: string) => {
     return '<span class="dot error"></span>';
   };

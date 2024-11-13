@@ -11,6 +11,7 @@ onMounted(() => {
   const myChart = echarts.init(chartDom);
 
   const option = {
+    backgroundColor: 'rgb(13, 29, 48)',
     tooltip: {
       trigger: 'item',
       textStyle: {
@@ -21,7 +22,7 @@ onMounted(() => {
       orient: 'horizontal',
       bottom: '5%', // 图例放置在饼图的下方
       textStyle: {
-        color: 'rgb(111, 145, 165)', // 图例字体颜色
+        color: '#B9E8FF', // 图例字体颜色
       },
     },
     series: [
@@ -49,13 +50,13 @@ onMounted(() => {
           fontWeight: 'bold',
         },
         labelLine: {
-          show: true,           // 显示指示线
-          length: 20,           // 第一段指示线长度
-          length2: 10,          // 第二段指示线长度
-          smooth: true,         // 设置指示线为平滑曲线
+          show: true,           
+          length: 20,           
+          length2: 10,          
+          smooth: true,         
           lineStyle: {
-            type: 'dashed',     // 虚线
-            width: 1.5,         // 线条宽度
+            type: 'dashed',     
+            width: 1.5,         
           },
         },
         data: [
@@ -64,10 +65,10 @@ onMounted(() => {
             name: 'SRGBU',
             itemStyle: { color: 'rgb(0, 180, 51)' },
             labelLine: {
-              lineStyle: { color: 'rgb(0, 180, 51)' }, // 与扇区颜色一致的虚线
+              lineStyle: { color: 'rgb(0, 180, 51)' }, 
             },
             label: {
-              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              color: '#B9E8FF', 
               fontWeight: 'bold',
             },
           },
@@ -76,10 +77,10 @@ onMounted(() => {
             name: 'WNBU',
             itemStyle: { color: 'rgb(7, 106, 235)' },
             labelLine: {
-              lineStyle: { color: 'rgb(7, 106, 235)' }, // 与扇区颜色一致的虚线
+              lineStyle: { color: 'rgb(7, 106, 235)' },
             },
             label: {
-              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              color: '#B9E8FF', 
               fontWeight: 'bold',
             },
           },
@@ -88,10 +89,10 @@ onMounted(() => {
             name: 'PURE',
             itemStyle: { color: 'rgb(254, 188, 34)' },
             labelLine: {
-              lineStyle: { color: 'rgb(254, 188, 34)' }, // 与扇区颜色一致的虚线
+              lineStyle: { color: 'rgb(254, 188, 34)' }, 
             },
             label: {
-              color: 'rgb(95, 124, 146)', // 指向文本的颜色
+              color: '#B9E8FF', 
               fontWeight: 'bold',
             },
           },
@@ -105,7 +106,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* 可根据需要添加自定义样式 */
 .chart {
   width: 100%;
   height: 100%;

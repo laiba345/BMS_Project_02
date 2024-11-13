@@ -36,7 +36,14 @@
 
         <el-main class="main-content">
           <div class="world-map">
-            <WorldChart />
+            <div class="map-box">
+              <WorldChart />
+            </div>
+            <div class="map-Info-box">
+              <span class="info-item normal">Normal: 2000</span>
+              <span class="info-item abnormal">Abnormal: 12</span>
+              <span class="info-item offline">Offline: 9</span>
+            </div>
           </div>
           <div class="status-info">
             <div class="info-box">
@@ -219,7 +226,7 @@ onMounted(() => {
     align-items: center;
     .button {
       width: 92px;
-      height: 16px; 
+      height: 16px;
       color: #ffffff;
       font-size: 10px;
       font-weight: 400;
@@ -244,17 +251,17 @@ onMounted(() => {
       border-left: 1px solid transparent;
     }
     .button:hover {
-      background-color: #005bb5; 
+      background-color: #005bb5;
     }
     .button:active {
-      transform: scale(0.95); 
+      transform: scale(0.95);
     }
   }
 }
 
 .right-sidebar {
   background-color: #2a2d3e;
-  padding: 5px;
+  padding: 10px;
   // color: white;
   height: 100%;
   display: flex;
@@ -265,6 +272,7 @@ onMounted(() => {
 
   .small-panelOne {
     height: 32px;
+    margin-bottom: 11px;
     background-image: url('../echarts/dashboard/TestServerDistribution.png');
     background-size: cover;
     background-position: center;
@@ -272,6 +280,7 @@ onMounted(() => {
   }
   .small-panelTwo {
     height: 32px;
+    margin-bottom: 11px;
     background-image: url('../echarts/dashboard/TestServerHealthyStatus.png');
     background-size: cover;
     background-position: center;
@@ -279,10 +288,19 @@ onMounted(() => {
   }
   .small-panelThree {
     height: 32px;
+    margin-bottom: 11px;
     background-image: url('../echarts/dashboard/Alert.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  .chart-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(13, 29, 48);
   }
 }
 
@@ -291,16 +309,8 @@ onMounted(() => {
   text-align: center;
 }
 
-.chart-panel {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // background-color: #3a3f51;
-}
-
 .main-content {
-  // height: 100vh;
+  height: 100vh;
   background-color: #1e1f2b;
   padding: 10px;
   display: flex;
@@ -309,27 +319,65 @@ onMounted(() => {
   overflow-x: hidden;
 
   .world-map {
-    flex: 1;
-    background-color: #2b2d3e;
+    // flex: 1;
+    // background-color: #2b2d3e;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // margin-bottom: 10px;
+    // color: #6ab7ff;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    color: #6ab7ff;
-    // .upMap {
-    //   width: 824px;
-    //   height: 459px;
-    //   margin-top: 40px;
-    //   margin-left: 86px;
-    // }
+    justify-content: flex-start;
+    padding-top: 40px;
+    height: 626px;
+    .map-box {
+      width: 824px;
+      height: 459px;
+      background-color: #0d1d30; /* 背景颜色，可根据需要调整 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #b9e8ff;
+    }
+    .map-info-box {
+      width: 528px;
+      height: 31px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(13, 29, 48, 0.8);
+      border: 1px solid #b9e8ff;
+      border-radius: 5px;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      .info-item {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .normal {
+        color: #00a72f; /* 正常状态的颜色 */
+      }
+
+      .abnormal {
+        color: #f50101; /* 异常状态的颜色 */
+      }
+
+      .offline {
+        color: #ffd700; /* 离线状态的颜色 */
+      }
+    }
   }
   .status-info {
     display: flex;
     gap: 10px;
     .info-box {
       flex: 1;
-      background-color: #3a3f51;
-      padding: 20px;
+      background-color: rgb(13, 29, 48);
+      padding: 10px;
       color: white;
     }
   }

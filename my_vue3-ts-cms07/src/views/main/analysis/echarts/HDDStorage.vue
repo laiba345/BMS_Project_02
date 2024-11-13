@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import GaugeChart from './GaugeChart.vue'
 
-const gauges = [1, 2, 3, 4, 5] // 定义5个仪表盘的索引
+const gauges = [1, 2, 3, 4, 5] 
 </script>
 
 <style scoped>
