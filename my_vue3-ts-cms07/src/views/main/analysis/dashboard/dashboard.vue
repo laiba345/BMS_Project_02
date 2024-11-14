@@ -39,10 +39,16 @@
             <div class="map-box">
               <WorldChart />
             </div>
-            <div class="map-Info-box">
-              <span class="info-item normal">Normal: 2000</span>
-              <span class="info-item abnormal">Abnormal: 12</span>
-              <span class="info-item offline">Offline: 9</span>
+            <div class="map-info-box">
+              <span class="info-item"
+                >Normal<span class="number normal">2000</span></span
+              >
+              <span class="info-item"
+                >Abnormal<span class="number abnormal">12</span></span
+              >
+              <span class="info-item"
+                >Offline<span class="number offline">9</span></span
+              >
             </div>
           </div>
           <div class="status-info">
@@ -128,13 +134,11 @@ onMounted(() => {
 .dashboard-layout {
   width: 1980px;
   height: 100vh;
-  position: static;
   overflow-x: hidden;
-  background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center
-    center !important;
+  overflow-y: hidden;
+  background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center !important;
   background-size: cover !important;
-  background-color: transparent !important;
-  z-index: 9999;
+  background-color: #0A0F14 !important;
   // mask-image: url('../echarts/dashboard/BackgroundMask.png');
   // mask-size: cover;
   // mask-position: center;
@@ -156,7 +160,6 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: #1c1e26;
   background-image: url('../echarts/dashboard/GeniusCloudHeader.png');
   background-size: cover;
   background-position: center;
@@ -174,7 +177,7 @@ onMounted(() => {
   .datetime {
     // width: 635px;
     height: 42px;
-    margin-top: 28px;
+    margin-top: 24px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -189,6 +192,7 @@ onMounted(() => {
       color: #acc9e6;
     }
     .curTime {
+      margin-top: -5px;
       font-size: 36px;
       font-weight: 400;
       color: #acc9e6;
@@ -200,7 +204,7 @@ onMounted(() => {
 }
 
 .left-sidebar {
-  background-color: #2a2d3e;
+  // background-color: #2a2d3e;
   padding: 10px;
   color: white;
   height: 100%;
@@ -212,10 +216,6 @@ onMounted(() => {
   .small-panel {
     position: relative;
     height: 32px;
-    text-align: center;
-    font-size: 14px;
-    color: #edf6ff;
-    // background-color: #2a2d3e;
     background-image: url('../echarts/dashboard/CoreServerUsage.png');
     background-size: cover;
     background-position: center;
@@ -260,7 +260,7 @@ onMounted(() => {
 }
 
 .right-sidebar {
-  background-color: #2a2d3e;
+  // background-color: #2a2d3e;
   padding: 10px;
   // color: white;
   height: 100%;
@@ -268,7 +268,14 @@ onMounted(() => {
   flex-direction: column;
   // gap: 10px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
+  .panel:nth-child(1) .chart-panel,
+  .panel:nth-child(2) .chart-panel {
+    height: 260px;
+  }
+  .panel:nth-child(3) .chart-panel {
+    height: 260px;
+  }
 
   .small-panelOne {
     height: 32px;
@@ -298,6 +305,7 @@ onMounted(() => {
   .chart-panel {
     flex: 1;
     display: flex;
+    height: 260px;
     align-items: center;
     justify-content: center;
     background-color: rgb(13, 29, 48);
@@ -310,8 +318,8 @@ onMounted(() => {
 }
 
 .main-content {
-  height: 100vh;
-  background-color: #1e1f2b;
+  height: 933px;
+  // background-color: rgb(11, 16, 21);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -319,55 +327,53 @@ onMounted(() => {
   overflow-x: hidden;
 
   .world-map {
-    // flex: 1;
-    // background-color: #2b2d3e;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // margin-bottom: 10px;
-    // color: #6ab7ff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 40px;
+    // padding-top: 40px;
+    width: 100%;
     height: 626px;
+    background-image: url('../echarts/dashboard/MapThree.png') !important;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     .map-box {
       width: 824px;
       height: 459px;
-      background-color: #0d1d30; /* 背景颜色，可根据需要调整 */
+      // background-color: #0d1d30;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #b9e8ff;
     }
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 5px;
+      margin-top: 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: rgba(13, 29, 48, 0.8);
-      border: 1px solid #b9e8ff;
       border-radius: 5px;
       color: #ffffff;
-      font-family: Arial, sans-serif;
       .info-item {
-        font-size: 16px;
-        font-weight: bold;
+        display: flex;
+        align-items: center;
+        font: 400 14px Inter;
+        .number {
+          font: 400 32px Aldrich;
+          margin-left: 24px;
+        }
       }
-
       .normal {
-        color: #00a72f; /* 正常状态的颜色 */
+        color: #00a72f;
       }
 
       .abnormal {
-        color: #f50101; /* 异常状态的颜色 */
+        color: #ff0000;
       }
 
       .offline {
-        color: #ffd700; /* 离线状态的颜色 */
+        color: #febc22;
       }
     }
   }

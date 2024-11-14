@@ -60,7 +60,7 @@
   
   <style scoped>
   .el-timeline {
-    margin-top: 30px;
+    margin-top: 10px;
   }
   
   .timeline-content {

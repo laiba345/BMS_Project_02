@@ -17,11 +17,11 @@ const gauges = [1, 2, 3, 4, 5]
 <style scoped>
 
 .HDDStorage {
-  background-color: rgb(13, 29, 48);
+  background-color: rgb(13, 27, 45);
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%; 
+  height: 260px; 
 }
 
 .title {

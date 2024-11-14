@@ -20,7 +20,7 @@ const initChart = () => {
       },
       legend: {
         data: ['Normal', 'Disnormal'],
-        bottom: '10%',
+        bottom: '2%',
         textStyle: { color: '#B9E8FF' }
       },
       grid: {
@@ -29,7 +29,7 @@ const initChart = () => {
         top: '10%',
         bottom: '10%',
         containLabel: true,
-        height: '70%'
+        // height: '70%'
       },
       xAxis: {
         type: 'value',
@@ -122,30 +122,31 @@ const initChart = () => {
       ]
     }
     chartInstance.setOption(option)
-    window.addEventListener('resize', () => {
-      chartInstance && chartInstance.resize()
-    })
+  }
+}
+
+const resizeChart = () => {
+  if (chartInstance) {
+    chartInstance.resize()
   }
 }
 
 onMounted(() => {
   initChart()
-  window.addEventListener('resize', () => {
-    chartInstance && chartInstance.resize()
-  })
+  // 在 mounted 时监听窗口大小变化，自动调整图表大小
+  window.addEventListener('resize', resizeChart)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', () => {
-    chartInstance && chartInstance.resize()
-  })
-  chartInstance && chartInstance.dispose()
+  // 在卸载时清理事件监听器
+  window.removeEventListener('resize', resizeChart)
+  chartInstance && chartInstance.dispose() // 销毁实例，释放资源
 })
 </script>
 
 <style scoped>
 .chart {
   width: 100%;
-  height: 360px;
+  height: 100%; /* 使用100%的父容器高度进行适配 */
 }
 </style>

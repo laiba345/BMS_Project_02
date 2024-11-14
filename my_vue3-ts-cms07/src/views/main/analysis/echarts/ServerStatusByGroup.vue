@@ -83,7 +83,7 @@ const tableData = ref([
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  margin-bottom: 60px;
+  margin-bottom: 35px;
 }
 
 .table {

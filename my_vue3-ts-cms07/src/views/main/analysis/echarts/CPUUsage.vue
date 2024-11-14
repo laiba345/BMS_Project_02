@@ -6,7 +6,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts'
 
-const chartRef = ref(null)
+const chartRef = ref(null) 
 let chartInstance: any = null
 
 const xAxisData = [
@@ -43,7 +43,7 @@ const chartOptions = {
     icon: 'rect',
     itemWidth: 14,
     itemHeight: 8,
-    itemGap: 20, // 调整图例项之间的间距
+    itemGap: 20,
     textStyle: {
       color: '#B9E8FF'
     }
@@ -137,7 +137,7 @@ const chartOptions = {
 
   grid: {
     top: '12%',
-    bottom: '12%',
+    bottom: '18%',
     right: '3%',
     left: '8%'
   }
@@ -147,13 +147,24 @@ const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
     chartInstance.setOption(chartOptions)
+    // 监听窗口大小变化，自动调整图表大小
+    window.addEventListener('resize', resizeChart)
   }
 }
+
+const resizeChart = () => {
+  if (chartInstance) {
+    chartInstance.resize()
+  }
+}
+
 onBeforeUnmount(() => {
   if (chartInstance) {
     chartInstance.dispose()
   }
+  window.removeEventListener('resize', resizeChart)  // 清理事件监听
 })
+
 onMounted(() => {
   initChart()
 })
@@ -162,6 +173,6 @@ onMounted(() => {
 <style scoped>
 .chart {
   width: 100%;
-  height: 350px;
+  height: 280px; 
 }
 </style>

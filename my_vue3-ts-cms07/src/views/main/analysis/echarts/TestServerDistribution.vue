@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="echart" style="width: 100%; height: 260px;"></div>
+  <div id="main" class="echart"></div>
 </template>
 
 <script setup lang="ts">
@@ -15,26 +15,26 @@ onMounted(() => {
     tooltip: {
       trigger: 'item',
       textStyle: {
-        color: 'rgb(185, 189, 193)', // 数值颜色
+        color: 'rgb(185, 189, 193)', 
       },
     },
     legend: {
       orient: 'horizontal',
-      bottom: '5%', // 图例放置在饼图的下方
+      bottom: '3%', 
       textStyle: {
-        color: '#B9E8FF', // 图例字体颜色
+        color: '#B9E8FF', 
       },
     },
     series: [
       // 中间装饰环
       {
         type: 'pie',
-        radius: ['28%', '30%'], // 设置为环形
-        label: { show: false }, // 隐藏标签
+        radius: ['28%', '30%'], 
+        label: { show: false }, 
         data: [
-          { value: 1, itemStyle: { color: 'rgb(36, 90, 144)' } }, // 环的颜色
+          { value: 1, itemStyle: { color: 'rgb(36, 90, 144)' } },
         ],
-        silent: true, // 禁止交互效果
+        silent: true, 
       },
       // 外层实际数据饼图
       {
@@ -106,8 +106,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.chart {
+.echart {
   width: 100%;
-  height: 100%;
+  height: 260px;
 }
 </style>
