@@ -17,7 +17,7 @@ const gauges = [1, 2, 3, 4, 5]
 <style scoped>
 
 .HDDStorage {
-  background-color: rgb(13, 27, 45);
+  background-color: rgb(7, 106, 235, 0.1);
   display: flex;
   flex-direction: column;
   width: 100%;

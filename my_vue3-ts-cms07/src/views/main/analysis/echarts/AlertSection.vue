@@ -1,5 +1,5 @@
 <template>
-    <el-timeline :line-style="{ type: 'dashed', color: '#FFFFFF' }">
+    <el-timeline :line-style="{ type: 'dashed', color: '#FFFFFF' }" class="timeLine">
       <el-timeline-item
         v-for="(item, index) in timelineData"
         :key="index"
@@ -59,8 +59,13 @@
   </script>
   
   <style scoped>
+  .timeLine {
+    width: 100%;
+    height: 260px;
+    background-color: rgb(7, 106, 235, 0.1);
+  }
   .el-timeline {
-    margin-top: 10px;
+    padding-left: 20px;
   }
   
   .timeline-content {
@@ -88,14 +93,14 @@
   }
   
   .service-name {
-    font-size: 16px;
     color: #076aeb;
-    font-weight: bold;
+    font: 500 16px Inter;
   }
   
   .message {
     color: #ffffff;
-    margin-top: 4px;
+    font: 400 12px Inter;
+    margin-top: 2px;
   }
   
   .dot {

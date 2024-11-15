@@ -14,6 +14,7 @@ const initChart = () => {
     chartInstance = echarts.init(chart.value)
 
     const option = {
+      backgroundColor: 'rgba(7, 106, 235, 0.1)',
       tooltip: {
         trigger: 'axis',
         axisPointer: { type: 'shadow' }

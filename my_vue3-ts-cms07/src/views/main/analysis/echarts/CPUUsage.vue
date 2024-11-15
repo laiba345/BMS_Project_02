@@ -26,7 +26,7 @@ const generateRandomData = () =>
   )
 
 const chartOptions = {
-  backgroundColor: 'rgb(13, 29, 48)',
+  backgroundColor: 'rgb(7, 106, 235, 0.1)',
   title: {
     text: 'CPU Usage',
     left: 'center',

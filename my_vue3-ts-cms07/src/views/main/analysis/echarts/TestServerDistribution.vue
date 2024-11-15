@@ -11,7 +11,7 @@ onMounted(() => {
   const myChart = echarts.init(chartDom);
 
   const option = {
-    backgroundColor: 'rgb(13, 29, 48)',
+    backgroundColor: 'rgba(7, 106, 235, 0.1)',
     tooltip: {
       trigger: 'item',
       textStyle: {

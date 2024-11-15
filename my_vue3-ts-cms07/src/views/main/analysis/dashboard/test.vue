@@ -181,11 +181,4 @@ onBeforeUnmount(() => {
 }
 </style>
 ```
-
-### 关键改动：
-1. **添加了 `ResizeObserver`**：该观察者会监控 `.chart` 容器的高度变化，当高度变化时会触发 `resize()` 来调整 ECharts 的尺寸。
-2. **调整容器的高度**：你可以通过给 `.chart` 元素添加类 `.shrink`，手动控制其高度为 260px，ECharts 会自适应缩小。
-3. **监听窗口的 `resize` 事件**：保持原有的 `resize` 事件监听器，确保在窗口尺寸变化时图表也会自适应。
-
-### 结论
-此方法利用 `ResizeObserver` 自动监听容器高度的变化，同时在 `window` 大小变化时依旧保持 ECharts 图表自适应缩放。
+ 

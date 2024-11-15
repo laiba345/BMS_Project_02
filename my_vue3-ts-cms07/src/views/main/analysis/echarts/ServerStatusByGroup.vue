@@ -75,8 +75,6 @@ const tableData = ref([
   text-align: left;
   color: white;
   font-family: Arial, sans-serif;
-  background-color: rgb(13, 29, 48);
-  z-index: 9999;
 }
 
 .table-title {
@@ -90,7 +88,7 @@ const tableData = ref([
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  background-color: rgb(11, 25, 42);
+  /* background-color: rgb(11, 25, 42); */
   border: 1px solid #B9E8FF;
   border-bottom: none;
   border-radius: 8px;
@@ -108,7 +106,7 @@ const tableData = ref([
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(22, 44, 75);
+  background-color:  rgba(65, 123, 214, 0.19);
   font-weight: 500;
   border-bottom: 1px solid #B9E8FF; 
 }
@@ -120,7 +118,6 @@ const tableData = ref([
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(15, 29, 47);
   color: #FFFFFE;
   border-bottom: 1px solid #B9E8FF; 
 }

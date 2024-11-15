@@ -83,6 +83,9 @@
           </div>
         </el-aside>
       </el-container>
+      <el-footer>
+        <div class="footer"></div>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -133,12 +136,12 @@ onMounted(() => {
 <style lang="less" scoped>
 .dashboard-layout {
   width: 1980px;
-  height: 100vh;
+  // height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
   background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center !important;
   background-size: cover !important;
-  background-color: #0A0F14 !important;
+  background-color: #0a0f14 !important;
   // mask-image: url('../echarts/dashboard/BackgroundMask.png');
   // mask-size: cover;
   // mask-position: center;
@@ -239,20 +242,23 @@ onMounted(() => {
       transition: background-color 0.2s, transform 0.1s;
     }
     .left-button {
-      background-color: rgba(7, 106, 235, 0.3);
+      background-color: rgba(7, 106, 235, 0.5);
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
       border-right: 1px solid transparent;
     }
     .right-button {
-      background-color: #076aeb;
+      background-color: rgba(7, 106, 235, 0.3);
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
       border-left: 1px solid transparent;
     }
-    .button:hover {
-      background-color: #005bb5;
-    }
+    // .left-button:hover {
+    //   background-color: rgba(7, 106, 235, 0.3);
+    // }
+    // .right-button:hover {
+    //   background-color: rgba(7, 106, 235, 0.5);
+    // }
     .button:active {
       transform: scale(0.95);
     }
@@ -308,7 +314,6 @@ onMounted(() => {
     height: 260px;
     align-items: center;
     justify-content: center;
-    background-color: rgb(13, 29, 48);
   }
 }
 
@@ -382,17 +387,20 @@ onMounted(() => {
     gap: 10px;
     .info-box {
       flex: 1;
-      background-color: rgb(13, 29, 48);
+      background-color: rgba(7, 106, 235, 0.1);
       padding: 10px;
       color: white;
     }
   }
 }
-
 .footer {
-  background-color: #1c1e26;
-  padding: 10px;
+  width: 100%;
+  height: 17px;
   color: white;
   text-align: center;
+  background-image: url('../echarts/dashboard/footer.png') !important;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>

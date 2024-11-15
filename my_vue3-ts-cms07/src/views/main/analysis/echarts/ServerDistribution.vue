@@ -14,7 +14,6 @@ const initChart = () => {
     chartInstance = echarts.init(chart.value)
 
     const option = {
-      backgroundColor: 'rgb(13, 29, 48)',
       title: {
         text: 'Server Distribution',
         left: 'left',
@@ -73,7 +72,7 @@ const initChart = () => {
           type: 'bar',
           barWidth: '70%', 
           itemStyle: {
-            color: 'rgba(180, 180, 180, 0.2)',
+            color: 'rgba(108, 130, 151, 0.1)',
             barBorderRadius: [5, 5, 0, 0]
           },
           silent: true,
@@ -82,8 +81,8 @@ const initChart = () => {
         {
           data: [1509, 1467, 993, 478, 984, 1005],
           type: 'bar',
-          barWidth: '36%', 
-          barGap: '-76%', 
+          barWidth: '30%', 
+          barGap: '-73%', 
           itemStyle: {
             color: 'rgb(7, 106, 235)',
             barBorderRadius: [3, 3, 0, 0]

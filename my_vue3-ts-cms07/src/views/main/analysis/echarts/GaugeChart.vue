@@ -20,7 +20,7 @@ const chartOptions = {
       splitNumber: 1,
       axisLine: {
         lineStyle: {
-          width: 10,
+          width: 7,
           color: [[1, 'rgba(27, 67, 108, 0.6)']]
         }
       },
@@ -42,12 +42,12 @@ const chartOptions = {
     },
     {
       type: 'gauge',
-      radius: '72%',
+      radius: '75%',
       startAngle: 180,
       endAngle: 0,
       axisLine: {
         lineStyle: {
-          width: 11,
+          width: 7,
           color: [
             [0.5, 'rgb(0, 166, 47)'],
             [0.7, 'rgb(251, 186, 34)'],
@@ -65,7 +65,7 @@ const chartOptions = {
       },
       anchor: {
         show: true,
-        size: 12,
+        size: 9,
         itemStyle: {
           color: '#E0E1E4',
           borderWidth: 3,
