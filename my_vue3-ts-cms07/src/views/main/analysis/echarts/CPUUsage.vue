@@ -68,9 +68,11 @@ const chartOptions = {
     type: 'value',
     min: 0,
     max: 120,
-    splitNumber: 6,
+    splitNumber: 5,
     axisTick: { show: false },
     axisLabel: {
+      // showMaxLabel: false, 
+      // formatter: (value: number) => (value === 130 ? '' : value), // 隐藏 130 的刻度标签
       color: 'rgb(235, 237, 238)'
     },
     axisLine: {
@@ -80,10 +82,12 @@ const chartOptions = {
       }
     },
     splitLine: {
+      show: true, 
       lineStyle: {
         type: 'dashed',
         color: 'rgb(235, 237, 238)'
-      }
+      }, 
+      // interval: (index: number, value: number) => value !== 130
     },
     boundaryGap: ['0%', '5%']
   },
@@ -137,7 +141,7 @@ const chartOptions = {
 
   grid: {
     top: '12%',
-    bottom: '18%',
+    bottom: '17%',
     right: '3%',
     left: '8%'
   }
@@ -147,7 +151,6 @@ const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
     chartInstance.setOption(chartOptions)
-    // 监听窗口大小变化，自动调整图表大小
     window.addEventListener('resize', resizeChart)
   }
 }
@@ -162,7 +165,7 @@ onBeforeUnmount(() => {
   if (chartInstance) {
     chartInstance.dispose()
   }
-  window.removeEventListener('resize', resizeChart)  // 清理事件监听
+  window.removeEventListener('resize', resizeChart)  
 })
 
 onMounted(() => {

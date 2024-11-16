@@ -29,7 +29,7 @@ const chartOptions = {
   backgroundColor: 'rgb(7, 106, 235, 0.1)',
 
   title: {
-    text: 'CPU Usage',
+    text: 'RAM Usage',
     left: 'center',
     padding: [10, 0, 0, 0],
     textStyle: {
@@ -148,7 +148,6 @@ const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
     chartInstance.setOption(chartOptions)
-    // 监听窗口大小变化，自动调整图表大小
     window.addEventListener('resize', resizeChart)
   }
 }
@@ -163,7 +162,7 @@ onBeforeUnmount(() => {
   if (chartInstance) {
     chartInstance.dispose()
   }
-  window.removeEventListener('resize', resizeChart)  // 清理事件监听
+  window.removeEventListener('resize', resizeChart)  
 })
 
 onMounted(() => {

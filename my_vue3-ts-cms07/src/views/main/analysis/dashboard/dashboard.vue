@@ -7,16 +7,12 @@
           <span class="curDay">{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
           <span class="curTime">{{ currentTime }}</span>
-          <el-button type="primary" size="mini" class="fixed-width-btn"
-            >Logout</el-button
-          >
-          <el-button type="primary" size="mini" class="fixed-width-btn"
-            >Esc</el-button
-          >
+          <el-button size="mini" class="fixed-width-btn">Logout</el-button>
+          <el-button size="mini" class="fixed-width-btn">Esc</el-button>
         </div>
       </el-header>
 
-      <el-container class="MainContent">
+      <el-container>
         <el-aside style="flex-basis: 24%" class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
@@ -136,94 +132,76 @@ onMounted(() => {
 <style lang="less" scoped>
 .dashboard-layout {
   width: 1980px;
-  // height: 100vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  background: url('../echarts/dashboard/BackgroundOne.png') no-repeat center !important;
-  background-size: cover !important;
-  background-color: #0a0f14 !important;
-  // mask-image: url('../echarts/dashboard/BackgroundMask.png');
-  // mask-size: cover;
-  // mask-position: center;
+  height: 1080px;
+  overflow: hidden;
+  background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat
+    center/cover;
 }
-
-// .dashboard-layout::after {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background: rgba(255, 255, 255, 0.4); /* 使用 40% 透明度白色叠加层 */
-//   pointer-events: none; /* 确保叠加层不会影响点击事件 */
-// }
 
 .header {
   height: 98px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  background-image: url('../echarts/dashboard/GeniusCloudHeader.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url('../echarts/dashboard/GeniusCloudHeader.png') no-repeat
+    center/cover;
 
   .title {
     width: 289px;
     height: 53px;
-    margin-top: 22px;
-    margin-left: 20px;
+    margin: 22px 0 0 20px;
     color: #edf6ff;
     font-size: 44px;
     font-weight: 700;
   }
   .datetime {
-    // width: 635px;
     height: 42px;
-    margin-top: 24px;
+    margin: 18px 18px 0 0;
     display: flex;
     align-items: center;
     gap: 10px;
     .curDay {
-      font-size: 24px;
-      font-weight: 400;
+      font: 400 24px Inter;
       color: #acc9e6;
     }
     .weekday {
-      font-size: 22px;
-      font-weight: 400;
+      margin-left: 10px;
+      font: 400 22px Inter;
       color: #acc9e6;
     }
     .curTime {
       margin-top: -5px;
-      font-size: 36px;
-      font-weight: 400;
+      margin-left: 10px;
+      font: 400 36px Inter;
       color: #acc9e6;
     }
     .fixed-width-btn {
-      margin-left: 2px;
+      width: 73px;
+      font: 400 14px Inter;
+      margin-left: 10px;
+      color: #ffffff;
+      border: 1px solid rgba(7, 106, 235, 1);
+      background-color: rgba(7, 106, 235, 0.6);
     }
   }
 }
 
 .left-sidebar {
-  // background-color: #2a2d3e;
+  height: 100%;
   padding: 10px;
   color: white;
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow-x: hidden;
+  overflow: hidden;
 
   .small-panel {
     position: relative;
     height: 32px;
-    background-image: url('../echarts/dashboard/CoreServerUsage.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('../echarts/dashboard/CoreServerUsage.png') no-repeat
+      center/cover;
   }
+
   .button-group {
     display: flex;
     align-items: center;
@@ -253,100 +231,32 @@ onMounted(() => {
       border-bottom-right-radius: 8px;
       border-left: 1px solid transparent;
     }
-    // .left-button:hover {
-    //   background-color: rgba(7, 106, 235, 0.3);
-    // }
-    // .right-button:hover {
-    //   background-color: rgba(7, 106, 235, 0.5);
-    // }
     .button:active {
       transform: scale(0.95);
     }
   }
 }
 
-.right-sidebar {
-  // background-color: #2a2d3e;
-  padding: 10px;
-  // color: white;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  // gap: 10px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  .panel:nth-child(1) .chart-panel,
-  .panel:nth-child(2) .chart-panel {
-    height: 260px;
-  }
-  .panel:nth-child(3) .chart-panel {
-    height: 260px;
-  }
-
-  .small-panelOne {
-    height: 32px;
-    margin-bottom: 11px;
-    background-image: url('../echarts/dashboard/TestServerDistribution.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .small-panelTwo {
-    height: 32px;
-    margin-bottom: 11px;
-    background-image: url('../echarts/dashboard/TestServerHealthyStatus.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .small-panelThree {
-    height: 32px;
-    margin-bottom: 11px;
-    background-image: url('../echarts/dashboard/Alert.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .chart-panel {
-    flex: 1;
-    display: flex;
-    height: 260px;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.small-panel {
-  height: 32px;
-  text-align: center;
-}
-
 .main-content {
   height: 933px;
-  // background-color: rgb(11, 16, 21);
   padding: 10px;
   display: flex;
   flex-direction: column;
-  color: white;
-  overflow-x: hidden;
+  color: #ffffff;
+  overflow: hidden;
 
   .world-map {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    // padding-top: 40px;
     width: 100%;
     height: 626px;
-    background-image: url('../echarts/dashboard/MapThree.png') !important;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('../echarts/dashboard/MapThree.png') center/contain
+      no-repeat;
     .map-box {
       width: 824px;
       height: 459px;
-      // background-color: #0d1d30;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -354,7 +264,7 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 48px;
+      margin-top: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -365,7 +275,9 @@ onMounted(() => {
         align-items: center;
         font: 400 14px Inter;
         .number {
-          font: 400 32px Aldrich;
+          font: 500 32px Aldrich;
+          font-family: 'Segoe UI', sans-serif;
+          line-height: 31.3px;
           margin-left: 24px;
         }
       }
@@ -389,18 +301,56 @@ onMounted(() => {
       flex: 1;
       background-color: rgba(7, 106, 235, 0.1);
       padding: 10px;
-      color: white;
+      color: #ffffff;
     }
   }
 }
+
+.right-sidebar {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .small-panelOne {
+    height: 32px;
+    margin-bottom: 11px;
+    background: url('../echarts/dashboard/TestServerDistribution.png') no-repeat
+      center/cover;
+  }
+  .small-panelTwo {
+    height: 32px;
+    margin-bottom: 11px;
+    background: url('../echarts/dashboard/TestServerHealthyStatus.png')
+      no-repeat center/cover;
+  }
+  .small-panelThree {
+    height: 32px;
+    margin-bottom: 11px;
+    background: url('../echarts/dashboard/Alert.png') no-repeat center/cover;
+  }
+  .panel:nth-of-type(1) .chart-panel {
+    height: 240px;
+  }
+  .panel:nth-of-type(2) .chart-panel {
+    height: 260px;
+  }
+  .panel:nth-of-type(3) .chart-panel {
+    height: 285px;
+  }
+}
+
 .footer {
   width: 100%;
   height: 17px;
-  color: white;
+  color: #ffffff;
   text-align: center;
-  background-image: url('../echarts/dashboard/footer.png') !important;
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url('../echarts/dashboard/footer.png') no-repeat center/cover;
+}
+
+::v-deep .el-footer {
+  --el-footer-padding: 0 10px;
+  --el-footer-height: 20px;
 }
 </style>

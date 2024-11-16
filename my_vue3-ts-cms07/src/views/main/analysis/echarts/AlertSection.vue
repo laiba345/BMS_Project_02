@@ -61,7 +61,7 @@
   <style scoped>
   .timeLine {
     width: 100%;
-    height: 260px;
+    height: 100%;
     background-color: rgb(7, 106, 235, 0.1);
   }
   .el-timeline {

@@ -20,7 +20,7 @@ onMounted(() => {
     },
     legend: {
       orient: 'horizontal',
-      bottom: '3%', 
+      bottom: '5%', 
       textStyle: {
         color: '#B9E8FF', 
       },
@@ -30,6 +30,7 @@ onMounted(() => {
       {
         type: 'pie',
         radius: ['28%', '30%'], 
+        center: ['50%', '44%'],
         label: { show: false }, 
         data: [
           { value: 1, itemStyle: { color: 'rgb(36, 90, 144)' } },
@@ -40,7 +41,8 @@ onMounted(() => {
       {
         name: 'Access From',
         type: 'pie',
-        radius: ['40%', '55%'], // 调整饼环的大小
+        radius: ['40%', '55%'], // 环状大小
+        center: ['50%', '44%'], // 顶部距离
         avoidLabelOverlap: false,
         label: {
           show: true,
@@ -108,6 +110,6 @@ onMounted(() => {
 <style scoped>
 .echart {
   width: 100%;
-  height: 260px;
+  height: 100%;
 }
 </style>

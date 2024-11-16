@@ -36,8 +36,8 @@ const gauges = [1, 2, 3, 4, 5]
 
 .gauge-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 三列布局 */
-  grid-template-rows: 1fr 1fr; /* 两行布局 */
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr;
   gap: 0px;
   width: 100%;
   height: 240px;
@@ -47,33 +47,33 @@ const gauges = [1, 2, 3, 4, 5]
 
 .gauge-container > * {
   display: flex;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
+  align-items: center; 
+  justify-content: center;
 }
 
 .gauge-container > *:nth-child(1) {
-  grid-row: 1; /* 第一行左侧 */
+  grid-row: 1;
   grid-column: 1;
 }
 
 .gauge-container > *:nth-child(2) {
-  grid-row: 1; /* 第一行中间 */
+  grid-row: 1; 
   grid-column: 2;
 }
 
 .gauge-container > *:nth-child(3) {
-  grid-row: 1; /* 第一行右侧 */
+  grid-row: 1;
   grid-column: 3;
 }
 
 .gauge-container > *:nth-child(4) {
-  grid-row: 2; /* 第二行左侧 */
-  grid-column: 1 / span 2; /* 跨越左侧和中间 */
+  grid-row: 2;
+  grid-column: 1 / span 2; 
 }
 
 .gauge-container > *:nth-child(5) {
-  grid-row: 2; /* 第二行右侧 */
-  grid-column: 2 / span 2; /* 跨越中间和右侧 */
+  grid-row: 2;
+  grid-column: 2 / span 2; 
 }
 </style>
 
