@@ -1,9 +1,8 @@
-<!-- src/components/HDDStorage.vue -->
 <template>
   <div class="HDDStorage">
     <span class="title">HDD Storage</span>
     <div class="gauge-container">
-      <GaugeChart v-for="(item, index) in gauges" :key="index" />
+      <GaugeChart v-for="(name, index) in gaugeNames" :key="index" :name="name" />
     </div>
   </div>
 </template>
@@ -11,7 +10,8 @@
 <script setup lang="ts">
 import GaugeChart from './GaugeChart.vue'
 
-const gauges = [1, 2, 3, 4, 5] 
+// 定义每个仪表盘的名字
+const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a']
 </script>
 
 <style scoped>

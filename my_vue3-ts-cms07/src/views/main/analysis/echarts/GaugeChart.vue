@@ -6,6 +6,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts'
 
+const props = defineProps<{ name: string }>()
 const chartRef = ref(null)
 let chartInstance: any = null
 
@@ -17,7 +18,7 @@ const chartOptions = {
       radius: '50%',
       startAngle: 180,
       endAngle: 0,
-      splitNumber: 1,
+      splitNumber: 4,
       axisLine: {
         lineStyle: {
           width: 7,
@@ -94,9 +95,22 @@ const chartOptions = {
       },
       detail: {
         valueAnimation: true,
-        formatter: '{value} %',
-        color: '#FFFFFF',
-        fontSize: 12
+        formatter: (value: number) =>
+          `{value|${value.toFixed(0)} %}\n{name|${props.name}}`, 
+        fontSize: 12,
+        offsetCenter: [0, '60%'],
+        rich: {
+          value: {
+            fontSize: 12,
+            color: '#FFFFFF',
+            fontWeight: '500'
+          },
+          name: {
+            fontSize: 12,
+            color: '#FFFFFF',
+            lineHeight: 5
+          }
+        }
       },
       data: [
         {
@@ -149,4 +163,3 @@ onMounted(() => {
   height: 100%;
 }
 </style>
-
