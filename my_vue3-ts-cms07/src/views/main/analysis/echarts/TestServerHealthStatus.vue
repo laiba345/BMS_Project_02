@@ -22,33 +22,49 @@ const initChart = () => {
       legend: {
         data: ['Normal', 'Disnormal'],
         bottom: '2%',
-        textStyle: { color: '#B9E8FF' }
+        itemWidth: 16,
+        itemHeight: 10,
+        itemGap: 20,
+        textStyle: { color: '#B9E8FF', fontSize: 10 }
       },
       grid: {
         left: '2%',
         right: '2%',
         top: '10%',
         bottom: '10%',
-        containLabel: true,
+        containLabel: true
         // height: '70%'
       },
       xAxis: {
         type: 'value',
-        min: -20,
-        max: 120,
-        splitNumber: 10,
+        min: -60, // 左侧 -60 对应 10
+        max: 140, // 右侧正常最大值
+        splitNumber: 11,
+        axisLabel: {
+          color: '#B9E8FF',
+          formatter: (value: any) => {
+            if (value === 0) return '0' // 中心刻度
+            if (value === -20) return '5' // 左侧刻度 -50 映射为 10
+            if (value === -40) return '10' // 左侧刻度 -25 映射为 5
+            if ([20, 40, 60, 80, 100, 120].includes(value)) {
+              return value.toString() // 右侧正常显示
+            }
+            return '' // 其他值隐藏
+          }
+        },
         splitLine: {
+          show: true,
           lineStyle: {
             color: '#B9E8FF',
             type: 'dashed'
           }
         },
-        axisLabel: {
-          color: '#B9E8FF',
-          formatter: (value: number) => (value < 0 ? Math.abs(value) : value)
+        axisTick: {
+          show: false,
+          alignWithLabel: true
         },
         axisLine: {
-          show: true, 
+          show: true,
           lineStyle: {
             color: '#B9E8FF'
           }
@@ -62,7 +78,7 @@ const initChart = () => {
           axisLine: {
             lineStyle: {
               color: '#B9E8FF',
-              type: 'solid' 
+              type: 'solid' // 确保是实线
             }
           },
           axisLabel: { color: '#B9E8FF' },
@@ -87,7 +103,7 @@ const initChart = () => {
           axisLine: {
             lineStyle: {
               color: '#B9E8FF',
-              type: 'solid' 
+              type: 'solid' // 设置为实线
             }
           },
           axisLabel: {
@@ -107,19 +123,19 @@ const initChart = () => {
             show: false
           },
           itemStyle: { color: 'rgb(0, 180, 51)' },
-          data: [85, 45, 65, 0, 85, 82, 39, 0, 59, 118, 42]
+          data: [85, 45, 65, 0, 85, 82, 39, 0, 59, 118, 42], 
         },
         {
           name: 'Disnormal',
           type: 'bar',
           stack: 'total',
-          barWidth: '30%',
+          barWidth: '40%',
           label: {
             show: false
           },
           itemStyle: { color: 'rgb(245, 1, 1)' },
-          data: [-4, -2, -12, 0, -4, -3, -7, 0, -8, -9, -3]
-        }
+          data: [-4*4, -2*4, -12*4, 0, -4*4, -3*4, -7*4, 0, -8*4, -9*4, -3*4]
+        },
       ]
     }
     chartInstance.setOption(option)
@@ -134,20 +150,18 @@ const resizeChart = () => {
 
 onMounted(() => {
   initChart()
-  // 在 mounted 时监听窗口大小变化，自动调整图表大小
   window.addEventListener('resize', resizeChart)
 })
 
 onBeforeUnmount(() => {
-  // 在卸载时清理事件监听器
   window.removeEventListener('resize', resizeChart)
-  chartInstance && chartInstance.dispose() // 销毁实例，释放资源
+  chartInstance && chartInstance.dispose()
 })
 </script>
 
 <style scoped>
 .chart {
   width: 100%;
-  height: 100%; /* 使用100%的父容器高度进行适配 */
+  height: 100%;
 }
 </style>

@@ -1,113 +1,122 @@
 <template>
-    <el-timeline :line-style="{ type: 'dashed', color: '#FFFFFF' }" class="timeLine">
-      <el-timeline-item
-        v-for="(item, index) in timelineData"
-        :key="index"
-        :color="item.color"
-        center
-        :dot="customDot(item.status)"
-        placement="top"
-      >
-        <div class="timeline-content">
-          <div class="status-label" :class="item.status">{{ item.label }}</div>
-          <div class="details">
-            <span class="service-name">{{ item.service }}</span>
-            <div class="message">{{ item.message }}</div>
-          </div>
+  <el-timeline
+    :line-style="{ type: 'dashed', color: '#FFFFFF' }"
+    class="timeLine"
+  >
+    <el-timeline-item
+      v-for="(item, index) in timelineData"
+      :key="index"
+      :color="item.color"
+      center
+      :dot="customDot(item.status)"
+      placement="top"
+    >
+      <div class="timeline-content">
+        <div class="status-label" :class="item.status">{{ item.label }}</div>
+        <div class="details">
+          <span class="service-name">{{ item.service }}</span>
+          <div class="message">{{ item.message }}</div>
         </div>
-      </el-timeline-item>
-    </el-timeline>
-  </template>
-  
-  <script setup lang="ts">
-  import { ref } from 'vue';
-  
-  const timelineData = ref([
-    {
-      label: 'Task',
-      status: 'error',
-      service: 'Fusion 1a',
-      message: 'Task to_master execution failed',
-      color: 'rgb(46, 104, 227)',
-    },
-    {
-      label: 'Resource',
-      status: 'error',
-      service: 'Focsrgbu 10',
-      message: 'Task to_master execution failed',
-      color: 'rgb(46, 104, 227)',
-    },
-    {
-      label: 'Service',
-      status: 'error',
-      service: 'Focsrgbu 9',
-      message: 'High Disk Usage exceeds 70%',
-      color: 'rgb(46, 104, 227)',
-    },
-    {
-      label: 'Service',
-      status: 'error',
-      service: 'Focsrgbu 9',
-      message: 'High Disk Usage exceeds 70%',
-      color: 'rgb(46, 104, 227)',
-    },
-  ]);
-  
-  const customDot = (status: string) => {
-    return '<span class="dot error"></span>';
-  };
-  </script>
-  
-  <style scoped>
-  .timeLine {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(7, 106, 235, 0.1);
+      </div>
+    </el-timeline-item>
+  </el-timeline>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const timelineData = ref([
+  {
+    label: 'Task',
+    status: 'error',
+    service: 'Fusion 1a',
+    message: 'Task to_master execution failed',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Resource',
+    status: 'error',
+    service: 'Focsrgbu 10',
+    message: 'Task to_master execution failed',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Service',
+    status: 'error',
+    service: 'Focsrgbu 9',
+    message: 'High Disk Usage exceeds 70%',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Service',
+    status: 'error',
+    service: 'Focsrgbu 9',
+    message: 'High Disk Usage exceeds 70%',
+    color: 'rgb(46, 104, 227)'
   }
-  .el-timeline {
-    padding-left: 20px;
-  }
-  
-  .timeline-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .status-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 82px;
-    height: 17px;
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-  }
-  
-  .status-label.error {
-    background-color: rgb(234, 51, 35);
-  }
-  
-  .details {
-    margin-left: 16px;
-  }
-  
-  .service-name {
-    color: #076aeb;
-    font: 500 16px Inter;
-  }
-  
-  .message {
-    color: #ffffff;
-    font: 400 12px Inter;
-    margin-top: 2px;
-  }
-  
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #1890ff;
-  }
-  </style>
-  
+])
+
+const customDot = (status: string) => {
+  return '<span class="dot error"></span>'
+}
+</script>
+
+<style scoped>
+.timeLine {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(7, 106, 235, 0.1);
+}
+.el-timeline {
+  padding-left: 34px;
+}
+
+::v-deep .el-timeline-item__tail {
+  position: absolute;
+  left: 4px;
+  height: 100%;
+  border-left: 1px dashed rgba(255, 255, 255, 0.6);
+}
+
+.timeline-content {
+  display: flex;
+  align-items: center;
+}
+
+.status-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 17px;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+}
+
+.status-label.error {
+  background-color: #ff0000;
+}
+
+.details {
+  margin-left: 16px;
+}
+
+.service-name {
+  color: #076aeb;
+  font: 500 16px Inter;
+}
+
+.message {
+  color: #ffffff;
+  font: 400 12px Inter;
+  margin-top: 2px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1890ff;
+}
+</style>

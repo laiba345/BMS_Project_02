@@ -90,8 +90,9 @@ const initChart = () => {
           label: {
             show: true,
             position: 'top',
-            color: 'rgb(209, 212, 215)',
+            color: 'rgba(255, 255, 255, 1)',
             fontSize: 12,
+            fontWeight: 700, 
             formatter: '{c}'
           },
           z: 2
