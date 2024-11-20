@@ -124,7 +124,7 @@ const tableData = ref([
 
 .table-cell {
   white-space: nowrap;
-  border-right: 1px dashed rgba(185, 232, 255, 0.6); 
+  border-right: 1px dashed rgba(185, 232, 255, 0.4); 
 }
 .dashed {
   border-right: 1px solid #B9E8FF; 
@@ -132,7 +132,6 @@ const tableData = ref([
 
 .table-cell:last-child {
   border-right: none;
-  /* border-bottom: none; */
 }
 
 .status-btn {

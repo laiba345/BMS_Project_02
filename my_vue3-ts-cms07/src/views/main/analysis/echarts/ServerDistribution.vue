@@ -27,7 +27,7 @@ const initChart = () => {
         type: 'category',
         data: ['FOL', 'FVN', 'FJZ', 'FSJ', 'FTX', 'FCZ'],
         axisLabel: {
-          color: 'rgb(209, 212, 215)'
+          color: '#B9E8FF'
         },
         axisLine: {
           lineStyle: {
@@ -43,7 +43,7 @@ const initChart = () => {
         min: 0,
         max: 2500,
         axisLabel: {
-          color: 'rgb(209, 212, 215)'
+          color: '#B9E8FF'
         },
         axisLine: {
           show: true,
@@ -57,7 +57,7 @@ const initChart = () => {
         splitLine: {
           lineStyle: {
             type: 'dashed',
-            color: 'rgb(209, 212, 215)'
+            color: 'rgb(235, 237, 238, 0.4)'
           }
         }
       },

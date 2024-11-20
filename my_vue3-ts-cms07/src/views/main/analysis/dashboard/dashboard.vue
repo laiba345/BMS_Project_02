@@ -197,9 +197,14 @@ onMounted(() => {
 
   .small-panel {
     position: relative;
+    margin-top: 5px;
     height: 32px;
     background: url('../echarts/dashboard/CoreServerUsage.png') no-repeat
       center/cover;
+  }
+
+  .chart-panel {
+    margin-top: 5px; 
   }
 
   .button-group {
@@ -238,10 +243,12 @@ onMounted(() => {
 }
 
 .main-content {
-  height: 933px;
+  height: 934px;
   padding: 10px;
+  gap: 12px;
   display: flex;
   flex-direction: column;
+
   color: #ffffff;
   overflow: hidden;
 
@@ -252,6 +259,7 @@ onMounted(() => {
     justify-content: flex-start;
     width: 100%;
     height: 626px;
+    
     background: url('../echarts/dashboard/MapThree.png') center/contain
       no-repeat;
     .map-box {
@@ -264,7 +272,7 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 60px;
+      margin-top: 60px; 
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -296,12 +304,12 @@ onMounted(() => {
   }
   .status-info {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     .info-box {
       flex: 1;
       background-color: rgba(7, 106, 235, 0.1);
       padding: 10px;
-      color: #ffffff;
+      color: #FFFFFF;
     }
   }
 }

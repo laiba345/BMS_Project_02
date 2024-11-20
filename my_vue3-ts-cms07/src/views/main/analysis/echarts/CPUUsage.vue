@@ -56,11 +56,11 @@ const chartOptions = {
     data: xAxisData,
     axisTick: { show: false },
     axisLabel: {
-      color: 'rgb(235, 237, 238)'
+      color: '#B9E8FF'
     },
     axisLine: {
       lineStyle: {
-        color: 'rgb(235, 237, 238)'
+        color: 'rgba(185, 232, 255)', 
       }
     }
   },
@@ -71,9 +71,7 @@ const chartOptions = {
     splitNumber: 5,
     axisTick: { show: false },
     axisLabel: {
-      // showMaxLabel: false, 
-      // formatter: (value: number) => (value === 130 ? '' : value), // 隐藏 130 的刻度标签
-      color: 'rgb(235, 237, 238)'
+      color: '#B9E8FF'
     },
     axisLine: {
       show: true,
@@ -85,9 +83,8 @@ const chartOptions = {
       show: true, 
       lineStyle: {
         type: 'dashed',
-        color: 'rgb(235, 237, 238)'
+        color: 'rgb(235, 237, 238, 0.4)'
       }, 
-      // interval: (index: number, value: number) => value !== 130
     },
     boundaryGap: ['0%', '5%']
   },

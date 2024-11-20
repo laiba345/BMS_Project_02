@@ -30,32 +30,31 @@ const initChart = () => {
       grid: {
         left: '2%',
         right: '2%',
-        top: '10%',
+        top: '6%',
         bottom: '10%',
         containLabel: true
-        // height: '70%'
       },
       xAxis: {
         type: 'value',
-        min: -60, // 左侧 -60 对应 10
-        max: 140, // 右侧正常最大值
+        min: -60,
+        max: 140,
         splitNumber: 11,
         axisLabel: {
           color: '#B9E8FF',
           formatter: (value: any) => {
-            if (value === 0) return '0' // 中心刻度
-            if (value === -20) return '5' // 左侧刻度 -50 映射为 10
-            if (value === -40) return '10' // 左侧刻度 -25 映射为 5
+            if (value === 0) return '0'
+            if (value === -20) return '5'
+            if (value === -40) return '10'
             if ([20, 40, 60, 80, 100, 120].includes(value)) {
-              return value.toString() // 右侧正常显示
+              return value.toString()
             }
-            return '' // 其他值隐藏
+            return ''
           }
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: '#B9E8FF',
+            color: 'rgba(185, 232, 255, 0.3)',
             type: 'dashed'
           }
         },
@@ -77,11 +76,11 @@ const initChart = () => {
           axisTick: { show: false },
           axisLine: {
             lineStyle: {
-              color: '#B9E8FF',
-              type: 'solid' // 确保是实线
+              color: 'rgba(185, 232, 255, 0.3)',
+              type: 'dashed'
             }
           },
-          axisLabel: { color: '#B9E8FF' },
+          axisLabel: { color: '#B9E8FF', fontSize: 11, fontWeight: '500' },
           data: [
             'Task',
             'Service',
@@ -103,17 +102,36 @@ const initChart = () => {
           axisLine: {
             lineStyle: {
               color: '#B9E8FF',
-              type: 'solid' // 设置为实线
+              type: 'solid'
             }
           },
           axisLabel: {
             color: '#B9E8FF',
+            fontSize: 10,
+            fontWeight: '500',
             formatter: (value: any) => value
           },
           data: ['', 'PURE', '', '', '', 'SRGBU', '', '', '', 'WNBU', '']
         }
       ],
+
       series: [
+        {
+          name: '覆盖线',
+          type: 'line',
+          markLine: {
+            symbol: 'none',
+            lineStyle: {
+              color: '#B9E8FF',
+              type: 'solid',
+              width: 1
+            },
+            label: {
+              show: false
+            },
+            data: [{ xAxis: -60 }]
+          }
+        },
         {
           name: 'Normal',
           type: 'bar',
@@ -123,19 +141,31 @@ const initChart = () => {
             show: false
           },
           itemStyle: { color: 'rgb(0, 180, 51)' },
-          data: [85, 45, 65, 0, 85, 82, 39, 0, 59, 118, 42], 
+          data: [85, 45, 65, 0, 85, 82, 39, 0, 59, 118, 42]
         },
         {
           name: 'Disnormal',
           type: 'bar',
           stack: 'total',
-          barWidth: '40%',
+          barWidth: '80%',
           label: {
             show: false
           },
           itemStyle: { color: 'rgb(245, 1, 1)' },
-          data: [-4*4, -2*4, -12*4, 0, -4*4, -3*4, -7*4, 0, -8*4, -9*4, -3*4]
-        },
+          data: [
+            -4 * 4,
+            -2 * 4,
+            -12 * 4,
+            0,
+            -4 * 4,
+            -3 * 4,
+            -7 * 4,
+            0,
+            -8 * 4,
+            -9 * 4,
+            -3 * 4
+          ]
+        }
       ]
     }
     chartInstance.setOption(option)

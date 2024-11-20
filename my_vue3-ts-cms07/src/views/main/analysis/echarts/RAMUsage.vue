@@ -27,7 +27,6 @@ const generateRandomData = () =>
 
 const chartOptions = {
   backgroundColor: 'rgb(7, 106, 235, 0.1)',
-
   title: {
     text: 'RAM Usage',
     left: 'center',
@@ -57,11 +56,11 @@ const chartOptions = {
     data: xAxisData,
     axisTick: { show: false },
     axisLabel: {
-      color: 'rgb(235, 237, 238)'
+      color: '#B9E8FF'
     },
     axisLine: {
       lineStyle: {
-        color: 'rgb(235, 237, 238)'
+        color: 'rgba(185, 232, 255)', 
       }
     }
   },
@@ -69,10 +68,10 @@ const chartOptions = {
     type: 'value',
     min: 0,
     max: 120,
-    splitNumber: 6,
+    splitNumber: 5,
     axisTick: { show: false },
     axisLabel: {
-      color: 'rgb(235, 237, 238)'
+      color: '#B9E8FF'
     },
     axisLine: {
       show: true,
@@ -81,10 +80,11 @@ const chartOptions = {
       }
     },
     splitLine: {
+      show: true, 
       lineStyle: {
         type: 'dashed',
-        color: 'rgb(235, 237, 238)'
-      }
+        color: 'rgb(235, 237, 238, 0.4)'
+      }, 
     },
     boundaryGap: ['0%', '5%']
   },
@@ -138,7 +138,7 @@ const chartOptions = {
 
   grid: {
     top: '12%',
-    bottom: '18%',
+    bottom: '17%',
     right: '3%',
     left: '8%'
   }
