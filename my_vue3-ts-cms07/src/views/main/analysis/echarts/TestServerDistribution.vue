@@ -34,7 +34,7 @@ onMounted(() => {
        // 中间装饰环
        {
         type: 'pie',
-        radius: ['28%', '30%'], 
+        radius: ['40%', '38%'], 
         center: ['50%', '44%'],
         label: { show: false }, 
         data: [
@@ -45,7 +45,7 @@ onMounted(() => {
       {
         name: 'Access From',
         type: 'pie',
-        radius: ['40%', '55%'],
+        radius: ['48%', '60%'],
         center: ['50%', '44%'],
         avoidLabelOverlap: false,
         label: {
@@ -115,5 +115,8 @@ onMounted(() => {
 .echart {
   width: 100%;
   height: 100%;
+  background: url('../echarts/dashboard/RingBackground.png') no-repeat center;
+  background-position: 145px 24px;
+  background-size: 164px 164px;
 }
 </style>

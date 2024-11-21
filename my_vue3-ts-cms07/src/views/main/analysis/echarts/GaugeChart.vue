@@ -21,7 +21,7 @@ const chartOptions = {
       splitNumber: 4,
       axisLine: {
         lineStyle: {
-          width: 7,
+          width: 6,
           color: [[1, 'rgba(27, 67, 108, 0.6)']]
         }
       },
@@ -66,13 +66,13 @@ const chartOptions = {
       },
       anchor: {
         show: true,
-        size: 9,
+        size: 7,
         itemStyle: {
           color: '#E0E1E4',
-          borderWidth: 3,
-          borderColor: '#333',
-          shadowBlur: 10,
-          shadowColor: 'rgba(224, 225, 228, 0.6)'
+          borderWidth: 13,
+          borderColor: 'rgba(10, 24, 43, 1)',
+          shadowBlur: 0,
+          shadowColor: 'rgba(224, 225, 228, 0.1)'
         }
       },
       axisTick: {
@@ -90,7 +90,7 @@ const chartOptions = {
       axisLabel: {
         color: '#FFFFFF',
         distance: -37,
-        fontSize: 11,
+        fontSize: 10,
         formatter: (value: any) => (value % 20 === 0 ? value : '')
       },
       detail: {
@@ -161,5 +161,8 @@ onMounted(() => {
 .chart {
   width: 100%;
   height: 100%;
+  /* background: url('../echarts/dashboard/DashBoardOne.png') no-repeat center;
+  background-position: 48px 29px;
+  background-size: 56px 27px; */
 }
 </style>
