@@ -1,49 +1,28 @@
 <template>
-  <div ref="chartRef" class="chart"></div>
+  <div ref="chartRef" class="chart" :style="{ backgroundPosition }"></div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts'
 
-const props = defineProps<{ name: string }>()
-const chartRef = ref(null)
-let chartInstance: any = null
+// 定义组件的 Props
+const props = defineProps<{ name: string; backgroundPosition: string }>()
 
-// 配置项
+// DOM引用
+const chartRef = ref<HTMLDivElement | null>(null)
+
+// ECharts 实例和定时器变量
+let chartInstance: echarts.ECharts | null = null
+let interval: ReturnType<typeof setInterval> | null = null
+
+// 仪表盘的初始配置
 const chartOptions = {
   series: [
     {
       type: 'gauge',
-      radius: '50%',
-      startAngle: 180,
-      endAngle: 0,
-      splitNumber: 4,
-      axisLine: {
-        lineStyle: {
-          width: 6,
-          color: [[1, 'rgba(27, 67, 108, 0.6)']]
-        }
-      },
-      pointer: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      splitLine: {
-        show: false
-      },
-      axisLabel: {
-        show: false
-      },
-      detail: {
-        show: false
-      }
-    },
-    {
-      type: 'gauge',
       radius: '75%',
+      z: 10,
       startAngle: 180,
       endAngle: 0,
       axisLine: {
@@ -96,7 +75,7 @@ const chartOptions = {
       detail: {
         valueAnimation: true,
         formatter: (value: number) =>
-          `{value|${value.toFixed(0)} %}\n{name|${props.name}}`, 
+          `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
         fontSize: 12,
         offsetCenter: [0, '60%'],
         rich: {
@@ -114,13 +93,42 @@ const chartOptions = {
       },
       data: [
         {
-          value: 70
+          value: 70 // 初始值
         }
       ]
+    },
+    {
+      type: 'gauge',
+      radius: '30%',
+      startAngle: 180,
+      endAngle: 0,
+      splitNumber: 4,
+      axisLine: {
+        lineStyle: {
+          width: 3,
+          color: [[1, 'rgba(27, 67, 108, 0.6)']]
+        }
+      },
+      pointer: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        show: false
+      },
+      axisLabel: {
+        show: false
+      },
+      detail: {
+        show: false
+      }
     }
   ]
 }
 
+// 初始化图表
 const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
@@ -128,16 +136,15 @@ const initChart = () => {
   }
 }
 
+// 动态更新图表数据
 const updateChartData = () => {
   if (chartInstance) {
+    const randomValue = Math.random() * 100 
+    console.log('randomValue', randomValue)
     chartInstance.setOption({
       series: [
         {
-          data: [
-            {
-              value: +(Math.random() * 100).toFixed(2)
-            }
-          ]
+          data: [{ value: randomValue }]
         }
       ]
     })
@@ -146,14 +153,16 @@ const updateChartData = () => {
 
 onMounted(() => {
   initChart()
-  const interval = setInterval(updateChartData, 2000)
+  interval = setInterval(updateChartData, 2000)
+})
 
-  onBeforeUnmount(() => {
+onBeforeUnmount(() => {
+  if (interval) {
     clearInterval(interval)
-    if (chartInstance) {
-      chartInstance.dispose()
-    }
-  })
+  }
+  if (chartInstance) {
+    chartInstance.dispose()
+  }
 })
 </script>
 
@@ -161,8 +170,7 @@ onMounted(() => {
 .chart {
   width: 100%;
   height: 100%;
-  /* background: url('../echarts/dashboard/DashBoardOne.png') no-repeat center;
-  background-position: 48px 29px;
-  background-size: 56px 27px; */
+  background: url('../echarts/dashboard/DashBoardOne.png') no-repeat center;
+  background-size: 56px 27px;
 }
 </style>

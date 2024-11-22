@@ -1,31 +1,70 @@
 <template>
-  <el-timeline
-    :line-style="{ type: 'dashed', color: '#FFFFFF' }"
-    class="timeLine"
-  >
-    <el-timeline-item
-      v-for="(item, index) in timelineData"
-      :key="index"
-      :color="item.color"
-      center
-      :dot="customDot(item.status)"
-      placement="top"
+  <div class="carousel-container">
+    <!-- 滚动时间线 -->
+    <div
+      class="timeline-wrapper"
+      :style="{ transform: `translateY(${offset}px)` }"
     >
-      <div class="timeline-content">
-        <div class="status-label" :class="item.status">{{ item.label }}</div>
-        <div class="details">
-          <span class="service-name">{{ item.service }}</span>
-          <div class="message">{{ item.message }}</div>
-        </div>
-      </div>
-    </el-timeline-item>
-  </el-timeline>
+      <el-timeline
+        :line-style="{ type: 'dashed', color: '#FFFFFF' }"
+        class="timeLine"
+      >
+        <el-timeline-item
+          v-for="(item, index) in timelineData"
+          :key="index"
+          :color="item.color"
+          center
+          :dot="customDot(item.status)"
+          placement="top"
+        >
+          <div class="timeline-content">
+            <div class="status-label" :class="item.status">{{ item.label }}</div>
+            <div class="details">
+              <span class="service-name">{{ item.service }}</span>
+              <div class="message">{{ item.message }}</div>
+            </div>
+          </div>
+        </el-timeline-item>
+      </el-timeline>
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
+
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+
+// 时间线数据
 const timelineData = ref([
+  {
+    label: 'Task',
+    status: 'error',
+    service: 'Fusion 1a',
+    message: 'Task to_master execution failed',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Resource',
+    status: 'error',
+    service: 'Focsrgbu 10',
+    message: 'Task to_master execution failed',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Service',
+    status: 'error',
+    service: 'Focsrgbu 9',
+    message: 'High Disk Usage exceeds 70%',
+    color: 'rgb(46, 104, 227)'
+  },
+  {
+    label: 'Service',
+    status: 'error',
+    service: 'Focsrgbu 9',
+    message: 'High Disk Usage exceeds 70%',
+    color: 'rgb(46, 104, 227)'
+  }, 
   {
     label: 'Task',
     status: 'error',
@@ -56,19 +95,64 @@ const timelineData = ref([
   }
 ])
 
+// 自定义点
 const customDot = (status: string) => {
   return '<span class="dot error"></span>'
 }
+
+// 控制时间线向上滚动
+let interval: ReturnType<typeof setInterval> | null = null
+const offset = ref(0) // 记录当前滚动偏移量
+const itemHeight = 90 // 每个时间线项的高度 (根据样式调整)
+const scrollStep = -itemHeight // 每次滚动的偏移量
+
+// 自动轮播逻辑
+const startCarousel = () => {
+  interval = setInterval(() => {
+    if (Math.abs(offset.value) >= itemHeight * (timelineData.value.length - 1)) {
+      // 当滚动到最后一项，追加首项到末尾并重置偏移量
+      const firstItem = timelineData.value[0]
+      timelineData.value.push(firstItem) // 追加数据
+      offset.value += scrollStep // 滚动到最后一项
+
+      // 短暂延迟后重置滚动位置到顶部
+      nextTick(() => {
+        offset.value = 0
+        timelineData.value.shift() // 删除已追加的首项
+      })
+    } else {
+      // 继续滚动到下一项
+      offset.value += scrollStep
+    }
+  }, 5000)
+}
+
+// 生命周期管理
+onMounted(() => {
+  startCarousel()
+})
+
+onBeforeUnmount(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
 </script>
 
+
+
 <style scoped>
-.timeLine {
+.carousel-container {
   width: 100%;
   height: 100%;
   background-color: rgb(7, 106, 235, 0.1);
+  overflow: hidden; /* 隐藏超出内容 */
+  position: relative;
 }
-.el-timeline {
-  padding-left: 34px;
+
+.timeline-wrapper {
+  margin-left: 30px;
+  transition: transform 5s ease; /* 平滑滚动效果 */
 }
 
 ::v-deep .el-timeline-item__tail {
@@ -76,6 +160,11 @@ const customDot = (status: string) => {
   left: 4px;
   height: 100%;
   border-left: 1px dashed rgba(255, 255, 255, 0.6);
+}
+
+.timeLine {
+  width: 100%;
+  height: auto;
 }
 
 .timeline-content {
@@ -99,6 +188,7 @@ const customDot = (status: string) => {
 }
 
 .details {
+  margin-top: 14px;
   margin-left: 16px;
 }
 

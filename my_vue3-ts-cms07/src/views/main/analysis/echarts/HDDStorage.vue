@@ -2,7 +2,12 @@
   <div class="HDDStorage">
     <span class="title">HDD Storage</span>
     <div class="gauge-container">
-      <GaugeChart v-for="(name, index) in gaugeNames" :key="index" :name="name" />
+      <GaugeChart
+        v-for="(name, index) in gaugeNames"
+        :key="index"
+        :name="name"
+        :backgroundPosition="getBackgroundPosition(index)"
+      />
     </div>
   </div>
 </template>
@@ -10,12 +15,15 @@
 <script setup lang="ts">
 import GaugeChart from './GaugeChart.vue'
 
-// 定义每个仪表盘的名字
 const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a']
+
+const getBackgroundPosition = (index: number): string => {
+  // 根据位置设置背景图片的位置
+  return index < 3 ? '48px 27px' : '124px 27px'
+}
 </script>
 
 <style scoped>
-
 .HDDStorage {
   background-color: rgb(7, 106, 235, 0.1);
   display: flex;
@@ -76,7 +84,3 @@ const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a']
   grid-column: 2 / span 2; 
 }
 </style>
-
-
-
-
