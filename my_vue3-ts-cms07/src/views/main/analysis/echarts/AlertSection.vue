@@ -1,6 +1,5 @@
 <template>
   <div class="carousel-container">
-    <!-- 滚动时间线 -->
     <div
       class="timeline-wrapper"
       :style="{ transform: `translateY(${offset}px)` }"
@@ -18,7 +17,9 @@
           placement="top"
         >
           <div class="timeline-content">
-            <div class="status-label" :class="item.status">{{ item.label }}</div>
+            <div class="status-label" :class="item.status">
+              {{ item.label }}
+            </div>
             <div class="details">
               <span class="service-name">{{ item.service }}</span>
               <div class="message">{{ item.message }}</div>
@@ -30,8 +31,6 @@
   </div>
 </template>
 
-
-
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
@@ -40,56 +39,28 @@ const timelineData = ref([
   {
     label: 'Task',
     status: 'error',
-    service: 'Fusion 1a',
+    service: 'Fusion 1',
     message: 'Task to_master execution failed',
     color: 'rgb(46, 104, 227)'
   },
   {
     label: 'Resource',
     status: 'error',
-    service: 'Focsrgbu 10',
+    service: 'Focsrgbu 2',
     message: 'Task to_master execution failed',
     color: 'rgb(46, 104, 227)'
   },
   {
     label: 'Service',
     status: 'error',
-    service: 'Focsrgbu 9',
+    service: 'Focsrgbu 3',
     message: 'High Disk Usage exceeds 70%',
     color: 'rgb(46, 104, 227)'
   },
   {
     label: 'Service',
     status: 'error',
-    service: 'Focsrgbu 9',
-    message: 'High Disk Usage exceeds 70%',
-    color: 'rgb(46, 104, 227)'
-  }, 
-  {
-    label: 'Task',
-    status: 'error',
-    service: 'Fusion 1a',
-    message: 'Task to_master execution failed',
-    color: 'rgb(46, 104, 227)'
-  },
-  {
-    label: 'Resource',
-    status: 'error',
-    service: 'Focsrgbu 10',
-    message: 'Task to_master execution failed',
-    color: 'rgb(46, 104, 227)'
-  },
-  {
-    label: 'Service',
-    status: 'error',
-    service: 'Focsrgbu 9',
-    message: 'High Disk Usage exceeds 70%',
-    color: 'rgb(46, 104, 227)'
-  },
-  {
-    label: 'Service',
-    status: 'error',
-    service: 'Focsrgbu 9',
+    service: 'Focsrgbu 4',
     message: 'High Disk Usage exceeds 70%',
     color: 'rgb(46, 104, 227)'
   }
@@ -109,25 +80,15 @@ const scrollStep = -itemHeight // 每次滚动的偏移量
 // 自动轮播逻辑
 const startCarousel = () => {
   interval = setInterval(() => {
-    if (Math.abs(offset.value) >= itemHeight * (timelineData.value.length - 1)) {
-      // 当滚动到最后一项，追加首项到末尾并重置偏移量
-      const firstItem = timelineData.value[0]
-      timelineData.value.push(firstItem) // 追加数据
-      offset.value += scrollStep // 滚动到最后一项
-
-      // 短暂延迟后重置滚动位置到顶部
-      nextTick(() => {
-        offset.value = 0
-        timelineData.value.shift() // 删除已追加的首项
-      })
-    } else {
-      // 继续滚动到下一项
-      offset.value += scrollStep
-    }
-  }, 5000)
+    const MAX_LENGTH = timelineData.value.length * 3; 
+    offset.value += scrollStep
+    timelineData.value.push(...timelineData.value)
+    if (timelineData.value.length > MAX_LENGTH) {
+        timelineData.value.splice(0, timelineData.value.length - MAX_LENGTH); // 截断数组
+      }
+  }, 2000)
 }
 
-// 生命周期管理
 onMounted(() => {
   startCarousel()
 })
@@ -139,20 +100,18 @@ onBeforeUnmount(() => {
 })
 </script>
 
-
-
 <style scoped>
 .carousel-container {
   width: 100%;
   height: 100%;
   background-color: rgb(7, 106, 235, 0.1);
-  overflow: hidden; /* 隐藏超出内容 */
+  overflow: hidden;
   position: relative;
 }
 
 .timeline-wrapper {
   margin-left: 30px;
-  transition: transform 5s ease; /* 平滑滚动效果 */
+  transition: transform 5s ease;
 }
 
 ::v-deep .el-timeline-item__tail {

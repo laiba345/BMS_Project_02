@@ -27,7 +27,7 @@ const chartOptions = {
       endAngle: 0,
       axisLine: {
         lineStyle: {
-          width: 7,
+          width: 8,
           color: [
             [0.5, 'rgb(0, 166, 47)'],
             [0.7, 'rgb(251, 186, 34)'],
@@ -68,24 +68,24 @@ const chartOptions = {
       },
       axisLabel: {
         color: '#FFFFFF',
-        distance: -37,
-        fontSize: 10,
+        distance: -35,
+        fontSize: 8,
         formatter: (value: any) => (value % 20 === 0 ? value : '')
       },
       detail: {
         valueAnimation: true,
         formatter: (value: number) =>
           `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
-        fontSize: 12,
-        offsetCenter: [0, '60%'],
+        fontSize: 10,
+        offsetCenter: [0, '43%'],
         rich: {
           value: {
-            fontSize: 12,
+            fontSize: 10,
             color: '#FFFFFF',
             fontWeight: '500'
           },
           name: {
-            fontSize: 12,
+            fontSize: 10,
             color: '#FFFFFF',
             lineHeight: 5
           }
@@ -140,7 +140,6 @@ const initChart = () => {
 const updateChartData = () => {
   if (chartInstance) {
     const randomValue = Math.random() * 100 
-    console.log('randomValue', randomValue)
     chartInstance.setOption({
       series: [
         {
