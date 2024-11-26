@@ -13,7 +13,7 @@
       </el-header>
 
       <el-container>
-        <el-aside style="flex-basis: 24%" class="left-sidebar">
+        <el-aside style="flex-basis: 25%" class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
             <HDDStorage />
@@ -57,7 +57,7 @@
           </div>
         </el-main>
 
-        <el-aside style="flex-basis: 24%" class="right-sidebar">
+        <el-aside style="flex-basis: 25%" class="right-sidebar">
           <div class="panel">
             <div class="small-panelOne"></div>
             <div class="chart-panel">
@@ -89,8 +89,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import HDDStorage from '../echarts/HDDStorage.vue'
-// import CPUUsage from '../echarts/CPUUsage.vue'
-import CPUUsage from '../echarts/CPUUsageAgain.vue'
+import CPUUsage from '../echarts/CPUUsage.vue'
+// import CPUUsage from '../echarts/CPUUsageAgain.vue'
 import RAMUsage from '../echarts/RAMUsage.vue'
 import WorldChart from '../echarts/WorldChart.vue'
 import ServerDistribution from '../echarts/ServerDistribution.vue'
@@ -132,15 +132,15 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .dashboard-layout {
-  width: 1980px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat
     center/cover;
 }
 
 .header {
-  height: 98px;
+  height: 66px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -198,14 +198,12 @@ onMounted(() => {
 
   .small-panel {
     position: relative;
-    margin-top: 5px;
-    height: 32px;
+    height: 30px;
     background: url('../echarts/dashboard/CoreServerUsage.png') no-repeat
       center/cover;
   }
 
   .chart-panel {
-    margin-top: 5px; 
   }
 
   .button-group {
@@ -244,9 +242,9 @@ onMounted(() => {
 }
 
 .main-content {
-  height: 934px;
+  height: 100%;
   padding: 10px;
-  gap: 12px;
+  gap: 32px;
   display: flex;
   flex-direction: column;
 
@@ -259,7 +257,8 @@ onMounted(() => {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 626px;
+    height: 530px;
+    margin-top: 5px;
     
     background: url('../echarts/dashboard/MapThree.png') center/contain
       no-repeat;
@@ -273,7 +272,7 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 60px; 
+      margin-top: 10px; 
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -284,7 +283,7 @@ onMounted(() => {
         align-items: center;
         font: 400 14px Inter;
         .number {
-          font: 500 32px Aldrich;
+          font: 500 28px Aldrich;
           font-family: 'Segoe UI', sans-serif;
           line-height: 31.3px;
           margin-left: 24px;
@@ -305,6 +304,7 @@ onMounted(() => {
   }
   .status-info {
     display: flex;
+    margin-top: -20px; 
     gap: 20px;
     .info-box {
       flex: 1;
@@ -323,30 +323,30 @@ onMounted(() => {
   overflow: hidden;
 
   .small-panelOne {
-    height: 32px;
-    margin-bottom: 11px;
+    height: 30px;
+    margin-bottom: 10px;
     background: url('../echarts/dashboard/TestServerDistribution.png') no-repeat
       center/cover;
   }
   .small-panelTwo {
-    height: 32px;
-    margin-bottom: 11px;
+    height: 30px;
+    margin-bottom: 10px;
     background: url('../echarts/dashboard/TestServerHealthyStatus.png')
       no-repeat center/cover;
   }
   .small-panelThree {
-    height: 32px;
-    margin-bottom: 11px;
+    height: 30px;
+    margin-bottom: 10px;
     background: url('../echarts/dashboard/Alert.png') no-repeat center/cover;
   }
   .panel:nth-of-type(1) .chart-panel {
-    height: 240px;
+    height: 200px;
   }
   .panel:nth-of-type(2) .chart-panel {
-    height: 260px;
+    height: 220px;
   }
   .panel:nth-of-type(3) .chart-panel {
-    height: 285px;
+    height: 200px;
   }
 }
 

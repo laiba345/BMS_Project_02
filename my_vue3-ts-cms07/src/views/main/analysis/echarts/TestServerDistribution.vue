@@ -116,7 +116,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background: url('../echarts/dashboard/RingBackground.png') no-repeat center;
-  background-position: 145px 24px;
-  background-size: 164px 164px;
+  background-position: 145px 19px;
+  background-size: 139px 139px;
 }
 </style>

@@ -98,7 +98,7 @@ const initChart = () => {
             map: 'world',
             roam: true,
             zoom: 1.2, // 初始缩放级别
-            center: [20, 30], // 初始地图位置设置
+            center: [20, 24], // 初始地图位置设置
             label: {
               show: false,
               color: '#fff'

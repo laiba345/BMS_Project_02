@@ -19,7 +19,7 @@ const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a']
 
 const getBackgroundPosition = (index: number): string => {
   // 根据位置设置背景图片的位置
-  return index < 3 ? '48px 27px' : '124px 27px'
+  return index < 3 ? '48px 21px' : '120px 21px'
 }
 </script>
 
@@ -29,7 +29,7 @@ const getBackgroundPosition = (index: number): string => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 260px; 
+  height: 220px; 
 }
 
 .title {

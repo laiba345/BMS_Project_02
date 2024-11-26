@@ -27,7 +27,7 @@ const chartOptions = {
       endAngle: 0,
       axisLine: {
         lineStyle: {
-          width: 8,
+          width: 6,
           color: [
             [0.5, 'rgb(0, 166, 47)'],
             [0.7, 'rgb(251, 186, 34)'],
@@ -68,8 +68,8 @@ const chartOptions = {
       },
       axisLabel: {
         color: '#FFFFFF',
-        distance: -35,
-        fontSize: 8,
+        distance: -33,
+        fontSize: 7,
         formatter: (value: any) => (value % 20 === 0 ? value : '')
       },
       detail: {
@@ -77,7 +77,7 @@ const chartOptions = {
         formatter: (value: number) =>
           `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
         fontSize: 10,
-        offsetCenter: [0, '43%'],
+        offsetCenter: [0, '49%'],
         rich: {
           value: {
             fontSize: 10,
@@ -170,6 +170,6 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   background: url('../echarts/dashboard/DashBoardOne.png') no-repeat center;
-  background-size: 56px 27px;
+  background-size: 48px 24px;
 }
 </style>
