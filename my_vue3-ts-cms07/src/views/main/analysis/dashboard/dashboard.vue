@@ -89,7 +89,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import HDDStorage from '../echarts/HDDStorage.vue'
-import CPUUsage from '../echarts/CPUUsage.vue'
+// import CPUUsage from '../echarts/CPUUsage.vue'
+import CPUUsage from '../echarts/CPUUsageAgain.vue'
 import RAMUsage from '../echarts/RAMUsage.vue'
 import WorldChart from '../echarts/WorldChart.vue'
 import ServerDistribution from '../echarts/ServerDistribution.vue'
