@@ -64,34 +64,6 @@ const timelineData = ref([
     message: 'High Disk Usage exceeds 70%',
     color: 'rgb(46, 104, 227)',
   },
-  {
-    label: 'Task',
-    status: 'error',
-    service: 'Fusion 5',
-    message: 'Task to_master execution failed',
-    color: 'rgb(46, 104, 227)',
-  },
-  {
-    label: 'Resource',
-    status: 'error',
-    service: 'Focsrgbu 6',
-    message: 'Task to_master execution failed',
-    color: 'rgb(46, 104, 227)',
-  },
-  {
-    label: 'Service',
-    status: 'error',
-    service: 'Focsrgbu 7',
-    message: 'High Disk Usage exceeds 70%',
-    color: 'rgb(46, 104, 227)',
-  },
-  {
-    label: 'Service',
-    status: 'error',
-    service: 'Focsrgbu 8',
-    message: 'High Disk Usage exceeds 70%',
-    color: 'rgb(46, 104, 227)',
-  },
 ]);
 
 // 自定义点
@@ -105,16 +77,21 @@ const scrollStep = -2; // 每次滚动的像素偏移量
 let interval: ReturnType<typeof setInterval> | null = null;
 
 const visibleCount = Math.ceil(window.innerHeight / itemHeight) + 1; // 可视范围内最多显示的条目数
-const startIndex = ref(0); // 当前渲染数据的起始索引
+const currentIndex = ref(0); // 当前渲染数据的起始索引
 
 // 计算可见数据
 const visibleData = computed(() => {
-  const data = timelineData.value.concat(timelineData.value); // 拼接数据模拟无限滚动
-  const endIndex = (startIndex.value + visibleCount) % data.length;
-  if (startIndex.value < endIndex) {
-    return data.slice(startIndex.value, endIndex);
+  const dataLength = timelineData.value.length;
+  const data = timelineData.value; // 原始数据不拼接
+
+  // 计算当前可视区域的数据起始位置
+  const startIndex = (currentIndex.value % dataLength + dataLength) % dataLength;
+  const endIndex = (startIndex + visibleCount) % dataLength;
+
+  if (startIndex < endIndex) {
+    return data.slice(startIndex, endIndex);
   } else {
-    return [...data.slice(startIndex.value), ...data.slice(0, endIndex)];
+    return [...data.slice(startIndex), ...data.slice(0, endIndex)];
   }
 });
 
@@ -125,8 +102,8 @@ const startCarousel = () => {
 
     // 当偏移量超过一个条目高度时，更新索引
     if (Math.abs(offset.value) >= itemHeight) {
-      offset.value = 0; // 重置偏移量（单个条目内的滚动）
-      startIndex.value = (startIndex.value + 1) % timelineData.value.length; // 更新起始索引
+      offset.value = 0; // 重置偏移量
+      currentIndex.value = (currentIndex.value + 1) % timelineData.value.length; // 更新起始索引
     }
   }, 25); 
 };
@@ -140,7 +117,6 @@ onBeforeUnmount(() => {
     clearInterval(interval);
   }
 });
-
 </script>
 
 <style scoped>
