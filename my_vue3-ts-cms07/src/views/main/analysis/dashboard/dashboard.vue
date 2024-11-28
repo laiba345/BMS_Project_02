@@ -264,9 +264,8 @@ onMounted(() => {
     width: 100%;
     height: 580px;
     // margin-top: 5px;
-    background: url('../echarts/dashboard/MapThree.png') center/contain
-      no-repeat;
-    background-size: cover; /* 确保背景图按比例自适应 */
+    background: url('../echarts/dashboard/MapThree.png') no-repeat 0 0 / 100% 100%; 
+    // background-size: cover;
     .map-box {
       width: 824px;
       height: 459px;
@@ -277,7 +276,7 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 10px;
+      margin-top: 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;

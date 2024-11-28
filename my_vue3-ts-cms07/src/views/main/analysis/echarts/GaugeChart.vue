@@ -76,7 +76,7 @@ const chartOptions = {
         valueAnimation: true,
         formatter: (value: number) => `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
         fontSize: 10,
-        offsetCenter: [0, '50%'],
+        offsetCenter: [0, '51%'],
         rich: {
           value: {
             fontSize: 10,
