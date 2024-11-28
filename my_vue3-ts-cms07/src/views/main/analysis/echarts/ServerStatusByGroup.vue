@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const tableData = ref([
   {
@@ -66,12 +66,12 @@ const tableData = ref([
     groupName2: 'G9-PURE-FVN',
     status2: 'Normal'
   }
-])
+]);
 </script>
 
 <style scoped>
 .status-table {
-  height: 150px; /* 缩小表格整体高度 */
+  height: 150px; 
   text-align: left;
   color: white;
   font-family: Arial, sans-serif;
@@ -79,16 +79,16 @@ const tableData = ref([
 
 .table-title {
   color: #ffffff;
-  font-size: 14px; /* 减小标题字体大小 */
+  font-size: 13px; 
   font-weight: 600;
-  margin-bottom: 20px; /* 减少标题与表格的间距 */
+  margin-bottom: 20px;
 }
 
 .table {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border: 1px solid #B9E8FF;
+  border: 1px solid #b9e8ff;
   border-bottom: none;
   border-radius: 8px;
   overflow: hidden;
@@ -99,34 +99,34 @@ const tableData = ref([
 }
 
 .header .table-cell {
-  font-size: 12px; /* 减小表头字体大小 */
-  line-height: 1.2; /* 减少表头行高 */
-  padding: 7px 9px; /* 减小表头的内边距 */
+  font-size: 12px; 
+  line-height: 1.2;
+  padding: 7px 9px; 
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(65, 123, 214, 0.19);
   font-weight: 500;
-  border-bottom: 1px solid #B9E8FF; 
+  border-bottom: 1px solid #b9e8ff;
 }
 
 .table-row:not(.header) .table-cell {
-  font-size: 10px; /* 减小内容字体大小 */
-  line-height: 1.2; /* 减少内容行高 */
-  padding: 6px 8px; /* 减小单元格内边距 */
+  font-size: 10px; 
+  line-height: 1.2; 
+  padding: 6px 8px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFE;
-  border-bottom: 1px solid #B9E8FF; 
+  color: #fffffe;
+  border-bottom: 1px solid #b9e8ff;
 }
 
 .table-cell {
   white-space: nowrap;
-  border-right: 1px dashed rgba(185, 232, 255, 0.4); 
+  border-right: 1px dashed rgba(185, 232, 255, 0.4);
 }
 .dashed {
-  border-right: 1px solid #B9E8FF; 
+  border-right: 1px solid #b9e8ff;
 }
 
 .table-cell:last-child {
@@ -135,18 +135,19 @@ const tableData = ref([
 
 .status-btn {
   display: inline-block;
-  padding: 2px 6px; /* 减小按钮的内边距 */
+  padding: 2px 6px; 
   border-radius: 4px;
-  font-size: 10px; /* 减小按钮字体大小 */
+  font-size: 10px; 
   font-weight: 400;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .normal {
-  background-color: #00A72F;
+  background-color: #00a72f;
 }
 
 .disnormal {
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 </style>
+

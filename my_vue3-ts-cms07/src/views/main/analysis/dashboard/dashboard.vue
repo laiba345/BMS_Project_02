@@ -7,13 +7,13 @@
           <span class="curDay">{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
           <span class="curTime">{{ currentTime }}</span>
-          <el-button size="mini" class="fixed-width-btn">Logout</el-button>
-          <el-button size="mini" class="fixed-width-btn">Esc</el-button>
+          <el-button class="fixed-width-btn">Logout</el-button>
+          <el-button class="fixed-width-btn">Esc</el-button>
         </div>
       </el-header>
 
       <el-container>
-        <el-aside style="flex-basis: 25%" class="left-sidebar">
+        <el-aside style="flex-basis: 24%" class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
             <HDDStorage />
@@ -57,7 +57,7 @@
           </div>
         </el-main>
 
-        <el-aside style="flex-basis: 25%" class="right-sidebar">
+        <el-aside style="flex-basis: 24%" class="right-sidebar">
           <div class="panel">
             <div class="small-panelOne"></div>
             <div class="chart-panel">
@@ -90,7 +90,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import HDDStorage from '../echarts/HDDStorage.vue'
 import CPUUsage from '../echarts/CPUUsage.vue'
-// import CPUUsage from '../echarts/CPUUsageAgain.vue'
+// import CPUUsage from '../echarts/CPUUsageAgain.vue';
 import RAMUsage from '../echarts/RAMUsage.vue'
 import WorldChart from '../echarts/WorldChart.vue'
 import ServerDistribution from '../echarts/ServerDistribution.vue'
@@ -133,14 +133,14 @@ onMounted(() => {
 <style lang="less" scoped>
 .dashboard-layout {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: 100% !important;
+  overflow-x: hidden;
   background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat
     center/cover;
 }
 
 .header {
-  height: 66px;
+  height: 76px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -157,7 +157,7 @@ onMounted(() => {
   }
   .datetime {
     height: 42px;
-    margin: 18px 18px 0 0;
+    margin: 10px 18px 0 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -171,7 +171,7 @@ onMounted(() => {
       color: #acc9e6;
     }
     .curTime {
-      margin-top: -5px;
+      margin-top: 0px;
       margin-left: 10px;
       font: 400 36px Inter;
       color: #acc9e6;
@@ -251,17 +251,22 @@ onMounted(() => {
   color: #ffffff;
   overflow: hidden;
 
+  .world-map,
+  .status-info {
+    width: 100%;
+  }
+
   .world-map {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 530px;
-    margin-top: 5px;
-    
+    height: 580px;
+    // margin-top: 5px;
     background: url('../echarts/dashboard/MapThree.png') center/contain
       no-repeat;
+    background-size: cover; /* 确保背景图按比例自适应 */
     .map-box {
       width: 824px;
       height: 459px;
@@ -272,7 +277,7 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 10px; 
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -304,13 +309,13 @@ onMounted(() => {
   }
   .status-info {
     display: flex;
-    margin-top: -20px; 
+    margin-top: -20px;
     gap: 20px;
     .info-box {
       flex: 1;
       background-color: rgba(7, 106, 235, 0.1);
       padding: 10px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 }
@@ -336,26 +341,28 @@ onMounted(() => {
   }
   .small-panelThree {
     height: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     background: url('../echarts/dashboard/Alert.png') no-repeat center/cover;
   }
   .panel:nth-of-type(1) .chart-panel {
-    height: 200px;
+    width: 100%;
+    height: 210px;
   }
   .panel:nth-of-type(2) .chart-panel {
-    height: 220px;
+    height: 260px;
   }
   .panel:nth-of-type(3) .chart-panel {
-    height: 200px;
+    height: 220px;
   }
 }
 
 .footer {
   width: 100%;
   height: 17px;
+  margin-bottom: 20px;
   color: #ffffff;
   text-align: center;
-  background: url('../echarts/dashboard/footer.png') no-repeat center/cover;
+  background: url('../echarts/dashboard/footer.png') no-repeat center/contain;
 }
 
 ::v-deep .el-footer {

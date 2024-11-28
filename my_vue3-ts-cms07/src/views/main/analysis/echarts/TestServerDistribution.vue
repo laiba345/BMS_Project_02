@@ -3,12 +3,12 @@
 </template>
 
 <script setup lang="ts">
-import * as echarts from 'echarts'
-import { onMounted } from 'vue'
+import * as echarts from 'echarts';
+import { onMounted, onBeforeUnmount } from 'vue';
 
 onMounted(() => {
-  const chartDom = document.getElementById('main')
-  const myChart = echarts.init(chartDom)
+  const chartDom = document.getElementById('main');
+  const myChart = echarts.init(chartDom);
 
   const option = {
     backgroundColor: 'rgba(7, 106, 235, 0.1)',
@@ -21,9 +21,8 @@ onMounted(() => {
     legend: {
       orient: 'horizontal',
       bottom: '5%',
-      // 图例宽高以及其间距设置
-      itemWidth: 16,
-      itemHeight: 10,
+      itemWidth: 14,
+      itemHeight: 8,
       itemGap: 20,
       textStyle: {
         color: '#B9E8FF',
@@ -31,16 +30,13 @@ onMounted(() => {
       }
     },
     series: [
-       // 中间装饰环
-       {
+      {
         type: 'pie',
-        radius: ['40%', '38%'], 
+        radius: ['40%', '38%'],
         center: ['50%', '44%'],
-        label: { show: false }, 
-        data: [
-          { value: 1, itemStyle: { color: 'rgb(36, 90, 144)' } },
-        ],
-        silent: true, 
+        label: { show: false },
+        data: [{ value: 1, itemStyle: { color: 'rgb(36, 90, 144)' }}],
+        silent: true
       },
       {
         name: 'Access From',
@@ -51,22 +47,21 @@ onMounted(() => {
         label: {
           show: true,
           formatter: (params: any) => {
-            // 使用换行符 "\n" 以及富文本样式控制
-            return `{b|${params.name}}\n\n{c|${params.value}}` // 添加额外的 "\n" 提高间距
+            return `{b|${params.name}}\n\n{c|${params.value}}`;
           },
           rich: {
             b: {
               color: 'rgb(95, 124, 146)',
               fontSize: 12,
               fontWeight: 'bold',
-              align: 'center', 
-              padding: [0, 0, -6, 0] 
+              align: 'center',
+              padding: [0, 0, -6, 0]
             },
             c: {
               color: '#FFFFFF',
               fontSize: 12,
-              fontWeight: 700, 
-              align: 'center' 
+              fontWeight: 700,
+              align: 'center'
             }
           }
         },
@@ -85,30 +80,42 @@ onMounted(() => {
             value: 18,
             name: 'SRGBU',
             itemStyle: { color: 'rgb(0, 180, 51)' },
-            labelLine: { lineStyle: { color: 'rgb(0, 180, 51)' } },
+            labelLine: { lineStyle: { color: 'rgb(0, 180, 51)' }},
             label: { color: 'red', fontWeight: '400' }
           },
           {
             value: 12,
             name: 'WNBU',
             itemStyle: { color: 'rgb(7, 106, 235)' },
-            labelLine: { lineStyle: { color: 'rgb(7, 106, 235)' } },
+            labelLine: { lineStyle: { color: 'rgb(7, 106, 235)' }},
             label: { color: '#B9E8FF', fontWeight: '400' }
           },
           {
             value: 26,
             name: 'PURE',
             itemStyle: { color: 'rgb(254, 188, 34)' },
-            labelLine: { lineStyle: { color: 'rgb(254, 188, 34)' } },
+            labelLine: { lineStyle: { color: 'rgb(254, 188, 34)' }},
             label: { color: '#B9E8FF', fontWeight: '400' }
           }
         ]
       }
     ]
-  }
+  };
 
-  myChart.setOption(option)
-})
+  myChart.setOption(option);
+
+  // Resize chart when window size changes
+  window.addEventListener('resize', () => {
+    myChart.resize();
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', () => {
+      myChart.resize();
+    });
+  });
+});
+
 </script>
 
 <style scoped>
@@ -116,10 +123,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background: url('../echarts/dashboard/RingBackground.png') no-repeat center;
-  background-position: 50% 32%;
-  background-size: 139px 139px;
+  background-position: 50.2% 32%;
+  background-size: 142px 142px;
 }
 </style>
-
-
-

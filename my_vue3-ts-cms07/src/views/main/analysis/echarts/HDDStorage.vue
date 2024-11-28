@@ -13,14 +13,14 @@
 </template>
 
 <script setup lang="ts">
-import GaugeChart from './GaugeChart.vue'
+import GaugeChart from './GaugeChart.vue';
 
-const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a']
+const gaugeNames = ['Fusion 1a', 'DC 1a', 'Log 1a', 'Fusion 1a', 'DC 1a'];
 
 const getBackgroundPosition = (index: number): string => {
   // 根据位置设置背景图片的位置
-  return index < 3 ? '48px 21px' : '120px 21px'
-}
+  return index < 3 ? '50% 34%' : '49.9%  34%';
+};
 </script>
 
 <style scoped>
@@ -29,22 +29,22 @@ const getBackgroundPosition = (index: number): string => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 220px; 
+  height: 220px;
 }
 
 .title {
-  height: 20px; 
-  line-height: 20px; 
+  height: 20px;
+  line-height: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: center; 
-  font-size: 14px; 
-  font-weight: 700; 
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .gauge-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px;
   width: 100%;
@@ -55,7 +55,7 @@ const getBackgroundPosition = (index: number): string => {
 
 .gauge-container > * {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 
@@ -65,7 +65,7 @@ const getBackgroundPosition = (index: number): string => {
 }
 
 .gauge-container > *:nth-child(2) {
-  grid-row: 1; 
+  grid-row: 1;
   grid-column: 2;
 }
 
@@ -76,11 +76,12 @@ const getBackgroundPosition = (index: number): string => {
 
 .gauge-container > *:nth-child(4) {
   grid-row: 2;
-  grid-column: 1 / span 2; 
+  grid-column: 1 / span 2;
 }
 
 .gauge-container > *:nth-child(5) {
   grid-row: 2;
-  grid-column: 2 / span 2; 
+  grid-column: 2 / span 2;
 }
 </style>
+

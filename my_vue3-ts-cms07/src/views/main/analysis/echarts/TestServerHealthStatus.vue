@@ -3,15 +3,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import * as echarts from 'echarts'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import * as echarts from 'echarts';
 
-const chart = ref(null)
-let chartInstance: any = null
+const chart = ref(null);
+let chartInstance: any = null;
 
 const initChart = () => {
   if (chart.value) {
-    chartInstance = echarts.init(chart.value)
+    chartInstance = echarts.init(chart.value);
 
     const option = {
       backgroundColor: 'rgba(7, 106, 235, 0.1)',
@@ -21,17 +21,17 @@ const initChart = () => {
       },
       legend: {
         data: ['Normal', 'Disnormal'],
-        bottom: '2%',
-        itemWidth: 16,
-        itemHeight: 10,
+        bottom: '6%',
+        itemWidth: 14,
+        itemHeight: 8,
         itemGap: 20,
         textStyle: { color: '#B9E8FF', fontSize: 10 }
       },
       grid: {
+        top: '10%',
         left: '2%',
         right: '2%',
-        top: '6%',
-        bottom: '10%',
+        bottom: '20%',
         containLabel: true
       },
       xAxis: {
@@ -41,14 +41,15 @@ const initChart = () => {
         splitNumber: 11,
         axisLabel: {
           color: '#B9E8FF',
+          fontSize: 11, 
           formatter: (value: any) => {
-            if (value === 0) return '0'
-            if (value === -20) return '5'
-            if (value === -40) return '10'
+            if (value === 0) return '0';
+            if (value === -20) return '5';
+            if (value === -40) return '10';
             if ([20, 40, 60, 80, 100, 120].includes(value)) {
-              return value.toString()
+              return value.toString();
             }
-            return ''
+            return '';
           }
         },
         splitLine: {
@@ -152,41 +153,29 @@ const initChart = () => {
             show: false
           },
           itemStyle: { color: 'rgb(245, 1, 1)' },
-          data: [
-            -4 * 4,
-            -2 * 4,
-            -12 * 4,
-            0,
-            -4 * 4,
-            -3 * 4,
-            -7 * 4,
-            0,
-            -8 * 4,
-            -9 * 4,
-            -3 * 4
-          ]
+          data: [-4 * 4, -2 * 4, -12 * 4, 0, -4 * 4, -3 * 4, -7 * 4, 0, -8 * 4, -9 * 4, -3 * 4]
         }
       ]
-    }
-    chartInstance.setOption(option)
+    };
+    chartInstance.setOption(option);
   }
-}
+};
 
 const resizeChart = () => {
   if (chartInstance) {
-    chartInstance.resize()
+    chartInstance.resize();
   }
-}
+};
 
 onMounted(() => {
-  initChart()
-  window.addEventListener('resize', resizeChart)
-})
+  initChart();
+  window.addEventListener('resize', resizeChart);
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resizeChart)
-  chartInstance && chartInstance.dispose()
-})
+  window.removeEventListener('resize', resizeChart);
+  chartInstance && chartInstance.dispose();
+});
 </script>
 
 <style scoped>

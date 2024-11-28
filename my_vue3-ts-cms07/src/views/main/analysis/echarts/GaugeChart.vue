@@ -3,18 +3,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import * as echarts from 'echarts'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import * as echarts from 'echarts';
 
 // 定义组件的 Props
-const props = defineProps<{ name: string; backgroundPosition: string }>()
+const props = defineProps<{ name: string; backgroundPosition: string }>();
 
 // DOM引用
-const chartRef = ref<HTMLDivElement | null>(null)
+const chartRef = ref<HTMLDivElement | null>(null);
 
 // ECharts 实例和定时器变量
-let chartInstance: echarts.ECharts | null = null
-let interval: ReturnType<typeof setInterval> | null = null
+let chartInstance: echarts.ECharts | null = null;
+let interval: ReturnType<typeof setInterval> | null = null;
 
 // 仪表盘的初始配置
 const chartOptions = {
@@ -74,10 +74,9 @@ const chartOptions = {
       },
       detail: {
         valueAnimation: true,
-        formatter: (value: number) =>
-          `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
+        formatter: (value: number) => `{value|${value.toFixed(0)} %}\n{name|${props.name}}`,
         fontSize: 10,
-        offsetCenter: [0, '49%'],
+        offsetCenter: [0, '50%'],
         rich: {
           value: {
             fontSize: 10,
@@ -126,43 +125,43 @@ const chartOptions = {
       }
     }
   ]
-}
+};
 
 // 初始化图表
 const initChart = () => {
   if (chartRef.value) {
-    chartInstance = echarts.init(chartRef.value)
-    chartInstance.setOption(chartOptions)
+    chartInstance = echarts.init(chartRef.value);
+    chartInstance.setOption(chartOptions);
   }
-}
+};
 
 // 动态更新图表数据
 const updateChartData = () => {
   if (chartInstance) {
-    const randomValue = Math.random() * 100 
+    const randomValue = Math.random() * 100;
     chartInstance.setOption({
       series: [
         {
           data: [{ value: randomValue }]
         }
       ]
-    })
+    });
   }
-}
+};
 
 onMounted(() => {
-  initChart()
-  interval = setInterval(updateChartData, 2000)
-})
+  initChart();
+  interval = setInterval(updateChartData, 2000);
+});
 
 onBeforeUnmount(() => {
   if (interval) {
-    clearInterval(interval)
+    clearInterval(interval);
   }
   if (chartInstance) {
-    chartInstance.dispose()
+    chartInstance.dispose();
   }
-})
+});
 </script>
 
 <style scoped>
@@ -173,3 +172,4 @@ onBeforeUnmount(() => {
   background-size: 48px 24px;
 }
 </style>
+
