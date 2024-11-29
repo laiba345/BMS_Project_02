@@ -29,7 +29,9 @@ const getBackgroundPosition = (index: number): string => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 220px;
+  height: 240px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .title {
@@ -48,7 +50,7 @@ const getBackgroundPosition = (index: number): string => {
   grid-template-rows: 1fr 1fr;
   gap: 0px;
   width: 100%;
-  height: 240px;
+  height: 100%;
   align-items: center;
   justify-items: center;
 }

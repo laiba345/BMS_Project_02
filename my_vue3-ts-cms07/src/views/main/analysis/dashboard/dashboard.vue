@@ -171,9 +171,9 @@ onMounted(() => {
       color: #acc9e6;
     }
     .curTime {
-      margin-top: 0px;
+      margin-top: -3 px;
       margin-left: 10px;
-      font: 400 36px Inter;
+      font: 400 34px Inter;
       color: #acc9e6;
     }
     .fixed-width-btn {

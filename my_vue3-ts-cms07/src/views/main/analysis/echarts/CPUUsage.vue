@@ -6,14 +6,20 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
 
-const chartRef = ref(null);
-let chartInstance: any = null;
+// DOM引用
+const chartRef = ref<HTMLDivElement | null>(null);
 
+// ECharts 实例
+let chartInstance: echarts.ECharts | null = null;
+
+// xAxis 数据
 const xAxisData = ['14:15', '14:35', '14:55', '15:15', '15:35', '15:55', '16:15', '16:35'];
 
+// 随机数据生成函数
 const generateRandomData = () =>
   Array.from({ length: xAxisData.length }, () => Math.floor(Math.random() * 121));
 
+// 图表配置项
 const chartOptions = {
   backgroundColor: 'rgb(7, 106, 235, 0.1)',
   title: {
@@ -127,7 +133,6 @@ const chartOptions = {
       itemStyle: { color: '#FF0000' }
     }
   ],
-
   grid: {
     top: '20%',
     bottom: '25%',
@@ -136,27 +141,31 @@ const chartOptions = {
   }
 };
 
+// 初始化图表
 const initChart = () => {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value);
     chartInstance.setOption(chartOptions);
-    window.addEventListener('resize', resizeChart);
+    window.addEventListener('resize', resizeChart); // 监听窗口变化
   }
 };
 
+// 处理窗口大小变化
 const resizeChart = () => {
   if (chartInstance) {
-    chartInstance.resize();
+    chartInstance.resize(); // 调整图表大小
   }
 };
 
+// 清理资源
 onBeforeUnmount(() => {
   if (chartInstance) {
     chartInstance.dispose();
   }
-  window.removeEventListener('resize', resizeChart);
+  window.removeEventListener('resize', resizeChart); // 移除事件监听
 });
 
+// 组件挂载时初始化图表
 onMounted(() => {
   initChart();
 });
@@ -165,7 +174,6 @@ onMounted(() => {
 <style scoped>
 .chart {
   width: 100%;
-  height: 250px;
+  height: 250px; /* 你可以根据需要调整图表高度 */
 }
 </style>
-
