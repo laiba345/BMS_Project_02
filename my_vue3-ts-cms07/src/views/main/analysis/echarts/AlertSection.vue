@@ -76,7 +76,7 @@ const itemHeight = 90; // 每个时间线项的高度
 const scrollStep = -2; // 每次滚动的像素偏移量
 let interval: ReturnType<typeof setInterval> | null = null;
 
-const visibleCount = Math.ceil(window.innerHeight / itemHeight) + 1; // 可视范围内最多显示的条目数
+const visibleCount = Math.ceil(window.innerHeight / itemHeight) + 2; // 可视范围内最多显示的条目数
 const currentIndex = ref(0); // 当前渲染数据的起始索引
 
 // 计算可见数据
@@ -188,3 +188,5 @@ onBeforeUnmount(() => {
   background-color: #1890ff;
 }
 </style>
+
+

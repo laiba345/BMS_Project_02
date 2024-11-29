@@ -92,7 +92,7 @@ const chartOptions = {
       },
       data: [
         {
-          value: 70 // 初始值
+          value: 70 
         }
       ]
     },
