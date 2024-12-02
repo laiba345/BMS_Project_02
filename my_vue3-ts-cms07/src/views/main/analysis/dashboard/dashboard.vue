@@ -135,8 +135,7 @@ onMounted(() => {
   width: 100%;
   height: 100% !important;
   overflow-x: hidden;
-  background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat
-    center/cover;
+  background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png')  no-repeat 0 0 / 100% 100%;
 }
 
 .header {
@@ -144,9 +143,8 @@ onMounted(() => {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background: url('../echarts/dashboard/GeniusCloudHeader.png') no-repeat
-    center/cover;
-
+  background: url('../echarts/dashboard/GeniusCloudHeader.png')  no-repeat 0 0 / 100% 100%;
+  //  no-repeat center/cover
   .title {
     width: 289px;
     height: 53px;
@@ -171,7 +169,7 @@ onMounted(() => {
       color: #acc9e6;
     }
     .curTime {
-      margin-top: -3 px;
+      margin-top: -3px;
       margin-left: 10px;
       font: 400 34px Inter;
       color: #acc9e6;
@@ -361,7 +359,7 @@ onMounted(() => {
   margin-bottom: 20px;
   color: #ffffff;
   text-align: center;
-  background: url('../echarts/dashboard/footer.png') no-repeat center/contain;
+  background: url('../echarts/dashboard/footer.png') no-repeat 0 0 / 100% 100%;
 }
 
 ::v-deep .el-footer {

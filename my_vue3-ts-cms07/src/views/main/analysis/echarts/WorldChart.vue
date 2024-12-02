@@ -22,16 +22,11 @@ const geoCoordMap: Record<string, [number, number]> = {
 }
 
 // 获取各个地点的数据
-const effectScatterData = [
+let effectScatterData = [
   {
     name: 'Vietnam',
     value: [...geoCoordMap['Vietnam'], 100],
-    label: {
-      show: true,
-      formatter: 'Vietnam',
-      position: 'right',
-      color: '#FFF'
-    }
+    label: { show: true, formatter: 'Vietnam', position: 'right', color: '#FFF' }
   },
   {
     name: 'Mexico',
@@ -58,14 +53,7 @@ const effectScatterData = [
     value: [...geoCoordMap['Wisconsin'], 100],
     itemStyle: { color: '#FEBC22' },
     symbolSize: 15,
-    label: {
-      show: true,
-      formatter: 'FTX',
-      position: 'right',
-      color: '#FEBC22',
-      fontWeight: 'bold',
-      fontSize: 16
-    }
+    label: { show: true, formatter: 'FTX', position: 'right', color: '#FEBC22', fontWeight: 'bold', fontSize: 16 }
   },
   {
     name: 'India',
@@ -153,8 +141,62 @@ const initChart = () => {
   }
 }
 
+let currentIndex = 0
+const startCarousel = () => {
+  setInterval(() => {
+    // Reset all points' itemStyle and symbolSize to default
+    effectScatterData = effectScatterData.map((item) => {
+      return {
+        ...item,
+        itemStyle: { color: '#47F6F8' },
+        symbolSize: 10
+      }
+    })
+
+    // Update the current index's item
+    effectScatterData[currentIndex] = {
+      ...effectScatterData[currentIndex],
+      itemStyle: { color: '#FEBC22' },
+      symbolSize: 15
+    }
+
+    // Increment the index and loop back
+    currentIndex = (currentIndex + 1) % effectScatterData.length
+
+    // Update chart with new data
+    chartInstance.setOption({
+      series: [
+        {
+          name: 'Highlight Points',
+          type: 'effectScatter',
+          coordinateSystem: 'geo',
+          symbolSize: (val: number[]) => (val[2] / 100) * 10 + 2,
+          rippleEffect: {
+            period: 4,
+            scale: 2.5,
+            brushType: 'stroke'
+          },
+          itemStyle: {
+            color: '#47F6F8'
+          },
+          encode: {
+            tooltip: 2
+          },
+          label: {
+            show: true,
+            position: 'right',
+            color: '#FFF'
+          },
+          data: effectScatterData
+        }
+      ]
+    })
+  }, 3000) // 3 seconds interval
+}
+
 onMounted(() => {
   initChart()
+  startCarousel()
   window.addEventListener('resize', () => {
     chartInstance && chartInstance.resize()
   })

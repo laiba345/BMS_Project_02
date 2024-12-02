@@ -61,7 +61,7 @@ const useLoginStore = defineStore('login', {
       routes.forEach((route) => router.addRoute('main', route))
 
       // 5.页面跳转(main页面)
-      router.push('/main')
+      router.push('/dashboard') // 所以都是在登录成功以后再进行跳转；
     },
 
     loadLocalCacheAction() {
