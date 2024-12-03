@@ -22,7 +22,7 @@ const geoCoordMap: Record<string, [number, number]> = {
 }
 
 // 获取各个地点的数据
-let effectScatterData = [
+let effectScatterData: any = [
   {
     name: 'Vietnam',
     value: [...geoCoordMap['Vietnam'], 100],
@@ -85,7 +85,7 @@ const initChart = () => {
           geo: {
             map: 'world',
             roam: true,
-            zoom: 1.2, // 初始缩放级别
+            zoom: 1, // 初始缩放级别
             center: [20, 24], // 初始地图位置设置
             label: {
               show: false,
@@ -140,12 +140,11 @@ const initChart = () => {
       })
   }
 }
-
 let currentIndex = 0
 const startCarousel = () => {
   setInterval(() => {
     // Reset all points' itemStyle and symbolSize to default
-    effectScatterData = effectScatterData.map((item) => {
+    effectScatterData = effectScatterData.map((item: any) => {
       return {
         ...item,
         itemStyle: { color: '#47F6F8' },

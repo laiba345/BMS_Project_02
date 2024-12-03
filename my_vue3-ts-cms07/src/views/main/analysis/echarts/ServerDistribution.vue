@@ -27,7 +27,7 @@ const initChart = () => {
         type: 'category',
         data: ['FOL', 'FVN', 'FJZ', 'FSJ', 'FTX', 'FCZ'],
         axisLabel: {
-          fontSize: 11,
+          fontSize: 10,
           color: '#B9E8FF',
           interval: 0, 
           formatter: (value: any) => {
@@ -37,7 +37,7 @@ const initChart = () => {
             label: {
               padding: [0, 0, 0, 10], 
               color: '#B9E8FF',
-              fontSize: 11
+              fontSize: 10
             }
           }
         },
@@ -55,7 +55,7 @@ const initChart = () => {
         min: 0,
         max: 2500,
         axisLabel: {
-          fontSize: 11,
+          fontSize: 10,
           color: '#B9E8FF'
         },
         axisLine: {
@@ -134,6 +134,6 @@ onBeforeUnmount(() => {
 <style scoped>
 .chart {
   width: 100%;
-  height: 200px;
+  height: 214px;
 }
 </style>

@@ -23,7 +23,7 @@ onMounted(() => {
       bottom: '5%',
       itemWidth: 14,
       itemHeight: 8,
-      itemGap: 20,
+      itemGap: 15,
       textStyle: {
         color: '#B9E8FF',
         fontSize: 10
@@ -52,14 +52,14 @@ onMounted(() => {
           rich: {
             b: {
               color: 'rgb(95, 124, 146)',
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: 'bold',
               align: 'center',
               padding: [0, 0, -6, 0]
             },
             c: {
               color: '#FFFFFF',
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: 700,
               align: 'center'
             }

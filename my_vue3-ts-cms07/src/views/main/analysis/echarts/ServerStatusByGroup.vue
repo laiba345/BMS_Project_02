@@ -81,7 +81,7 @@ const tableData = ref([
   color: #ffffff;
   font-size: 13px; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .table {

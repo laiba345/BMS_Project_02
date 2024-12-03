@@ -1,15 +1,12 @@
 <template>
   <div class="carousel-container">
-    <div
-      class="timeline-wrapper"
-      :style="{ transform: `translateY(${offset}px)` }"
-    >
+    <div class="timeline-wrapper" ref="timelineWrapper">
       <el-timeline
         :line-style="{ type: 'dashed', color: '#FFFFFF' }"
         class="timeLine"
       >
         <el-timeline-item
-          v-for="(item, index) in visibleData"
+          v-for="(item, index) in displayedTimelineData"
           :key="index"
           :color="item.color"
           center
@@ -32,9 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 
-// 时间线数据
 const timelineData = ref([
   {
     label: 'Task',
@@ -64,73 +60,68 @@ const timelineData = ref([
     message: 'High Disk Usage exceeds 70%',
     color: 'rgb(46, 104, 227)',
   },
+  {
+    label: 'Task',
+    status: 'error',
+    service: 'Fusion 5',
+    message: 'Task to_master execution failed',
+    color: 'rgb(46, 104, 227)',
+  },
 ]);
-
-// 自定义点
-const customDot = (status: string) => {
-  return '<span class="dot error"></span>';
-};
-
-const offset = ref(0); // 滚动偏移量
-const itemHeight = 90; // 每个时间线项的高度
-const scrollStep = -2; // 每次滚动的像素偏移量
-let interval: ReturnType<typeof setInterval> | null = null;
-
-const visibleCount = Math.ceil(window.innerHeight / itemHeight) + 2; // 可视范围内最多显示的条目数
-const currentIndex = ref(0); // 当前渲染数据的起始索引
-
-// 计算可见数据
-const visibleData = computed(() => {
-  const dataLength = timelineData.value.length;
-  const data = timelineData.value; // 原始数据不拼接
-
-  // 计算当前可视区域的数据起始位置
-  const startIndex = (currentIndex.value % dataLength + dataLength) % dataLength;
-  const endIndex = (startIndex + visibleCount) % dataLength;
-
-  if (startIndex < endIndex) {
-    return data.slice(startIndex, endIndex);
-  } else {
-    return [...data.slice(startIndex), ...data.slice(0, endIndex)];
-  }
+// 为了实现无限循环，将数据复制两份
+const displayedTimelineData = computed(() => {
+  return [...timelineData.value, ...timelineData.value];
 });
 
-// 开始滚动
-const startCarousel = () => {
-  interval = setInterval(() => {
-    offset.value += scrollStep;
+// 滚动逻辑
+const timelineWrapper = ref<HTMLElement | null>(null);
+let interval: any;
 
-    // 当偏移量超过一个条目高度时，更新索引
-    if (Math.abs(offset.value) >= itemHeight) {
-      offset.value = 0; // 重置偏移量
-      currentIndex.value = (currentIndex.value + 1) % timelineData.value.length; // 更新起始索引
+const startScrolling = () => {
+  if (!timelineWrapper.value) return;
+
+  let currentTransform = 0;
+  // 每个时间线条目的高度
+  const itemHeight = 90; 
+  const totalHeight = itemHeight * timelineData.value.length;
+
+  interval = setInterval(() => {
+    currentTransform -= 1; 
+    if (Math.abs(currentTransform) >= totalHeight) {
+      currentTransform = 0;
     }
-  }, 25); 
+    timelineWrapper.value!.style.transform = `translateY(${currentTransform}px)`;
+  }, 16); 
 };
 
 onMounted(() => {
-  startCarousel();
+  startScrolling();
 });
 
 onBeforeUnmount(() => {
-  if (interval) {
-    clearInterval(interval);
-  }
+  if (interval) clearInterval(interval);
 });
+
+const customDot = (status: string) => {
+  return '<span class="dot error"></span>';
+};
 </script>
 
 <style scoped>
 .carousel-container {
   width: 100%;
-  height: 100%;
+  height: 400px; 
   background-color: rgb(7, 106, 235, 0.1);
-  overflow: hidden;
+  overflow: hidden; 
   position: relative;
 }
 
 .timeline-wrapper {
   margin-left: 30px;
   will-change: transform;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 ::v-deep .el-timeline-item__tail {
@@ -148,17 +139,18 @@ onBeforeUnmount(() => {
 .timeline-content {
   display: flex;
   align-items: center;
+  margin-bottom: 6px;
 }
 
 .status-label {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 82px;
-  height: 17px;
+  width: 62px;
+  height: 16px;
   border-radius: 4px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .status-label.error {
@@ -166,13 +158,13 @@ onBeforeUnmount(() => {
 }
 
 .details {
-  margin-top: 14px;
+  margin-top: 12px;
   margin-left: 16px;
 }
 
 .service-name {
   color: #076aeb;
-  font: 500 16px Inter;
+  font: 500 14px Inter;
 }
 
 .message {

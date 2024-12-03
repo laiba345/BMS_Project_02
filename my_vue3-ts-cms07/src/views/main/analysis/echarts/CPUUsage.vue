@@ -38,7 +38,7 @@ const chartOptions = {
     icon: 'rect',
     itemWidth: 14,
     itemHeight: 8,
-    itemGap: 20,
+    itemGap: 10,
     textStyle: {
       color: '#B9E8FF',
       fontSize: 10
@@ -136,8 +136,8 @@ const chartOptions = {
   grid: {
     top: '20%',
     bottom: '25%',
-    right: '3%',
-    left: '8%'
+    right: '4%',
+    left: '10%'
   }
 };
 
@@ -174,6 +174,6 @@ onMounted(() => {
 <style scoped>
 .chart {
   width: 100%;
-  height: 250px; /* 你可以根据需要调整图表高度 */
+  height: 250px;
 }
 </style>

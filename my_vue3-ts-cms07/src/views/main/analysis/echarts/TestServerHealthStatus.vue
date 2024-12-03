@@ -31,7 +31,7 @@ const initChart = () => {
         top: '10%',
         left: '2%',
         right: '2%',
-        bottom: '20%',
+        bottom: '18%',
         containLabel: true
       },
       xAxis: {
@@ -41,7 +41,7 @@ const initChart = () => {
         splitNumber: 11,
         axisLabel: {
           color: '#B9E8FF',
-          fontSize: 11, 
+          fontSize: 10, 
           formatter: (value: any) => {
             if (value === 0) return '0';
             if (value === -20) return '5';
@@ -81,7 +81,7 @@ const initChart = () => {
               type: 'dashed'
             }
           },
-          axisLabel: { color: '#B9E8FF', fontSize: 11, fontWeight: '500' },
+          axisLabel: { color: '#B9E8FF', fontSize: 10, fontWeight: '500' },
           data: [
             'Task',
             'Service',
@@ -108,7 +108,7 @@ const initChart = () => {
           },
           axisLabel: {
             color: '#B9E8FF',
-            fontSize: 10,
+            fontSize: 9,
             fontWeight: '500',
             formatter: (value: any) => value
           },

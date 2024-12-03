@@ -139,7 +139,7 @@ onMounted(() => {
 }
 
 .header {
-  height: 76px;
+  height: 84px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -260,7 +260,7 @@ onMounted(() => {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 580px;
+    height: 550px;
     // margin-top: 5px;
     background: url('../echarts/dashboard/MapThree.png') no-repeat 0 0 / 100% 100%; 
     // background-size: cover;
@@ -274,8 +274,8 @@ onMounted(() => {
     .map-info-box {
       width: 528px;
       height: 31px;
-      margin-top: 40px;
       display: flex;
+      margin-left: 40px;
       align-items: center;
       justify-content: space-between;
       border-radius: 5px;
@@ -346,7 +346,7 @@ onMounted(() => {
     height: 210px;
   }
   .panel:nth-of-type(2) .chart-panel {
-    height: 260px;
+    height: 250px;
   }
   .panel:nth-of-type(3) .chart-panel {
     height: 220px;

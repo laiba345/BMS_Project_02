@@ -29,7 +29,7 @@ const getBackgroundPosition = (index: number): string => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 240px;
+  height: 220px;
   max-width: 100%;
   max-height: 100%;
 }
