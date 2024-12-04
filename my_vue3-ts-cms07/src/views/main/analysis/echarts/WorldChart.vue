@@ -8,6 +8,7 @@ import * as echarts from 'echarts'
 
 const chart = ref(null)
 let chartInstance: any = null
+let carouselInterval: any = null // 保存定时器
 
 // 各个地点的经纬度坐标
 const geoCoordMap: Record<string, [number, number]> = {
@@ -137,12 +138,18 @@ const initChart = () => {
             }
           ]
         })
+
+        // 监听点击事件
+        chartInstance.on('click', () => {
+          clearInterval(carouselInterval) // 停止轮播
+        })
       })
   }
 }
+
 let currentIndex = 0
 const startCarousel = () => {
-  setInterval(() => {
+  carouselInterval = setInterval(() => {
     // Reset all points' itemStyle and symbolSize to default
     effectScatterData = effectScatterData.map((item: any) => {
       return {
