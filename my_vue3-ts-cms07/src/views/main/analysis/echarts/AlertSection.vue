@@ -53,20 +53,6 @@ const timelineData = ref([
     message: 'High Disk Usage exceeds 70%',
     color: 'rgb(46, 104, 227)',
   },
-  {
-    label: 'Service',
-    status: 'error',
-    service: 'Focsrgbu 4',
-    message: 'High Disk Usage exceeds 70%',
-    color: 'rgb(46, 104, 227)',
-  },
-  {
-    label: 'Task',
-    status: 'error',
-    service: 'Fusion 5',
-    message: 'Task to_master execution failed',
-    color: 'rgb(46, 104, 227)',
-  },
 ]);
 // 为了实现无限循环，将数据复制两份
 const displayedTimelineData = computed(() => {
@@ -82,20 +68,21 @@ const startScrolling = () => {
 
   let currentTransform = 0;
   // 每个时间线条目的高度
-  const itemHeight = 90; 
+  const itemHeight = 100; 
   const totalHeight = itemHeight * timelineData.value.length;
 
   interval = setInterval(() => {
     currentTransform -= 1; 
     if (Math.abs(currentTransform) >= totalHeight) {
-      currentTransform = 0;
+      currentTransform = -30;
     }
     timelineWrapper.value!.style.transform = `translateY(${currentTransform}px)`;
   }, 16); 
 };
 
+
 onMounted(() => {
-  startScrolling();
+  // startScrolling();
 });
 
 onBeforeUnmount(() => {
@@ -110,7 +97,7 @@ const customDot = (status: string) => {
 <style scoped>
 .carousel-container {
   width: 100%;
-  height: 400px; 
+  height: 100%; 
   background-color: rgb(7, 106, 235, 0.1);
   overflow: hidden; 
   position: relative;

@@ -7,8 +7,25 @@
           <span class="curDay">{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
           <span class="curTime">{{ currentTime }}</span>
-          <el-button class="fixed-width-btn">Logout</el-button>
-          <el-button class="fixed-width-btn">Esc</el-button>
+          <!-- <el-button class="fixed-width-btn">Logout</el-button>
+          <el-button class="fixed-width-btn">Esc</el-button> -->
+          <el-dropdown placement="bottom-end">
+            <el-icon :size="40" color="#FFFFFF" class="headIcon">
+              <User />
+            </el-icon>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>
+                  <el-icon> <Monitor /> </el-icon>
+                  <span style="margin-left: 5px">Backend Management</span>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <el-icon> <Connection /> </el-icon>
+                  <span style="margin-left: 5px">Log out</span>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </el-header>
 
@@ -98,6 +115,7 @@ import ServerStatusByGroup from '../echarts/ServerStatusByGroup.vue'
 import TestServerDistribution from '../echarts/TestServerDistribution.vue'
 import TestServerHealthStatus from '../echarts/TestServerHealthStatus.vue'
 import AlertSection from '../echarts/AlertSection.vue'
+import { Connection } from '@element-plus/icons-vue'
 const datePart = ref('')
 const weekdayPart = ref('')
 const currentTime = ref('')
@@ -135,7 +153,8 @@ onMounted(() => {
   width: 100%;
   height: 100% !important;
   overflow-x: hidden;
-  background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png')  no-repeat 0 0 / 100% 100%;
+  background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat 0
+    0 / 100% 100%;
 }
 
 .header {
@@ -143,7 +162,8 @@ onMounted(() => {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background: url('../echarts/dashboard/GeniusCloudHeader.png')  no-repeat 0 0 / 100% 100%;
+  background: url('../echarts/dashboard/GeniusCloudHeader.png') no-repeat 0 0 /
+    100% 100%;
   //  no-repeat center/cover
   .title {
     width: 289px;
@@ -174,13 +194,19 @@ onMounted(() => {
       font: 400 34px Inter;
       color: #acc9e6;
     }
-    .fixed-width-btn {
-      width: 73px;
-      font: 400 14px Inter;
+    // .fixed-width-btn {
+    //   width: 73px;
+    //   font: 400 14px Inter;
+    //   margin-left: 10px;
+    //   color: #ffffff;
+    //   border: 1px solid rgba(7, 106, 235, 1);
+    //   background-color: rgba(7, 106, 235, 0.6);
+    // }
+    .headIcon {
       margin-left: 10px;
-      color: #ffffff;
-      border: 1px solid rgba(7, 106, 235, 1);
-      background-color: rgba(7, 106, 235, 0.6);
+    }
+    .headIcon:hover {
+      cursor: pointer;
     }
   }
 }
@@ -262,7 +288,8 @@ onMounted(() => {
     width: 100%;
     height: 550px;
     // margin-top: 5px;
-    background: url('../echarts/dashboard/MapThree.png') no-repeat 0 0 / 100% 100%; 
+    background: url('../echarts/dashboard/MapThree.png') no-repeat 0 0 / 100%
+      100%;
     // background-size: cover;
     .map-box {
       width: 824px;
@@ -349,7 +376,7 @@ onMounted(() => {
     height: 250px;
   }
   .panel:nth-of-type(3) .chart-panel {
-    height: 220px;
+    height: 210px;
   }
 }
 
