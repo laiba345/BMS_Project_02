@@ -2,7 +2,7 @@
   <div class="dashboard-layout">
     <el-container>
       <el-header class="header">
-        <div class="title"></div>
+        <div class="title">Genius Cloud</div>
         <div class="datetime">
           <span class="curDay">{{ datePart }}</span>
           <span class="weekday">{{ weekdayPart }}</span>
@@ -31,7 +31,7 @@
 
       <el-container>
         <el-aside  class="left-sidebar">
-          <div class="small-panel"></div>
+          <div class="small-panel">Core Server Usage</div>
           <div class="chart-panel">
             <HDDStorage />
           </div>
@@ -162,15 +162,15 @@ onMounted(() => {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background: url('../echarts/dashboard/GeniusCloudHeader.png') no-repeat 0 0 /
+  background: url('../echarts/dashboard/HeadBg.png') no-repeat 0 0 /
     100% 100%;
   //  no-repeat center/cover
   .title {
-    width: 289px;
-    height: 53px;
-    margin: 22px 0 0 20px;
+    width: 28.9vw;
+    height: 5.5vh;
+    margin: 0.8vh 0 0 0.6vw;
     color: #edf6ff;
-    font-size: 44px;
+    font-size: 5.2vh;
     font-weight: 700;
   }
   .datetime {
@@ -223,8 +223,12 @@ onMounted(() => {
 
   .small-panel {
     position: relative;
+    margin: 0.3vh 0 0 1vw;
+    color: #edf6ff;
+    font-size: 2vh;
+    font-weight: 700;
     height: 30px;
-    background: url('../echarts/dashboard/CoreServerUsage.png') no-repeat
+    background: url('../echarts/dashboard/CoreServerUsageTwo.png') no-repeat
       center/cover;
   }
 
