@@ -30,7 +30,7 @@
       </el-header>
 
       <el-container>
-        <el-aside style="flex-basis: 24%" class="left-sidebar">
+        <el-aside  class="left-sidebar">
           <div class="small-panel"></div>
           <div class="chart-panel">
             <HDDStorage />
@@ -151,14 +151,14 @@ onMounted(() => {
 <style lang="less" scoped>
 .dashboard-layout {
   width: 100%;
-  height: 100% !important;
+  height: 100vh !important;
   overflow-x: hidden;
   background: #0a0f14 url('../echarts/dashboard/BackgroundOne.png') no-repeat 0
     0 / 100% 100%;
 }
 
 .header {
-  height: 84px;
+  height: 10vh;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -174,8 +174,8 @@ onMounted(() => {
     font-weight: 700;
   }
   .datetime {
-    height: 42px;
-    margin: 10px 18px 0 0;
+    height: 6.3vh;
+    margin: 0.6vh 1.2vw 0 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -213,6 +213,7 @@ onMounted(() => {
 
 .left-sidebar {
   height: 100%;
+  width: 24vw;
   padding: 10px;
   color: white;
   display: flex;
