@@ -30,7 +30,7 @@
       </el-header>
 
       <el-container>
-        <el-aside  class="left-sidebar">
+        <el-aside class="left-sidebar">
           <div class="small-panel">Core Server Usage</div>
           <div class="chart-panel">
             <HDDStorage />
@@ -76,7 +76,9 @@
 
         <el-aside style="flex-basis: 24%" class="right-sidebar">
           <div class="panel">
-            <div class="small-panelOne"></div>
+            <div class="small-panelOne">
+              <span>Test Server Distributon</span>
+            </div>
             <div class="chart-panel">
               <TestServerDistribution />
             </div>
@@ -162,8 +164,7 @@ onMounted(() => {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background: url('../echarts/dashboard/HeadBg.png') no-repeat 0 0 /
-    100% 100%;
+  background: url('../echarts/dashboard/HeadBg.png') no-repeat 0 0 / 100% 100%;
   //  no-repeat center/cover
   .title {
     width: 28.9vw;
@@ -225,7 +226,7 @@ onMounted(() => {
     position: relative;
     margin: 0.3vh 0 0 1vw;
     color: #edf6ff;
-    font-size: 2vh;
+    font-size: 16px;
     font-weight: 700;
     height: 30px;
     background: url('../echarts/dashboard/CoreServerUsageTwo.png') no-repeat
@@ -357,10 +358,19 @@ onMounted(() => {
   overflow: hidden;
 
   .small-panelOne {
+    position: relative;
     height: 30px;
-    margin-bottom: 10px;
-    background: url('../echarts/dashboard/TestServerDistribution.png') no-repeat
-      center/cover;
+    margin-bottom: 5px;
+    background: url('../echarts/dashboard/TestServerDistributionTwo.png')
+      no-repeat center/cover;
+    span {
+      display: inline-block; 
+      height: 30px; 
+      margin: 0.41vh 0 0 0.6vw;
+      color: #edf6ff;
+      font-size: 16px;
+      font-weight: 700;
+    }
   }
   .small-panelTwo {
     height: 30px;
