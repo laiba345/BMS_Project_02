@@ -31,7 +31,9 @@
 
       <el-container>
         <el-aside class="left-sidebar">
-          <div class="small-panel">Core Server Usage</div>
+          <div class="small-panel">
+            <span>Core Server usage</span>
+          </div>
           <div class="chart-panel">
             <HDDStorage />
           </div>
@@ -85,13 +87,17 @@
           </div>
 
           <div class="panel">
-            <div class="small-panelTwo"></div>
+            <div class="small-panelOne">
+              <span>Test Server Healthy Status</span>
+            </div>
             <div class="chart-panel">
               <TestServerHealthStatus />
             </div>
           </div>
           <div class="panel">
-            <div class="small-panelThree"></div>
+            <div class="small-panelOne">
+              <span>Alert</span>
+            </div>
             <div class="chart-panel">
               <AlertSection />
             </div>
@@ -160,7 +166,7 @@ onMounted(() => {
 }
 
 .header {
-  height: 10vh;
+  height: 76px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -169,9 +175,9 @@ onMounted(() => {
   .title {
     width: 28.9vw;
     height: 5.5vh;
-    margin: 0.8vh 0 0 0.6vw;
+    margin: 1vh 0 0 0.6vw;
     color: #edf6ff;
-    font-size: 5.2vh;
+    font-size: 36px;
     font-weight: 700;
   }
   .datetime {
@@ -221,16 +227,20 @@ onMounted(() => {
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
-
+ 
   .small-panel {
-    position: relative;
-    margin: 0.3vh 0 0 1vw;
-    color: #edf6ff;
-    font-size: 16px;
-    font-weight: 700;
+    margin-top: 3px;
     height: 30px;
     background: url('../echarts/dashboard/CoreServerUsageTwo.png') no-repeat
       center/cover;
+      span {
+      display: inline-block; 
+      height: 30px; 
+      margin: 0.41vh 0 0 0.6vw;
+      color: #edf6ff;
+      font-size: 16px;
+      font-weight: 700;
+    }
   }
 
   .chart-panel {
@@ -358,7 +368,6 @@ onMounted(() => {
   overflow: hidden;
 
   .small-panelOne {
-    position: relative;
     height: 30px;
     margin-bottom: 5px;
     background: url('../echarts/dashboard/TestServerDistributionTwo.png')
@@ -372,17 +381,17 @@ onMounted(() => {
       font-weight: 700;
     }
   }
-  .small-panelTwo {
-    height: 30px;
-    margin-bottom: 10px;
-    background: url('../echarts/dashboard/TestServerHealthyStatus.png')
-      no-repeat center/cover;
-  }
-  .small-panelThree {
-    height: 30px;
-    margin-bottom: 6px;
-    background: url('../echarts/dashboard/Alert.png') no-repeat center/cover;
-  }
+  // .small-panelTwo {
+  //   height: 30px;
+  //   margin-bottom: 10px;
+  //   background: url('../echarts/dashboard/TestServerHealthyStatus.png')
+  //     no-repeat center/cover;
+  // }
+  // .small-panelThree {
+  //   height: 30px;
+  //   margin-bottom: 6px;
+  //   background: url('../echarts/dashboard/Alert.png') no-repeat center/cover;
+  // }
   .panel:nth-of-type(1) .chart-panel {
     width: 100%;
     height: 210px;
